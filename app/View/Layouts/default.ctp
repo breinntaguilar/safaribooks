@@ -30,7 +30,8 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 	<?php
 		echo $this->Html->meta('icon');
 
-		echo $this->Html->css('cake.generic');
+		//echo $this->Html->css('cake.generic');
+		echo $this->Html->css('templatemo_style');
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
@@ -38,25 +39,48 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 	?>
 </head>
 <body>
-	<div id="container">
-		<div id="header">
-			<h1><?php echo $this->Html->link($cakeDescription, 'http://cakephp.org'); ?></h1>
+	<div id="templatemo_container">
+		<div id="templatemo_menu">
+			<ul>
+				<li><a href="index.html" class="current">Home</a></li>
+				<li><a href="subpage.html">Search</a></li>
+				<li><a href="subpage.html">Books</a></li>            
+				<li><a href="subpage.html">New Releases</a></li>  
+				<li><a href="#">Company</a></li> 
+				<li><a href="#">Contact</a></li>
+			</ul>
 		</div>
-		<div id="content">
-
-			<?php echo $this->Session->flash(); ?>
-
-			<?php echo $this->fetch('content'); ?>
+		
+		<div id="templatemo_header">
+			<div id="templatemo_special_offers">
+				Test
+			</div>
+			
+			<div id="templatemo_new_books">
+				Test
+			</div>
 		</div>
-		<div id="footer">
-			<?php echo $this->Html->link(
-					$this->Html->image('cake.power.gif', array('alt' => $cakeDescription, 'border' => '0')),
-					'http://www.cakephp.org/',
-					array('target' => '_blank', 'escape' => false)
-				);
-			?>
+		
+		<div id="templatemo_content">
+			<div id="templatemo_content_left">
+				<div class="templatemo_content_left_section">
+					<h1>Payment Methods</h1>
+					<img src="img/payment.png" title="Payment Methods" alt="Payments Methods" width=147 height=96>
+				</div>
+			</div>
+			
+			<div id="templatemo_content_right">
+				<?php echo $this->Session->flash(); ?>
+				<?php echo $this->fetch('content'); ?>
+			</div>
+			
+			<div class="cleaner_with_height">&nbsp;</div>
+		</div>
+		
+		<div id="templatemo_footer">
+			<a>Home</a> | <a>Search</a> | <a>Books</a> | <a>New Releases</a> | <a>FAQs</a> | <a>Contact Us</a><br />
+			Copyright © 2013 <a><strong>Safari Books</strong></a>
 		</div>
 	</div>
-	// <?php echo $this->element('sql_dump'); ?>
 </body>
 </html>

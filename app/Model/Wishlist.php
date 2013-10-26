@@ -1,16 +1,16 @@
 <?php
 App::uses('AppModel', 'Model');
 
-class Cart extends AppModel {
-	public $useTable = 'cart';
+class Wishlist extends AppModel {
+	public $useTable = 'wishlist';
 	
-	public $primaryKey = 'crtID';
+	public $primaryKey = 'wshID';
 	
 	public $displayField = 'bkID';
 	
 	// Validation rules
 	public $validate = array(
-		'crtID' => array(
+		'wshID' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
 				//'message' => 'Your custom message here',
@@ -32,34 +32,18 @@ class Cart extends AppModel {
 				//'message' => 'Your custom message here',
 			),
 		),
-		'crtQnty' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
-			),
-			'notempty' => array(
-				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
-			),
-		),
-		'crtShip' => array(
-			'decimal' => array(
-				'rule' => array('decimal', 2),
-				//'message' => 'Your custom message here',
-			),
-		),
 	);
 	
 	// belongsTo associations
 	public $belongsTo = array(
-		'CartCustomer' => array(
+		'WishlistCustomer' => array(
 			'className' => 'Customer',
 			'foreignKey' => 'cusID',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
 		),
-		'CartBook' => array(
+		'WishlistBook' => array(
 			'className' => 'Book',
 			'foreignKey' => 'bkID',
 			'conditions' => '',

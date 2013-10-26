@@ -1,119 +1,126 @@
 <?php
 App::uses('AppModel', 'Model');
-/**
- * Customer Model
- *
- * @property CustomerDetail $CustomerDetail
- */
+
 class Customer extends AppModel {
-
-/**
- * Use table
- *
- * @var mixed False or table name
- */
 	public $useTable = 'customer';
-
-/**
- * Primary key field
- *
- * @var string
- */
+	
 	public $primaryKey = 'cusID';
-
-/**
- * Display field
- *
- * @var string
- */
+	
 	public $displayField = 'cusEmail';
-
-/**
- * Validation rules
- *
- * @var array
- */
+	
+	// Validation rules
 	public $validate = array(
 		'cusID' => array(
-			'naturalnumber' => array(
-				'rule' => array('naturalnumber'),
+			'numeric' => array(
+				'rule' => array('numeric'),
 				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
 		'cmnID' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
 				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
 		'cusEmail' => array(
 			'email' => array(
 				'rule' => array('email'),
 				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 			'notempty' => array(
 				'rule' => array('notempty'),
 				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
 		'cusPass' => array(
-			'custom' => array(
-				'rule' => array('custom'),
+			'alphanumeric' => array(
+				'rule' => array('alphanumeric'),
 				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-			'between' => array(
-				'rule' => array('between', 6, 12),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 			'notempty' => array(
 				'rule' => array('notempty'),
 				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
 	);
-
-	//The Associations below have been created with all possible keys, those that are not needed can be removed
-
-/**
- * hasOne associations
- *
- * @var array
- */
+	
+	// hasOne associations
 	public $hasOne = array(
 		'CustomerDetail' => array(
-			'className' => 'CustomerDetail',
+			'className' => 'Detail',
 			'foreignKey' => 'cmnID',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
+		)
+	);
+	
+	// hasMany associations
+	public $hasMany = array(
+		'CustomerCredit' => array(
+			'className' => 'Credit',
+			'foreignKey' => 'cusID',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
+		'CustomerReview' => array(
+			'className' => 'Review',
+			'foreignKey' => 'cusID',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
+		'CustomerCart' => array(
+			'className' => 'Cart',
+			'foreignKey' => 'cusID',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
+		'CustomerCheckout' => array(
+			'className' => 'Checkout',
+			'foreignKey' => 'cusID',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
+		'CustomerWishlist' => array(
+			'className' => 'Wishlist',
+			'foreignKey' => 'cusID',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
 		)
 	);
 }

@@ -1,22 +1,16 @@
 <?php
 App::uses('AppModel', 'Model');
 
-class Cart extends AppModel {
-	public $useTable = 'cart';
+class Procure extends AppModel {
+	public $useTable = 'procure';
 	
-	public $primaryKey = 'crtID';
+	public $primaryKey = 'prcID';
 	
-	public $displayField = 'bkID';
+	public $displayField = 'prcID';
 	
 	// Validation rules
 	public $validate = array(
-		'crtID' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
-			),
-		),
-		'cusID' => array(
+		'prcID' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
 				//'message' => 'Your custom message here',
@@ -32,7 +26,7 @@ class Cart extends AppModel {
 				//'message' => 'Your custom message here',
 			),
 		),
-		'crtQnty' => array(
+		'prcQnty' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
 				//'message' => 'Your custom message here',
@@ -42,9 +36,25 @@ class Cart extends AppModel {
 				//'message' => 'Your custom message here',
 			),
 		),
-		'crtShip' => array(
+		'prcLprice' => array(
 			'decimal' => array(
 				'rule' => array('decimal', 2),
+				//'message' => 'Your custom message here',
+			),
+			'notempty' => array(
+				'rule' => array('notempty'),
+				//'message' => 'Your custom message here',
+			),
+		),
+		'empID' => array(
+			'numeric' => array(
+				'rule' => array('numeric'),
+				//'message' => 'Your custom message here',
+			),
+		),
+		'prcStat' => array(
+			'boolean' => array(
+				'rule' => array('boolean'),
 				//'message' => 'Your custom message here',
 			),
 		),
@@ -52,14 +62,14 @@ class Cart extends AppModel {
 	
 	// belongsTo associations
 	public $belongsTo = array(
-		'CartCustomer' => array(
-			'className' => 'Customer',
-			'foreignKey' => 'cusID',
+		'ProcureEmployee' => array(
+			'className' => 'Employee',
+			'foreignKey' => 'empID',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
 		),
-		'CartBook' => array(
+		'ProcureBook' => array(
 			'className' => 'Book',
 			'foreignKey' => 'bkID',
 			'conditions' => '',
