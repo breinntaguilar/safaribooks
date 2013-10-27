@@ -11,6 +11,7 @@
 			<th><?php echo $this->Paginator->sort('bkPrice'); ?></th>
 			<th><?php echo $this->Paginator->sort('bkDiscPrice'); ?></th>
 			<th><?php echo $this->Paginator->sort('bkStat'); ?></th>
+			<th><?php echo $this->Paginator->sort('bkAddedDate'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	<?php foreach ($books as $book): ?>
@@ -24,6 +25,7 @@
 		<td><?php echo h($book['Book']['bkPrice']); ?>&nbsp;</td>
 		<td><?php echo h($book['Book']['bkDiscPrice']); ?>&nbsp;</td>
 		<td><?php echo h($book['Book']['bkStat']); ?>&nbsp;</td>
+		<td><?php echo h($book['Book']['bkAddedDate']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $book['Book']['bkID'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $book['Book']['bkID'])); ?>

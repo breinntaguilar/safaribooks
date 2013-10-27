@@ -46,6 +46,11 @@
 			<?php echo h($book['Book']['bkStat']); ?>
 			&nbsp;
 		</dd>
+		<dt><?php echo __('BkAddedDate'); ?></dt>
+		<dd>
+			<?php echo h($book['Book']['bkAddedDate']); ?>
+			&nbsp;
+		</dd>
 	</dl>
 </div>
 <div class="actions">

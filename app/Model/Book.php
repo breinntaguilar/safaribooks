@@ -89,6 +89,12 @@ class Book extends AppModel {
 				//'message' => 'Your custom message here',
 			),
 		),
+		'bkAddedDate' => array(
+			'date' => array(
+				'rule' => array('date'),
+				//'message' => 'Your custom message here',
+			),
+		),
 	);
 	
 	// hasMany associations

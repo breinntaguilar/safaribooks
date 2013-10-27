@@ -12,6 +12,7 @@
 		echo $this->Form->input('bkPrice');
 		echo $this->Form->input('bkDiscPrice');
 		echo $this->Form->input('bkStat');
+		echo $this->Form->input('bkAddedDate');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>
