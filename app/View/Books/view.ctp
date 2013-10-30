@@ -1,44 +1,32 @@
 <div class="books view">
-<h2><?php echo __('Book'); ?></h2>
+	<table cellpadding = "0" cellspacing = "0">
+		<tr>
+			<td rowspan=6><?php if ($book['Book']['bkCover']) echo $this->Html->image($book['Book']['bkCover'], array('alt' => $book['Book']['bkTitle'], 'height' => 400)); ?></td>
+			<td colspan=2><?php echo h($book['Book']['bkTitle']); ?></td>
+		</tr>
+		<tr>
+			<td><?php echo h($book['Book']['bkPubDate']); ?></td>
+			<td><?php echo h($book['Book']['bkID']); ?></td>
+		</tr>
+		<tr>
+			<td colspan=2><?php echo h($book['Book']['bkAuthor']); ?></td>
+		</tr>
+		<tr>
+			<td><?php echo h($book['Book']['bkPrice']); ?></td>
+			<td><?php echo h($book['Book']['bkDiscPrice']); ?></td>
+		</tr>
+		<tr>
+			<td><?php echo h($book['Book']['bkRating']); ?></td>
+			<td>review count</td>
+		</tr>
+		<tr>
+			<td colspan=2><?php echo nl2br(h($book['Book']['bkSnippet'])); ?></td>
+		</tr>
+	</table>
 	<dl>
-		<dt><?php echo __('BkID'); ?></dt>
-		<dd>
-			<?php echo h($book['Book']['bkID']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('BkTitle'); ?></dt>
-		<dd>
-			<?php echo h($book['Book']['bkTitle']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('BkAuthor'); ?></dt>
-		<dd>
-			<?php echo h($book['Book']['bkAuthor']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('BkPubDate'); ?></dt>
-		<dd>
-			<?php echo h($book['Book']['bkPubDate']); ?>
-			&nbsp;
-		</dd>
 		<dt><?php echo __('BkQnty'); ?></dt>
 		<dd>
 			<?php echo h($book['Book']['bkQnty']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('BkRating'); ?></dt>
-		<dd>
-			<?php echo h($book['Book']['bkRating']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('BkPrice'); ?></dt>
-		<dd>
-			<?php echo h($book['Book']['bkPrice']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('BkDiscPrice'); ?></dt>
-		<dd>
-			<?php echo h($book['Book']['bkDiscPrice']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('BkStat'); ?></dt>

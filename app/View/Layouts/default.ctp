@@ -65,7 +65,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 			<div id="templatemo_content_left">
 				<div class="templatemo_content_left_section">
 					<h1>Payment Methods</h1>
-					<img src="img/payment.png" title="Payment Methods" alt="Payments Methods" width=147 height=96>
+					<img src="img/payment.png" title="Payment Methods" alt="Payments Methods" width=145>
 				</div>
 			</div>
 			

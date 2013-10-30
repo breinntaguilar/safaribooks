@@ -1,5 +1,5 @@
 <div class="books form">
-<?php echo $this->Form->create('Book'); ?>
+<?php echo $this->Form->create('Book', array('type' => 'file')); ?>
 	<fieldset>
 		<legend><?php echo __('Edit Book'); ?></legend>
 	<?php
@@ -8,11 +8,13 @@
 		echo $this->Form->input('bkAuthor');
 		echo $this->Form->input('bkPubDate');
 		echo $this->Form->input('bkQnty');
-		echo $this->Form->input('bkRating');
+		//echo $this->Form->input('bkRating');
 		echo $this->Form->input('bkPrice');
 		echo $this->Form->input('bkDiscPrice');
 		echo $this->Form->input('bkStat');
 		echo $this->Form->input('bkAddedDate');
+		echo $this->Form->input('bkSnippet');
+		echo $this->Form->input('bkCover', array('type' => 'file'));
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>
