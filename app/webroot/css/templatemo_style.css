@@ -12,7 +12,7 @@ body {
 	background: #4b4743;
 }
 
-a:link, a:visited { color: #e6e154; text-decoration: none; font-weight: bold;} 
+a:link, a:visited { color: #e6e154; text-decoration: none;} 
 a:active, a:hover { color: #e6e154; text-decoration: underline;}
 
 p {
@@ -38,21 +38,29 @@ img {
 	clear: both;
 	width: 100%;
 	height: 30px;
-	font-size: 1px;	
+	font-size: 1px;
 }
 
 .cleaner_with_width {
 	float: left;
 	width: 20px;
 	height: 30px;
-	font-size: 1px;	
+	font-size: 1px;
+}
+
+.cleaner_with_image {
+	clear: both;
+	width: 10px;
+	height: 10px;
+	font-size: 1px;
+	background: url(../img/spacer.png) no-repeat;
 }
 
 .buy_now_button a{
-	clear: both;
+	float: left;
 	text-align: center;
 	display: block;
-	width: 100px;
+	width: 80px;
 	padding: 4px 0 5px 0;
 	margin-bottom: 10px; 
 	background: url(../img/templatemo_btn_02.jpg) no-repeat;
@@ -62,10 +70,10 @@ img {
 }
 
 .detail_button a{
-	clear: both;
+	float: right;
 	text-align: center;
 	display: block;
-	width: 100px;
+	width: 80px;
 	padding: 4px 0 5px 0;
 	margin-bottom: 10px; 
 	background: url(../img/templatemo_btn_01.jpg) no-repeat;
@@ -268,12 +276,12 @@ img {
 }
 
 #templatemo_content_right li {
-	padding: 0 0 3px 0;
+	padding: 0 0 10px 0;
 }
 
 #templatemo_content_right .image_panel {
 	float: left;
-	width: 100px;
+	width: 234px;
 	margin-right: 20px;
 }
 

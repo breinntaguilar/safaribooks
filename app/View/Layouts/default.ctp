@@ -62,17 +62,15 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 		</div>
 		
 		<div id="templatemo_content">
-			<div id="templatemo_content_left">
+			<!-- <div id="templatemo_content_left">
 				<div class="templatemo_content_left_section">
 					<h1>Payment Methods</h1>
 					<img src="img/payment.png" title="Payment Methods" alt="Payments Methods" width=145>
 				</div>
-			</div>
+			</div> -->
 			
-			<div id="templatemo_content_right">
-				<?php echo $this->Session->flash(); ?>
-				<?php echo $this->fetch('content'); ?>
-			</div>
+			<?php echo $this->Session->flash(); ?>
+			<?php echo $this->fetch('content'); ?>
 			
 			<div class="cleaner_with_height">&nbsp;</div>
 		</div>
