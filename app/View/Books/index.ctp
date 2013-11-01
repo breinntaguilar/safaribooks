@@ -19,7 +19,7 @@
 
 <div id="templatemo_content_right">
 	<div class="books index">
-		<?php foreach ($books as $book): ?>
+		<?php $cnt = 1; foreach ($books as $book): ?>
 			<div class="templatemo_product_box">
 				<h1><?php echo '', (strlen(h($book['Book']['bkTitle'])) > 15 ?
 					$this->Text->truncate(h($book['Book']['bkTitle']), 15, array('ellipsis' => '...', 'exact' => true)) :
@@ -28,15 +28,17 @@
 				</h1>
 				<?php if ($book['Book']['bkCover']) echo $this->Html->image($book['Book']['bkCover'], array('alt' => $book['Book']['bkTitle'], 'width' => 100)); ?>
 				<div class="product_info">
-					<p><?php echo $this->Text->truncate(h($book['Book']['bkSnippet']), 120, array('ellipsis' => '...', 'exact' => false)); ?></p>
+					<p><?php echo $this->Text->truncate(h($book['Book']['bkSnippet']), 100, array('ellipsis' => '...', 'exact' => true)); ?></p>
 					<h3>$<?php echo h($book['Book']['bkPrice']); ?></h3>
 					<div class="buy_now_button"><a href="subpage.html">Buy Now</a></div>
                     <div class="detail_button"><?php echo $this->Html->link(__('Details'), array('action' => 'view', $book['Book']['bkID'])); ?></div>
 				</div>
 				<div class="cleaner">&nbsp;</div>
 			</div>
-			<div class="cleaner_with_width">&nbsp;</div>
-		<?php endforeach; ?>
+			<?php
+				$cnt++;
+				echo '<div class="cleaner_with_', ($cnt % 2 == 0 ? 'width' : 'height') . '">&nbsp;</div>';
+		endforeach; ?>
 		<!-- <table cellpadding="0" cellspacing="0">
 		<tr>
 				<th><?php echo $this->Paginator->sort('bkID'); ?></th>

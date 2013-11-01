@@ -29,13 +29,21 @@
 			<li>By <?php echo h($book['Book']['bkAuthor']); ?></li>
 			<li>Published: <?php echo h($book['Book']['bkPubDate']); ?></li>
 			<li>Book No.: <?php echo h($book['Book']['bkID']); ?></li>
-			<li><?php echo h($book['Book']['bkRating']); ?>&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;<?php echo $this->Html->link(__(h(count($book['BookReview'])) .
-				' customer reviews'), array('controller' => 'reviews', 'action' => 'index')); ?></li>
+			<li>
+				<div class="flexible-stars"
+					data-gold="sprite-gold-star"
+					data-silver="sprite-silver-star"
+					data-half="sprite-half-star"
+					data-init="<?php echo h($book['Book']['bkRating']); ?>"
+					data-isLocked="yes">
+				</div>
+				<?php echo $this->Html->link(__(h(count($book['BookReview'])) .	' customer reviews'), array('controller' => 'reviews', 'action' => 'index')); ?>
+			</li>
 			<li>$<?php echo '', (!empty($book['Book']['bkDiscPrice']) ? '<strike>' . h($book['Book']['bkPrice']) . '</strike>' : h($book['Book']['bkPrice']));
 				echo '', (!empty($book['Book']['bkDiscPrice']) ? '&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;$' . h($book['Book']['bkDiscPrice']) : ''); ?></li>
 		</ul>
 		<p />
-		<p><?php echo h($book['Book']['bkSnippet']); ?></p>
+		<p><?php echo nl2br(h($book['Book']['bkSnippet'])); ?></p>
 		<div class="cleaner_with_height">&nbsp;</div>
 		<ul>
 			<li>In stock: <?php echo h($book['Book']['bkQnty']); ?></li>

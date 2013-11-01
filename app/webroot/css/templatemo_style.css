@@ -91,7 +91,6 @@ img {
 
 
 /* menu */
-
 #templatemo_menu {
 	clear: both;
 	width: 960px;
@@ -123,7 +122,6 @@ img {
 	color: #fcf88e;
 }
 
-/* end of menu*/
 
 /* header */
 #templatemo_header {
@@ -176,9 +174,6 @@ img {
 }
 
 
-/* end of header */
-
-
 /* content */
 #templatemo_content {
 	clear: both;
@@ -198,7 +193,6 @@ img {
 	float: right;
 	width: 670px;
 }
-
 
 #templatemo_content_left .templatemo_content_left_section{
 	clear: both;
@@ -234,10 +228,6 @@ img {
 .templatemo_content_left_section li a:hover, .templatemo_content_left_section li .current{
 	color: #fcf88e;
 }
-
-
-
-
 
 #templatemo_content_right .templatemo_product_box {
 	float: left;
@@ -281,7 +271,7 @@ img {
 
 #templatemo_content_right .image_panel {
 	float: left;
-	width: 234px;
+	/*width: 270px;*/
 	margin-right: 20px;
 }
 
@@ -308,7 +298,6 @@ img {
 	margin-bottom: 15px;
 }
 
-/* end of content */
 
 /* footer */
 #templatemo_footer {
@@ -325,4 +314,28 @@ img {
 	color: #fff;
 	font-weight: normal;
 }
-/* end of footer */
+
+
+/* additional styles not from http://www.templatemo.com/ */
+.flexible-stars i {
+	display: inline-block;
+	background: url(../img/stars.png) no-repeat top left;
+}
+
+.flexible-stars .sprite-gold-star {
+	background-position: 0 0;
+	width: 15px;
+	height: 15px;
+}
+
+.flexible-stars .sprite-half-star {
+	background-position: 0 -47px;
+	width: 15px;
+	height: 15px;
+}
+
+.flexible-stars .sprite-silver-star {
+	background-position: 0 -94px;
+	width: 15px;
+	height: 15px;
+}
