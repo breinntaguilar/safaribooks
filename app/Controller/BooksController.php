@@ -25,12 +25,16 @@ class BooksController extends AppController {
 			if (!$data['bkCover']['name']) {
 				unset($data['bkCover']);
 			}
-			if ($this->Book->save($this->request->data)) {
+			if (isset( $this->params['data']['cancel'])) {
+				$this->Session->setFlash('Changes were not saved. Operation was cancelled.', 'flasher');
+				return $this->redirect( array( 'action' => 'index' ));
+			}
+			else if ($this->Book->save($this->request->data)) {
 				$this->Session->setFlash(__('The book has been saved.'));
 				return $this->redirect(array('action' => 'index'));
 			}
 			else {
-				$this->Session->setFlash(__('The book could not be saved. Please, try again.'));
+				$this->Session->setFlash('The book could not be saved. Please, try again.', 'flasher');
 			}
 		}
 	}
@@ -51,7 +55,7 @@ class BooksController extends AppController {
 				return $this->redirect(array('action' => 'index'));
 			}
 			else {
-				$this->Session->setFlash(__('The book could not be saved. Please, try again.'));
+				$this->Session->setFlash('The book could not be saved. Please, try again.', 'flasher');
 			}
 		}
 		else {
