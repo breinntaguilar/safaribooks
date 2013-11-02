@@ -25,3 +25,9 @@ function convDecimal(elID) {
 	if (newVal > 0)
 		document.getElementById(elID).value = Math.ceil(newVal * 100) / 100;
 }
+
+$(document).ready(function() {
+	setTimeout(function() {
+		$('.flasher').slideUp('slow');
+	}, 3000);
+});

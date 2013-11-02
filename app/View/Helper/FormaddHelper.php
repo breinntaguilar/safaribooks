@@ -11,7 +11,7 @@ class FormaddHelper extends AppHelper {
 	public $helpers = array('Form');
 	
 	public function inputAdd($fieldName, $options = array()) {
-		$options2 = array('before' => '<tr><td>', 'between' => '</td><td><div class="cleaner_with_image"></div></td><td>', 'after' => '</td></tr>');
+		$options2 = array('before' => '<tr><td>', 'between' => '</td><td><div class="cleaner_with_image" /></td><td>', 'after' => '</td></tr>');
 		$options = array_merge((array)$options, (array)$options2);
 		$output = $this->Form->input($fieldName, $options);
 		

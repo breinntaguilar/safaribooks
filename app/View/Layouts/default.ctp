@@ -31,7 +31,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 		echo $this->Html->meta('icon');
 
 		echo $this->Html->css('templatemo_style');
-		echo $this->Html->script('jquery.min');
+		echo $this->Html->script('jquery-1.10.2.min');
 		echo $this->Html->script('jquery.flexible.stars');
 		echo $this->Html->script('additional');
 
