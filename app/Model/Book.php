@@ -17,20 +17,12 @@ class Book extends AppModel {
 			),
 		),
 		'bkTitle' => array(
-			'custom' => array(
-				'rule' => array('custom', '/[\w ñ\.\,\&\?\:\;\(\)\-\+]+/'),
-				//'message' => 'Your custom message here',
-			),
 			'notempty' => array(
 				'rule' => array('notempty'),
 				//'message' => 'Your custom message here',
 			),
 		),
 		'bkAuthor' => array(
-			'custom' => array(
-				'rule' => array('custom', '/[\w ñ\.]+/'),
-				//'message' => 'Your custom message here',
-			),
 			'notempty' => array(
 				'rule' => array('notempty'),
 				//'message' => 'Your custom message here',
@@ -51,6 +43,10 @@ class Book extends AppModel {
 				'rule' => array('numeric'),
 				//'message' => 'Your custom message here',
 			),
+			'maxLength' => array(
+				'rule' => array('maxLength', 3),
+				//'message' => 'Your custom message here',
+			),
 			'notempty' => array(
 				'rule' => array('notempty'),
 				//'message' => 'Your custom message here',
@@ -65,7 +61,7 @@ class Book extends AppModel {
 		'bkPrice' => array(
 			'decimal' => array(
 				'rule' => array('decimal', 2),
-				//'message' => 'Your custom message here',
+				'message' => 'Price should be in this format (0.00).',
 			),
 			'notempty' => array(
 				'rule' => array('notempty'),
@@ -75,7 +71,7 @@ class Book extends AppModel {
 		'bkDiscPrice' => array(
 			'decimal' => array(
 				'rule' => array('decimal', 2),
-				//'message' => 'Your custom message here',
+				'message' => 'Price should be in this format (0.00).',
 				'allowEmpty' => true,
 			),
 		),

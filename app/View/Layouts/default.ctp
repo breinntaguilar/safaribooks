@@ -30,10 +30,10 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 	<?php
 		echo $this->Html->meta('icon');
 
-		//echo $this->Html->css('cake.generic');
 		echo $this->Html->css('templatemo_style');
 		echo $this->Html->script('jquery.min');
 		echo $this->Html->script('jquery.flexible.stars');
+		echo $this->Html->script('additional');
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');

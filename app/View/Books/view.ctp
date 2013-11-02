@@ -1,4 +1,3 @@
-<!-- <?php debug($book); ?> -->
 <div id="templatemo_content_left">
 	<div class="templatemo_content_left_section">
 		<div class="actions">
