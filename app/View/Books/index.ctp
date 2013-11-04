@@ -21,9 +21,9 @@
 	<div class="books index">
 		<?php $cnt = 1; foreach ($books as $book): ?>
 			<div class="templatemo_product_box">
-				<h1><?php echo '', (strlen(h($book['Book']['bkTitle'])) > 15 ?
-					$this->Text->truncate(h($book['Book']['bkTitle']), 15, array('ellipsis' => '...', 'exact' => true)) :
-					h($book['Book']['bkTitle'])); ?>
+				<h1><?php echo '', (strlen($book['Book']['bkTitle']) + strlen($book['Book']['bkAuthor']) > 28 ?
+						$this->Text->truncate(h($book['Book']['bkTitle']), abs(28 - strlen($book['Book']['bkAuthor'])), array('ellipsis' => '...', 'exact' => true)) :
+						h($book['Book']['bkTitle'])); ?>
 					<span>(by <?php echo h($book['Book']['bkAuthor']); ?>)</span>
 				</h1>
 				<?php if ($book['Book']['bkCover']) echo $this->Html->image($book['Book']['bkCover'], array('alt' => $book['Book']['bkTitle'], 'width' => 100)); ?>

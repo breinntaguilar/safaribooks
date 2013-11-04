@@ -20,13 +20,12 @@ class BooksController extends AppController {
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->Book->create();
-			$data = $this->request->data['Book'];
 			
-			if (!$data['bkCover']['name']) {
-				unset($data['bkCover']);
+			if (!$this->request->data['Book']['bkCover']['name']) {
+				unset($this->request->data['Book']['bkCover']);
 			}
-			if (isset( $this->params['data']['cancel'])) {
-				$this->Session->setFlash('Changes were not saved. Operation was cancelled.', 'flasher');
+			if ($this->params['data']['hiddenCancel'] == 'cancelled') {
+				$this->Session->setFlash('Changes were not saved. Operation was cancelled.', 'flasherNeutral');
 				return $this->redirect( array( 'action' => 'index' ));
 			}
 			else if ($this->Book->save($this->request->data)) {
@@ -34,8 +33,11 @@ class BooksController extends AppController {
 				return $this->redirect(array('action' => 'index'));
 			}
 			else {
-				$this->Session->setFlash('The book could not be saved. Please, try again.', 'flasher');
+				$this->Session->setFlash('The book could not be saved. Please, try again.', 'flasherBad');
 			}
+		}
+		else {
+			$this->request->data['Book']['bkAddedDate'] = date('Y-m-d');
 		}
 	}
 	
@@ -45,17 +47,15 @@ class BooksController extends AppController {
 		}
 		
 		if ($this->request->is(array('post', 'put'))) {
-			$data = $this->request->data['Book'];
-			
-			if (!$data['bkCover']['name']) {
-				unset($data['bkCover']);
+			if (!$this->request->data['Book']['bkCover']['name']) {
+				unset($this->request->data['Book']['bkCover']);
 			}
 			if ($this->Book->save($this->request->data)) {
-				$this->Session->setFlash(__('The book has been saved.'));
+				$this->Session->setFlash('The book has been saved.', 'flasherGood');
 				return $this->redirect(array('action' => 'index'));
 			}
 			else {
-				$this->Session->setFlash('The book could not be saved. Please, try again.', 'flasher');
+				$this->Session->setFlash('The book could not be saved. Please, try again.', 'flasherBad');
 			}
 		}
 		else {

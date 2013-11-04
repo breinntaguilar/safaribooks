@@ -3,6 +3,7 @@
  * Description: Put additional scripts here.
  */
 
+// JavaScripts
 function isNumKey(evt) {
 	var charCode = (evt.which) ? evt.which : event.keyCode;
 	
@@ -26,8 +27,26 @@ function convDecimal(elID) {
 		document.getElementById(elID).value = Math.ceil(newVal * 100) / 100;
 }
 
+function remRequired() {
+	var searched = document.getElementsByTagName('body')[0].innerHTML;
+	var replaced = searched.replace(/required="required"/g, '');
+	
+	document.getElementsByTagName('body')[0].innerHTML = replaced;
+}
+
+function submitForm() {
+	document.getElementById('hiddenCancel').value = 'cancelled';
+	document.getElementsByTagName('form')[0].submit();
+}
+
+// JQueries
 $(document).ready(function() {
 	setTimeout(function() {
-		$('.flasher').slideUp('slow');
+		$('.flasher').parent().slideUp('slow');
 	}, 3000);
+});
+
+$(function() {
+	$("#datepicker1").datepicker({ dateFormat: 'yy-mm-dd' });
+	$("#datepicker2").datepicker({ dateFormat: 'yy-mm-dd' });
 });

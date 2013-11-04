@@ -19,13 +19,13 @@ class Book extends AppModel {
 		'bkTitle' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
+				'message' => 'This field should not be empty.',
 			),
 		),
 		'bkAuthor' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
+				'message' => 'This field should not be empty.',
 			),
 		),
 		'bkPubDate' => array(
@@ -35,7 +35,7 @@ class Book extends AppModel {
 			),
 			'notempty' => array(
 				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
+				'message' => 'This field should not be empty.',
 			),
 		),
 		'bkQnty' => array(
@@ -49,7 +49,7 @@ class Book extends AppModel {
 			),
 			'notempty' => array(
 				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
+				'message' => 'This field should not be empty.',
 			),
 		),
 		'bkRating' => array(
@@ -65,7 +65,7 @@ class Book extends AppModel {
 			),
 			'notempty' => array(
 				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
+				'message' => 'This field should not be empty.',
 			),
 		),
 		'bkDiscPrice' => array(
@@ -82,7 +82,7 @@ class Book extends AppModel {
 			),
 			'notempty' => array(
 				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
+				'message' => 'This field should not be empty.',
 			),
 		),
 		'bkAddedDate' => array(
@@ -94,34 +94,34 @@ class Book extends AppModel {
 		'bkSnippet' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
+				'message' => 'This field should not be empty.',
 			),
 		),
 		'bkCover' => array(
 			'uploadError' => array(
 				'rule' => 'uploadError',
 				//'message' => 'Your custom message here',
-				'allowEmpty' => true,
+				//'allowEmpty' => true,
 			),
-			/*'mimeType' => array(
-				'rule' => array('mimeType', array('image/jpeg', 'image/png')),
-				//'message' => 'Your custom message here',
-				'allowEmpty' => true,
-			),*/
 			'fileSize' => array(
 				'rule' => array('fileSize', '<=', '200KB'),
 				'message' => 'File uploaded is more than 200KB.',
-				'allowEmpty' => true,
+				//'allowEmpty' => true,
+			),
+			'fileExt' => array(
+				'rule' => array('fileExt', array('jpeg', 'jpg', 'png')),
+				'message' => 'Supported image types are JPEG and PNG only.',
+				//'allowEmpty' => true,
 			),
 			'dimensions' => array(
 				'rule' => array('dimensions'),
 				'message' => 'File uploaded is less than the recommended dimensions.',
-				'allowEmpty' => true,
+				//'allowEmpty' => true,
 			),
 			'processBookCover' => array(
 				'rule' => 'processBookCover',
 				//'message' => 'Your custom message here',
-				'allowEmpty' => true,
+				//'allowEmpty' => true,
 			),
 		),
 	);
@@ -211,6 +211,25 @@ class Book extends AppModel {
 			else {
 				return false;
 			}
+		}
+	}
+	
+	// Check file type.
+	public function fileExt($check, $options = array()) {
+		if (empty($check['bkCover']['tmp_name'])) {
+			return false;
+		}
+		else {
+			$extChecked = pathinfo($check['bkCover']['name'], PATHINFO_EXTENSION);
+			
+			$flagger = 0;
+			foreach($options as $val) {
+				if ($extChecked == $val) {
+					$flagger = 1;
+					break;
+				}
+			}
+			return ($flagger == 1) ? true : false;
 		}
 	}
 	

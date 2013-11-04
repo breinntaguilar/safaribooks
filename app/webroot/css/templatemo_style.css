@@ -351,9 +351,33 @@ img {
 	height: 15px;
 }
 
-.flasher {
+#flasher_good {
+	background: none repeat scroll 0 0 #54d16B;
+	border: 1px solid #009933;
+	margin: 0 auto;
+	padding: 3px 0 3px;
+	text-align: center;
+	width: 918px;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+}
+
+
+#flasher_bad {
 	background: none repeat scroll 0 0 #fc7862;
 	border: 1px solid #ff0000;
+	margin: 0 auto;
+	padding: 3px 0 3px;
+	text-align: center;
+	width: 918px;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+}
+
+#flasher_neutral {
+	background: none repeat scroll 0 0 #cbc750;
+	border: 1px solid #969547;
+	color: #555555;
 	margin: 0 auto;
 	padding: 3px 0 3px;
 	text-align: center;
