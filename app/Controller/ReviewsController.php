@@ -46,7 +46,7 @@ class ReviewsController extends AppController {
  *
  * @return void
  */
-	public function add() {
+	public function add($id = null) {
 		if ($this->request->is('post')) {
 			$this->Review->create();
 			if ($this->Review->save($this->request->data)) {
@@ -60,6 +60,7 @@ class ReviewsController extends AppController {
 		$reviewBooks = $this->Review->ReviewBook->find('list');
 		$reviewEmployees = $this->Review->ReviewEmployee->find('list');
 		$this->set(compact('reviewCustomers', 'reviewBooks', 'reviewEmployees'));
+		$this->set('bookId', $id);
 	}
 
 /**
