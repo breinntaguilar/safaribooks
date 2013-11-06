@@ -11,11 +11,12 @@ class FormaddHelper extends AppHelper {
 	public $helpers = array('Form');
 	
 	public function inputAdd($fieldName, $options1 = array()) {
+		$error = $this->Form->isFieldError($fieldName) ? $this->Form->error($fieldName) . '</td></tr>': '</td></tr>';
 		if (isset($options1['hiddenField'])) {
 			$options2 = array('before' => '<tr><td>Status</td><td><div class="cleaner_with_image" /></td><td>', 'after' => '</td></tr>');
 		}
 		else {
-			$options2 = array('before' => '<tr><td>', 'between' => '</td><td><div class="cleaner_with_image" /></td><td>', 'after' => '</td></tr>');
+			$options2 = array('before' => '<tr><td>', 'between' => '</td><td><div class="cleaner_with_image" /></td><td>', 'after' => $error);
 		}
 		$options1 = array_merge((array)$options1, (array)$options2);
 		$output = $this->Form->input($fieldName, $options1);

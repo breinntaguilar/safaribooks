@@ -24,7 +24,8 @@ function convDecimal(elID) {
 	var newVal=document.getElementById(elID).value;
 	
 	if (newVal > 0)
-		document.getElementById(elID).value = Math.ceil(newVal * 100) / 100;
+		newVal = (Math.ceil(newVal * 100) / 100).toFixed(2);
+		document.getElementById(elID).value = newVal;
 }
 
 function remRequired() {

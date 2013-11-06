@@ -13,6 +13,13 @@
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>
 </div>
+<div class="flexible-stars"
+	data-gold="sprite-gold-star"
+	data-silver="sprite-silver-star"
+	data-half="sprite-half-star"
+	data-init="0"
+	data-doRate="#ReviewRevRating">
+</div>
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>

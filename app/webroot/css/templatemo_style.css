@@ -328,6 +328,11 @@ img {
 
 
 /* additional styles not from http://www.templatemo.com/ */
+.error-message {
+	color: #ff0000;
+}
+
+
 .flexible-stars i {
 	display: inline-block;
 	background: url(../img/stars.png) no-repeat top left;
