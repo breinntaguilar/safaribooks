@@ -3,7 +3,8 @@
 		<div class="actions">
 			<h1><?php echo __('Actions'); ?></h1>
 			<ul>
-				<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('Book.bkID')), null, __('Are you sure you want to delete # %s?', $this->Form->value('Book.bkID'))); ?></li>
+				<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete',
+				$this->Form->value('Book.bkID')), null, __('Are you sure you want to delete # %s?', $this->Form->value('Book.bkID'))); ?></li>
 				<li><?php echo $this->Html->link(__('List Books'), array('action' => 'index')); ?></li>
 				<li><?php echo $this->Html->link(__('List Reviews'), array('controller' => 'reviews', 'action' => 'index')); ?> </li>
 				<li><?php echo $this->Html->link(__('New Book Review'), array('controller' => 'reviews', 'action' => 'add')); ?> </li>
@@ -25,20 +26,20 @@
 		<table align='center' border=0>
 			<?php
 				echo $this->Form->input('bkID');
-				echo $this->Formadd->inputAdd('bkTitle', array('label' => 'Title', 'size' => '75%', 'required' => false));
-				echo $this->Formadd->inputAdd('bkAuthor', array('label' => 'Author', 'size' => '75%', 'required' => false));
-				echo $this->Formadd->inputAdd('bkPubDate', array('label' => 'Published', 'required' => false));
+				echo $this->Formadd->inputAdd('bkTitle', array('label' => 'Title', 'error' => false, 'size' => '75%'));
+				echo $this->Formadd->inputAdd('bkAuthor', array('label' => 'Author', 'error' => false, 'size' => '75%'));
+				echo $this->Formadd->inputAdd('bkPubDate', array('label' => 'Published', 'error' => false, 'type' => 'text', 'id' => 'datepicker1'));
 				echo $this->Formadd->inputAdd('bkQnty',
-					array('label' => 'Quantity', 'size' => '1%', 'type' => 'text', 'onkeypress' => 'return isNumKey(event)', 'maxlength' => '3', 'required' => false));
+					array('label' => 'Quantity', 'error' => false, 'size' => '1%', 'type' => 'text', 'onkeypress' => 'return isNumKey(event)', 'maxlength' => '3'));
 				//echo $this->Form->input('bkRating');
 				echo $this->Formadd->inputAdd('bkPrice',
-					array('label' => 'Price', 'size' => '5%', 'type' => 'text', 'onkeypress' => 'return isDecKey(event)',
-						'maxlength' => '7', 'onblur' => 'convDecimal(id)', 'required' => false));
+					array('label' => 'Price', 'error' => false, 'size' => '5%', 'type' => 'text',
+					'onkeypress' => 'return isDecKey(event)', 'maxlength' => '7', 'onblur' => 'convDecimal(id)'));
 				echo $this->Formadd->inputAdd('bkDiscPrice',
-					array('label' => 'Discounted Price', 'size' => '5%', 'type' => 'text', 'onkeypress' => 'return isDecKey(event)',
-						'maxlength' => '7', 'onblur' => 'convDecimal(id)', 'required' => false));
+					array('label' => 'Discounted Price', 'error' => false, 'size' => '5%', 'type' => 'text',
+					'onkeypress' => 'return isDecKey(event)', 'maxlength' => '7', 'onblur' => 'convDecimal(id)'));
 				//echo $this->Form->input('bkAddedDate');
-				echo $this->Formadd->inputAdd('bkSnippet', array('label' => 'Description', 'cols' => '57', 'rows' => '10', 'maxlength' => '1500', 'required' => false));
+				echo $this->Formadd->inputAdd('bkSnippet', array('label' => 'Description', 'error' => false, 'cols' => '57', 'rows' => '10', 'maxlength' => '1500'));
 				echo $this->Formadd->inputAdd('bkStat', array('label' => ' Discontinued', 'hiddenField' => false));
 			?>
 			<tr>
@@ -46,7 +47,7 @@
 				<td><div class="cleaner_with_image" /></td>
 				<td><?php echo $this->Html->image($this->data['Book']['bkCover'], array('alt' => $this->data['Book']['bkTitle'], 'height' => 350)); ?></td>
 			</tr>
-			<?php echo $this->Formadd->inputAdd('bkCover', array('type' => 'file', 'label' => '', 'accept' => 'image/png, image/jpeg', 'required' => false)); ?>
+			<?php echo $this->Formadd->inputAdd('bkCover', array('type' => 'file', 'label' => '', 'accept' => 'image/png, image/jpeg')); ?>
 			<tr><td colspan=3><div class="cleaner_with_image" /></td></tr>
 			<tr>
 				<td colspan=3 align=center>

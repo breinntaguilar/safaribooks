@@ -19,37 +19,37 @@ class Book extends AppModel {
 		'bkTitle' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
-				'message' => 'This field should not be empty.',
+				'message' => 'Title should not be empty.',
 			),
 		),
 		'bkAuthor' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
-				'message' => 'This field should not be empty.',
+				'message' => 'Author should not be empty.',
 			),
 		),
 		'bkPubDate' => array(
 			'date' => array(
 				'rule' => array('date'),
-				//'message' => 'Your custom message here',
+				'message' => 'Date should be in this format (yyyy-mm-dd).',
 			),
 			'notempty' => array(
 				'rule' => array('notempty'),
-				'message' => 'This field should not be empty.',
+				'message' => 'Publication date should not be empty.',
 			),
 		),
 		'bkQnty' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
+				'message' => 'Book quantity should only be numeric.',
 			),
 			'maxLength' => array(
 				'rule' => array('maxLength', 3),
-				//'message' => 'Your custom message here',
+				'message' => 'Maximum quantity is 999 only.',
 			),
 			'notempty' => array(
 				'rule' => array('notempty'),
-				'message' => 'This field should not be empty.',
+				'message' => 'Book quantity should not be empty.',
 			),
 		),
 		'bkRating' => array(
@@ -65,7 +65,7 @@ class Book extends AppModel {
 			),
 			'notempty' => array(
 				'rule' => array('notempty'),
-				'message' => 'This field should not be empty.',
+				'message' => 'Price should not be empty.',
 			),
 		),
 		'bkDiscPrice' => array(
@@ -82,46 +82,45 @@ class Book extends AppModel {
 			),
 			'notempty' => array(
 				'rule' => array('notempty'),
-				'message' => 'This field should not be empty.',
+				'message' => 'Book status should not be empty.',
 			),
 		),
 		'bkAddedDate' => array(
 			'date' => array(
 				'rule' => array('date'),
-				//'message' => 'Your custom message here',
+				'message' => 'Date should be in this format (yyyy-mm-dd).',
+			),
+			'notempty' => array(
+				'rule' => array('notempty'),
+				'message' => 'Date added should not be empty.',
 			),
 		),
 		'bkSnippet' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
-				'message' => 'This field should not be empty.',
+				'message' => 'Description should not be empty.',
 			),
 		),
 		'bkCover' => array(
 			'uploadError' => array(
 				'rule' => 'uploadError',
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => true,
+				'message' => 'Something went wrong with the upload.',
 			),
 			'fileSize' => array(
 				'rule' => array('fileSize', '<=', '200KB'),
 				'message' => 'File uploaded is more than 200KB.',
-				//'allowEmpty' => true,
 			),
 			'fileExt' => array(
 				'rule' => array('fileExt', array('jpeg', 'jpg', 'png')),
 				'message' => 'Supported image types are JPEG and PNG only.',
-				//'allowEmpty' => true,
 			),
 			'dimensions' => array(
 				'rule' => array('dimensions'),
 				'message' => 'File uploaded is less than the recommended dimensions.',
-				//'allowEmpty' => true,
 			),
 			'processBookCover' => array(
 				'rule' => 'processBookCover',
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => true,
+				'message' => 'Something went wrong with the upload.',
 			),
 		),
 	);

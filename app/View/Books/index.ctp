@@ -22,11 +22,12 @@
 		<?php $cnt = 1; foreach ($books as $book): ?>
 			<div class="templatemo_product_box">
 				<h1><?php echo '', (strlen($book['Book']['bkTitle']) + strlen($book['Book']['bkAuthor']) > 28 ?
-						$this->Text->truncate(h($book['Book']['bkTitle']), abs(28 - strlen($book['Book']['bkAuthor'])), array('ellipsis' => '...', 'exact' => true)) :
+						$this->Text->truncate(h($book['Book']['bkTitle']), abs(25 - strlen($book['Book']['bkAuthor'])), array('ellipsis' => '...', 'exact' => true)) :
 						h($book['Book']['bkTitle'])); ?>
 					<span>(by <?php echo h($book['Book']['bkAuthor']); ?>)</span>
 				</h1>
-				<?php if ($book['Book']['bkCover']) echo $this->Html->image($book['Book']['bkCover'], array('alt' => $book['Book']['bkTitle'], 'width' => 100)); ?>
+				<?php if ($book['Book']['bkCover']) echo $this->Html->image($book['Book']['bkCover'],
+					array('alt' => $book['Book']['bkTitle'], 'width' => 100, 'url' => array('action' => 'view', $book['Book']['bkID']))); ?>
 				<div class="product_info">
 					<p><?php echo $this->Text->truncate(h($book['Book']['bkSnippet']), 100, array('ellipsis' => '...', 'exact' => true)); ?></p>
 					<h3>$<?php echo h($book['Book']['bkPrice']); ?></h3>

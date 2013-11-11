@@ -40,6 +40,53 @@ function submitForm() {
 	document.getElementsByTagName('form')[0].submit();
 }
 
+function clearForm(elmnt) {
+	tags = elmnt.getElementsByTagName('input');
+	for(i = 0; i < tags.length; i++) {
+		switch(tags[i].type) {
+			case 'password':
+			case 'text':
+				if (tags[i].id == 'datepicker2') {
+					var dt = new Date();
+					var dtMnth = dt.getMonth() + 1;
+					tags[i].value = dt.getFullYear() + '-' + dtMnth + '-' + dt.getDate();
+				}
+				else {
+					tags[i].value = '';
+				}
+				break;
+			case 'checkbox':
+			case 'radio':
+                tags[i].checked = false;
+                break;
+        }
+    }
+	
+	tags = elmnt.getElementsByTagName('select');
+	for(i = 0; i < tags.length; i++) {
+		if (tags[i].type == 'select-one') {
+			tags[i].selectedIndex = 0;
+		}
+		else {
+			for(j = 0; j < tags[i].options.length; j++) {
+				tags[i].options[j].selected = false;
+			}
+		}
+	}
+	
+	tags = elmnt.getElementsByTagName('textarea');
+	for(i = 0; i < tags.length; i++) {
+		tags[i].value = '';
+    }
+	
+	tags = elmnt.getElementsByTagName('div');
+	for(i = 0; i < tags.length; i++) {
+		if (tags[i].className == 'error-message') {
+			tags[i].remove();
+		}
+	}
+}
+
 // JQueries
 $(document).ready(function() {
 	setTimeout(function() {

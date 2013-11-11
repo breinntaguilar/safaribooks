@@ -72,10 +72,10 @@ class BooksController extends AppController {
 		
 		$this->request->onlyAllow('post', 'delete');
 		if ($this->Book->delete()) {
-			$this->Session->setFlash(__('The book has been deleted.'));
+			$this->Session->setFlash(__('The book has been deleted.', 'flasherGood'));
 		}
 		else {
-			$this->Session->setFlash(__('The book could not be deleted. Please, try again.'));
+			$this->Session->setFlash(__('The book could not be deleted. Please, try again.', 'flasherBad'));
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
