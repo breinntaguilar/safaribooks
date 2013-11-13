@@ -1,19 +1,8 @@
 <?php
 App::uses('AppController', 'Controller');
-/**
- * Details Controller
- *
- * @property Detail $Detail
- * @property PaginatorComponent $Paginator
- * @property SessionComponent $Session
- */
-class DetailsController extends AppController {
 
-/**
- * Components
- *
- * @var array
- */
+class DetailsController extends AppController {
+	public $uses = array('Detail', 'Customer', 'Credit');
 	public $components = array('Paginator', 'Session');
 
 /**
@@ -39,6 +28,34 @@ class DetailsController extends AppController {
 		}
 		$options = array('conditions' => array('Detail.' . $this->Detail->primaryKey => $id));
 		$this->set('detail', $this->Detail->find('first', $options));
+	}
+
+/**
+ * add method
+ *
+ * @return void
+ */
+	public function register() {
+		if (!empty($this->request->data)) {
+			if ($detail = $this->Detail->save($this->request->data)) {
+				if (!empty($detail)) {
+					$this->request->data['Customer']['cmnID'] = $this->Detail->id;
+					$customer = $this->Customer->save($this->request->data);
+					$this->Session->setFlash(__('The detail has been saved.'));
+					return $this->redirect(array('action' => 'index'));
+				}
+				/*if(!empty($customer)) {
+					$this->request->data['Credit']['cusID'] = $this->Customer->id;
+					$this->Credit->save($this->request->data);
+					
+					$this->Session->setFlash(__('The detail has been saved.'));
+					return $this->redirect(array('action' => 'index'));
+				}*/
+			}
+			else {
+				$this->Session->setFlash(__('The detail could not be saved. Please, try again.'));
+			}
+		}
 	}
 
 /**
