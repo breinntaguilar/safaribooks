@@ -27,7 +27,7 @@
 				echo $this->Formadd->inputAdd('bkAuthor', array('label' => 'Author', 'error' => false, 'size' => '75%'));
 				echo $this->Formadd->inputAdd('bkPubDate', array('label' => 'Published', 'error' => false, 'type' => 'text', 'id' => 'datepicker1'));
 				echo $this->Formadd->inputAdd('bkQnty',
-					array('label' => 'Quantity', 'error' => false, 'size' => '1%', 'type' => 'text', 'onkeypress' => 'return isNumKey(event)', 'maxlength' => '3'));
+					array('label' => 'Quantity', 'error' => false, 'size' => '1%', 'type' => 'text', 'maxlength' => '3', 'onkeypress' => 'return isNumKey(event)'));
 				echo $this->Formadd->inputAdd('bkPrice',
 					array('label' => 'Price', 'error' => false, 'size' => '5%', 'type' => 'text',
 					'onkeypress' => 'return isDecKey(event)', 'maxlength' => '7', 'onblur' => 'convDecimal(id)'));

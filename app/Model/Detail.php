@@ -36,12 +36,6 @@ class Detail extends AppModel {
 				//'message' => 'Your custom message here',
 			),
 		),
-		'cmnSuffix' => array(
-			'custom' => array(
-				'rule' => array('custom', '/[\w ñ\.]+/'),
-				//'message' => 'Your custom message here',
-			),
-		),
 		'cmnAddress' => array(
 			'custom' => array(
 				'rule' => array('custom', '/[\w ñ\.]+/'),

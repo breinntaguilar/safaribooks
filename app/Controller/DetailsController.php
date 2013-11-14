@@ -42,7 +42,7 @@ class DetailsController extends AppController {
 					$this->request->data['Customer']['cmnID'] = $this->Detail->id;
 					$customer = $this->Customer->save($this->request->data);
 					$this->Session->setFlash(__('The detail has been saved.'));
-					return $this->redirect(array('action' => 'index'));
+					return $this->redirect(array('action' => 'view'));
 				}
 				/*if(!empty($customer)) {
 					$this->request->data['Credit']['cusID'] = $this->Customer->id;

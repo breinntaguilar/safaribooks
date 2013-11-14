@@ -15,25 +15,26 @@
 
 <div id="templatemo_content_right">
 	<div class="details form">
-	<?php echo $this->Form->create('Detail'); ?>
-		<fieldset>
-			<legend><?php echo __('Add Detail'); ?></legend>
-		<?php
-			//echo $this->Form->input('Customer.cmnID');
-			echo $this->Form->input('Customer.cusEmail');
-			echo $this->Form->input('Customer.cusPass');
-			echo $this->Form->input('Detail.cmnFname');
-			echo $this->Form->input('Detail.cmnLname');
-			echo $this->Form->input('Detail.cmnSuffix');
-			echo $this->Form->input('Detail.cmnAddress');
-			echo $this->Form->input('Detail.cmnPhone');
-			echo $this->Form->input('Detail.cmnRole');
-			echo $this->Form->input('Detail.cmnStat');
-			//echo $this->Form->input('Credit.ccNum');
-			//echo $this->Form->input('Credit.cusID');
-			//echo $this->Form->input('Credit.ccType');
-		?>
-		</fieldset>
-	<?php echo $this->Form->end(__('Submit')); ?>
+		<h1>Register</h1>
+		<?php echo $this->Form->create('Detail'); ?>
+		<table align='center'>
+			<?php
+				echo $this->Formadd->inputAdd('Detail.cmnFname', array('label' => 'First Name', 'error' => false, 'size' => '76%'));
+				echo $this->Formadd->inputAdd('Detail.cmnLname', array('label' => 'Last Name', 'error' => false, 'size' => '76%'));
+				echo $this->Formadd->inputAdd('Detail.cmnAddress', array('label' => 'Address', 'error' => false, 'size' => '76%'));
+				echo $this->Formadd->inputAdd('AddressLine1', array('label' => 'Address Line 1', 'error' => false, 'size' => '76%', 'onchange' => 'updateAddress()'));
+				echo $this->Formadd->inputAdd('AddressLine2', array('label' => 'Address Line 2', 'error' => false, 'size' => '76%', 'onchange' => 'updateAddress()'));
+				echo $this->Formadd->inputAdd('AddressLine4', array('label' => 'Zip/Postal Code', 'error' => false, 'size' => '2%',
+					'type' => 'text', 'maxlength' => '4', 'onchange' => 'updateAddress()'));
+				echo $this->Formadd->inputAdd('AddressLine3', array('label' => 'Town or City', 'error' => false, 'size' => '76%', 'onchange' => 'updateAddress()'));
+				echo $this->Formadd->inputAdd('AddressLine5', array('label' => 'Province', 'error' => false, 'size' => '76%', 'onchange' => 'updateAddress()'));
+				echo $this->Formadd->inputAdd('Detail.cmnPhone', array('label' => 'Phone', 'error' => false, 'size' => '76%'));
+				echo $this->Formadd->inputAdd('Customer.cusEmail', array('label' => 'Email Address', 'error' => false, 'size' => '76%'));
+				echo $this->Formadd->inputAdd('Customer.cusPass', array('label' => 'Password', 'error' => false, 'size' => '76%'));
+				//echo $this->Form->input('Detail.cmnRole');
+				//echo $this->Form->input('Detail.cmnStat');
+			?>
+		</table>
+		<?php echo $this->Form->end(__('Submit')); ?>
 	</div>
 </div>

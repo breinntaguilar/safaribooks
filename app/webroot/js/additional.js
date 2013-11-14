@@ -87,6 +87,19 @@ function clearForm(elmnt) {
 	}
 }
 
+function updateAddress() {
+	var newAdd = document.getElementById('DetailCmnAddress');
+	var add1 = document.getElementById('DetailAddressLine1');
+	var add2 = document.getElementById('DetailAddressLine2');
+	var add3 = document.getElementById('DetailAddressLine3');
+	var add4 = document.getElementById('DetailAddressLine4');
+	var add5 = document.getElementById('DetailAddressLine5');
+	
+	var tmpAdd = (add1.value + ', ' + add2.value + ', ' + add3.value + ', ' + add4.value + ', ' + add5.value).replace(' ,', '');
+	newAdd.value = tmpAdd;
+	
+}
+
 // JQueries
 $(document).ready(function() {
 	setTimeout(function() {
