@@ -43,11 +43,11 @@
 				<td colspan=3 align=center>
 					<div class="submit">
 						<hr><br>
-						<?php echo $this->Form->submit(__('Reset'), array('type' => 'button', 'id' => 'try','div' => false, 'onclick' => 'clearForm(this.form)')); ?>
+						<?php echo $this->Form->submit(__('Reset'), array('type' => 'button', 'div' => false, 'onclick' => 'clearForm(this.form)')); ?>
 						&emsp;&emsp;&emsp;&emsp;&emsp;
-						<?php echo $this->Form->submit(__('Add book'), array('name' => 'ok', 'div' => false)); ?>
+						<?php echo $this->Form->submit(__('Add book'), array('div' => false)); ?>
 						&nbsp;
-						<?php echo $this->Form->submit(__('Cancel'), array('type' => 'button', 'name' => 'cancel','div' => false, 'onclick' => 'submitForm()')); ?>
+						<?php echo $this->Form->submit(__('Cancel'), array('type' => 'button', 'id' => 'add', 'div' => false, 'onclick' => 'submitForm(id)')); ?>
 						<input type="hidden" name="hiddenCancel" id="hiddenCancel">
 					</div>
 					<?php echo $this->Form->end();?>

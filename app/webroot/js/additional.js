@@ -35,9 +35,16 @@ function remRequired() {
 	document.getElementsByTagName('body')[0].innerHTML = replaced;
 }
 
-function submitForm() {
+function submitForm(elID) {
+	var chkID = document.getElementById(elID);
 	document.getElementById('hiddenCancel').value = 'cancelled';
-	document.getElementsByTagName('form')[0].submit();
+	
+	if (chkID.id == 'add') {
+		document.getElementsByTagName('form')[0].submit();
+	}
+	else if (chkID.id == 'edit') {
+		document.getElementsByTagName('form')[1].submit();
+	}
 }
 
 function clearForm(elmnt) {

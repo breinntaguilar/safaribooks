@@ -23,7 +23,7 @@
 	<div class="books form">
 		<h1>Edit "<?php echo $this->data['Book']['bkTitle']; ?>"</h1>
 		<?php echo $this->Form->create('Book', array('type' => 'file')); ?>
-		<table align='center' border=0>
+		<table align='center'>
 			<?php
 				echo $this->Form->input('bkID');
 				echo $this->Formadd->inputAdd('bkTitle', array('label' => 'Title', 'error' => false, 'size' => '75%'));
@@ -31,14 +31,12 @@
 				echo $this->Formadd->inputAdd('bkPubDate', array('label' => 'Published', 'error' => false, 'type' => 'text', 'id' => 'datepicker1'));
 				echo $this->Formadd->inputAdd('bkQnty',
 					array('label' => 'Quantity', 'error' => false, 'size' => '1%', 'type' => 'text', 'onkeypress' => 'return isNumKey(event)', 'maxlength' => '3'));
-				//echo $this->Form->input('bkRating');
 				echo $this->Formadd->inputAdd('bkPrice',
 					array('label' => 'Price', 'error' => false, 'size' => '5%', 'type' => 'text',
 					'onkeypress' => 'return isDecKey(event)', 'maxlength' => '7', 'onblur' => 'convDecimal(id)'));
 				echo $this->Formadd->inputAdd('bkDiscPrice',
 					array('label' => 'Discounted Price', 'error' => false, 'size' => '5%', 'type' => 'text',
 					'onkeypress' => 'return isDecKey(event)', 'maxlength' => '7', 'onblur' => 'convDecimal(id)'));
-				//echo $this->Form->input('bkAddedDate');
 				echo $this->Formadd->inputAdd('bkSnippet', array('label' => 'Description', 'error' => false, 'cols' => '57', 'rows' => '10', 'maxlength' => '1500'));
 				echo $this->Formadd->inputAdd('bkStat', array('label' => ' Discontinued', 'hiddenField' => false));
 			?>
@@ -53,11 +51,12 @@
 				<td colspan=3 align=center>
 					<div class="submit">
 						<hr><br>
-						<?php echo $this->Form->submit(__('Reset'), array('type' => 'reset', 'name' => 'ok', 'div' => false)); ?>
+						<?php echo $this->Form->submit(__('Reset'), array('type' => 'reset', 'div' => false)); ?>
 						&emsp;&emsp;&emsp;&emsp;&emsp;
-						<?php echo $this->Form->submit(__('Edit book'), array('name' => 'ok', 'div' => false)); ?>
+						<?php echo $this->Form->submit(__('Edit book'), array('div' => false)); ?>
 						&nbsp;
-						<?php echo $this->Form->submit(__('Cancel'), array('name' => 'cancel','div' => false)); ?>
+						<?php echo $this->Form->submit(__('Cancel'), array('type' => 'button', 'id' => 'edit', 'div' => false, 'onclick' => 'submitForm(id)')); ?>
+						<input type="hidden" name="hiddenCancel" id="hiddenCancel">
 					</div>
 					<?php echo $this->Form->end();?>
 				</td>

@@ -26,7 +26,7 @@ class BooksController extends AppController {
 			}
 			if ($this->params['data']['hiddenCancel'] == 'cancelled') {
 				$this->Session->setFlash('Changes were not saved. Operation was cancelled.', 'flasherNeutral');
-				return $this->redirect( array( 'action' => 'index' ));
+				return $this->redirect( array('action' => 'index'));
 			}
 			else if ($this->Book->save($this->request->data)) {
 				$this->Session->setFlash(__('The book has been saved.'));
@@ -50,7 +50,11 @@ class BooksController extends AppController {
 			if (!$this->request->data['Book']['bkCover']['name']) {
 				unset($this->request->data['Book']['bkCover']);
 			}
-			if ($this->Book->save($this->request->data)) {
+			if ($this->params['data']['hiddenCancel'] == 'cancelled') {
+				$this->Session->setFlash('Changes were not saved. Operation was cancelled.', 'flasherNeutral');
+				return $this->redirect( array('action' => 'view', $id));
+			}
+			else if ($this->Book->save($this->request->data)) {
 				$this->Session->setFlash('The book has been saved.', 'flasherGood');
 				return $this->redirect(array('action' => 'index'));
 			}
