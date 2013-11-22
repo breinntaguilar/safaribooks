@@ -21,8 +21,9 @@ class ReviewsController extends AppController {
  *
  * @return void
  */
-	public function index() {
+	public function index($id = null) {
 		$this->Review->recursive = 0;
+		$this->Paginator->settings = array('conditions' => array('Review.bkID' => $id));
 		$this->set('reviews', $this->Paginator->paginate());
 	}
 
