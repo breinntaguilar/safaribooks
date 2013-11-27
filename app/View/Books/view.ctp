@@ -121,7 +121,7 @@
 
 		<div class="actions">
 			<ul>
-				<li><?php echo $this->Html->link(__('New Book Cart'), array('controller' => 'carts', 'action' => 'add')); ?> </li>
+				<li><?php echo $this->Html->link(__('New Book Cart'), array('controller' => 'carts', 'action' => 'add', $book['Book']['bkID'])); ?> </li>
 			</ul>
 		</div>
 	</div>
