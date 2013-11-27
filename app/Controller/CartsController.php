@@ -46,7 +46,7 @@ class CartsController extends AppController {
  *
  * @return void
  */
-	public function add() {
+	public function add($id = null) {
 		if ($this->request->is('post')) {
 			$this->Cart->create();
 			if ($this->Cart->save($this->request->data)) {
@@ -59,6 +59,7 @@ class CartsController extends AppController {
 		$cartCustomers = $this->Cart->CartCustomer->find('list');
 		$cartBooks = $this->Cart->CartBook->find('list');
 		$this->set(compact('cartCustomers', 'cartBooks'));
+		$this->set('bookId', $id);
 	}
 
 /**
