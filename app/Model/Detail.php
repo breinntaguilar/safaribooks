@@ -17,28 +17,44 @@ class Detail extends AppModel {
 			),
 		),
 		'cmnFname' => array(
-			'custom' => array(
-				'rule' => array('custom', '/[\w ñ\.]+/'),
-				//'message' => 'Your custom message here',
-			),
 			'notempty' => array(
 				'rule' => array('notempty'),
 				//'message' => 'Your custom message here',
 			),
 		),
 		'cmnLname' => array(
-			'custom' => array(
-				'rule' => array('custom', '/[\w ñ\.]+/'),
-				//'message' => 'Your custom message here',
-			),
 			'notempty' => array(
 				'rule' => array('notempty'),
 				//'message' => 'Your custom message here',
 			),
 		),
-		'cmnAddress' => array(
-			'custom' => array(
-				'rule' => array('custom', '/[\w ñ\.]+/'),
+		'cmnAddress1' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
+				//'message' => 'Your custom message here',
+			),
+		),
+		'cmnAddress2' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
+				//'message' => 'Your custom message here',
+			),
+		),
+		'cmnCity' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
+				//'message' => 'Your custom message here',
+			),
+		),
+		'cmnProvince' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
+				//'message' => 'Your custom message here',
+			),
+		),
+		'cmnZIP' => array(
+			'numeric' => array(
+				'rule' => array('numeric'),
 				//'message' => 'Your custom message here',
 			),
 			'notempty' => array(

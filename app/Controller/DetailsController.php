@@ -4,12 +4,10 @@ App::uses('AppController', 'Controller');
 class DetailsController extends AppController {
 	public $uses = array('Detail', 'Customer', 'Credit');
 	public $components = array('Paginator', 'Session');
-
-/**
- * index method
- *
- * @return void
- */
+	
+	//$this->loadModel('Address');
+	//$addresses = $this->Address->read();
+	
 	public function index() {
 		$this->Detail->recursive = 0;
 		$this->set('details', $this->Paginator->paginate());
@@ -36,13 +34,21 @@ class DetailsController extends AppController {
  * @return void
  */
 	public function register() {
+		$this->loadModel('Address');
+		$this->set('addresses', $this->Address->find('all'));
+		$this->set('zips', $this->Address->find('list'));
+		//$addresses = $this->Address->find('all', array('limit' => '44'));
+		//$this->setJSvar(compact('addresses'));
+		//$this->setJSvar('addresses', array(array('Address' => array('zipCode' => 1000)), array('Address' => array('zipCode' => 2000))));
+		//$this->setJSvar('addresses', array('qwe','asd'));
+		
 		if (!empty($this->request->data)) {
 			if ($detail = $this->Detail->save($this->request->data)) {
 				if (!empty($detail)) {
 					$this->request->data['Customer']['cmnID'] = $this->Detail->id;
 					$customer = $this->Customer->save($this->request->data);
 					$this->Session->setFlash(__('The detail has been saved.'));
-					return $this->redirect(array('action' => 'view'));
+					return $this->redirect(array('action' => 'view', $this->Detail->id));
 				}
 				/*if(!empty($customer)) {
 					$this->request->data['Credit']['cusID'] = $this->Customer->id;

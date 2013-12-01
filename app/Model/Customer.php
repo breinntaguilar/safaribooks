@@ -123,4 +123,12 @@ class Customer extends AppModel {
 			'counterQuery' => ''
 		)
 	);
+	
+	// Password hashing function
+	/*public function beforeSave($options = array()) {
+		if (isset($this->data[$this->alias]['cusPass'])) {
+			$this->data[$this->alias]['cusPass'] = AuthComponent::password($this->data[$this->alias]['cusPass']);
+		}
+		return true;
+	}*/
 }

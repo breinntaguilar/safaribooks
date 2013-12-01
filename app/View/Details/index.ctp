@@ -5,8 +5,11 @@
 			<th><?php echo $this->Paginator->sort('cmnID'); ?></th>
 			<th><?php echo $this->Paginator->sort('cmnFname'); ?></th>
 			<th><?php echo $this->Paginator->sort('cmnLname'); ?></th>
-			<th><?php echo $this->Paginator->sort('cmnSuffix'); ?></th>
-			<th><?php echo $this->Paginator->sort('cmnAddress'); ?></th>
+			<th><?php echo $this->Paginator->sort('cmnAddress1'); ?></th>
+			<th><?php echo $this->Paginator->sort('cmnAddress2'); ?></th>
+			<th><?php echo $this->Paginator->sort('cmnCity'); ?></th>
+			<th><?php echo $this->Paginator->sort('cmnProvince'); ?></th>
+			<th><?php echo $this->Paginator->sort('cmnZIP'); ?></th>
 			<th><?php echo $this->Paginator->sort('cmnPhone'); ?></th>
 			<th><?php echo $this->Paginator->sort('cmnRole'); ?></th>
 			<th><?php echo $this->Paginator->sort('cmnStat'); ?></th>
@@ -17,8 +20,11 @@
 		<td><?php echo h($detail['Detail']['cmnID']); ?>&nbsp;</td>
 		<td><?php echo h($detail['Detail']['cmnFname']); ?>&nbsp;</td>
 		<td><?php echo h($detail['Detail']['cmnLname']); ?>&nbsp;</td>
-		<td><?php echo h($detail['Detail']['cmnSuffix']); ?>&nbsp;</td>
-		<td><?php echo h($detail['Detail']['cmnAddress']); ?>&nbsp;</td>
+		<td><?php echo h($detail['Detail']['cmnAddress1']); ?>&nbsp;</td>
+		<td><?php echo h($detail['Detail']['cmnAddress2']); ?>&nbsp;</td>
+		<td><?php echo h($detail['Detail']['cmnCity']); ?>&nbsp;</td>
+		<td><?php echo h($detail['Detail']['cmnProvince']); ?>&nbsp;</td>
+		<td><?php echo h($detail['Detail']['cmnZIP']); ?>&nbsp;</td>
 		<td><?php echo h($detail['Detail']['cmnPhone']); ?>&nbsp;</td>
 		<td><?php echo h($detail['Detail']['cmnRole']); ?>&nbsp;</td>
 		<td><?php echo h($detail['Detail']['cmnStat']); ?>&nbsp;</td>

@@ -2,7 +2,6 @@
 /**
  * Author: Alfrenido Cenera
  * Description: Extends the Form helper to add <td> tags between label and input.
- *              It is possible to do this using the Form helper itself but it would make the codes in the View files long.
  */
 
 App::uses('AppHelper', 'View/Helper');
@@ -22,5 +21,13 @@ class FormaddHelper extends AppHelper {
 		$output = $this->Form->input($fieldName, $options1);
 		
 		return $output;
+	}
+	
+	public function inputSel($fieldName, $options = array()) {
+		$output = $this->inputAdd($fieldName, $options);
+		
+		$find = array('/(<select)(.*)(id=)(.*)( required)(.*)/', '/<\/select>/');
+		$replace = array('<input\2list=\4\5\6<datalist \3\4>', '</datalist>');
+		return preg_replace($find, $replace, $output);
 	}
 }

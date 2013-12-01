@@ -21,20 +21,32 @@
 			<?php
 				echo $this->Formadd->inputAdd('Detail.cmnFname', array('label' => 'First Name', 'error' => false, 'size' => '76%'));
 				echo $this->Formadd->inputAdd('Detail.cmnLname', array('label' => 'Last Name', 'error' => false, 'size' => '76%'));
-				echo $this->Formadd->inputAdd('Detail.cmnAddress', array('label' => 'Address', 'error' => false, 'size' => '76%'));
-				echo $this->Formadd->inputAdd('AddressLine1', array('label' => 'Address Line 1', 'error' => false, 'size' => '76%', 'onchange' => 'updateAddress()'));
-				echo $this->Formadd->inputAdd('AddressLine2', array('label' => 'Address Line 2', 'error' => false, 'size' => '76%', 'onchange' => 'updateAddress()'));
-				echo $this->Formadd->inputAdd('AddressLine4', array('label' => 'Zip/Postal Code', 'error' => false, 'size' => '2%',
-					'type' => 'text', 'maxlength' => '4', 'onchange' => 'updateAddress()'));
-				echo $this->Formadd->inputAdd('AddressLine3', array('label' => 'Town or City', 'error' => false, 'size' => '76%', 'onchange' => 'updateAddress()'));
-				echo $this->Formadd->inputAdd('AddressLine5', array('label' => 'Province', 'error' => false, 'size' => '76%', 'onchange' => 'updateAddress()'));
-				echo $this->Formadd->inputAdd('Detail.cmnPhone', array('label' => 'Phone', 'error' => false, 'size' => '76%'));
-				echo $this->Formadd->inputAdd('Customer.cusEmail', array('label' => 'Email Address', 'error' => false, 'size' => '76%'));
-				echo $this->Formadd->inputAdd('Customer.cusPass', array('label' => 'Password', 'error' => false, 'size' => '76%'));
-				//echo $this->Form->input('Detail.cmnRole');
-				//echo $this->Form->input('Detail.cmnStat');
+				echo $this->Formadd->inputAdd('Detail.cmnAddress1', array('label' => 'Address Line 1', 'error' => false, 'size' => '76%'));
+				echo $this->Formadd->inputAdd('Detail.cmnAddress2', array('label' => 'Address Line 2', 'error' => false, 'size' => '76%'));
+				echo $this->Formadd->inputSel('Detail.cmnZIP', array('label' => 'Zip/Postal Code', 'error' => false, 'size' => '3%', 'type' => 'select', 'options' => $zips, 'onblur' => 'checkAddress()'));
+				echo $this->Formadd->inputAdd('Detail.cmnCity', array('label' => 'Town or City', 'error' => false, 'size' => '76%'));
+				echo $this->Formadd->inputAdd('Detail.cmnProvince', array('label' => 'Province', 'error' => false, 'size' => '76%'));
+				echo $this->Formadd->inputAdd('Detail.cmnPhone', array('label' => 'Phone', 'error' => false, 'size' => '10%', 'type' => 'text', 'maxlength' => '10'));
+				echo $this->Formadd->inputAdd('Customer.cusEmail', array('label' => 'Email Address', 'error' => false, 'size' => '35%'));
+				echo $this->Formadd->inputAdd('Customer.cusPass', array('label' => 'Password', 'error' => false, 'size' => '35%'));
+				echo $this->Formadd->inputAdd('Detail.cmnRole', array('type' => 'hidden', 'value' => '1'));
+				echo $this->Formadd->inputAdd('Detail.cmnStat', array('type' => 'hidden', 'value' => 'false'));
 			?>
+			<tr><td colspan=3><div class="cleaner_with_image" /></td></tr>
+			<tr>
+				<td colspan=3 align=center>
+					<div class="submit">
+						<hr><br>
+						<?php echo $this->Form->submit(__('Reset'), array('type' => 'button', 'div' => false, 'onclick' => 'clearForm(this.form)')); ?>
+						&emsp;&emsp;&emsp;&emsp;&emsp;
+						<?php echo $this->Form->submit(__('Submit'), array('div' => false)); ?>
+						&nbsp;
+						<?php echo $this->Form->submit(__('Cancel'), array('type' => 'button', 'id' => 'add', 'div' => false, 'onclick' => 'submitForm(id)')); ?>
+						<input type="hidden" name="hiddenCancel" id="hiddenCancel">
+					</div>
+					<?php echo $this->Form->end();?>
+				</td>
+			</tr>
 		</table>
-		<?php echo $this->Form->end(__('Submit')); ?>
 	</div>
 </div>

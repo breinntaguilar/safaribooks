@@ -16,15 +16,20 @@
  * @since         CakePHP(tm) v 0.10.0.1076
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
-
-$cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework');
 ?>
 <!DOCTYPE html>
 <html>
 <head>
+	<!-- <script>
+		if (isset($JSvars)) {
+			echo $javascript->codeBlock('JSvars = ' . $javascript->object($JSvars) . ';');
+		}
+	</script> -->
+	<?php if (isset($JSvars)) { echo $this->Html->scriptBlock('var JSvars = ' . $this->Js->object($JSvars) . ';'); } ?>
+	
 	<?php echo $this->Html->charset(); ?>
 	<title>
-		<?php echo $cakeDescription ?>:
+		<?php echo 'Safari Books' ?>:
 		<?php echo $title_for_layout; ?>
 	</title>
 	<?php
@@ -47,7 +52,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 	<div id="templatemo_container">
 		<div id="templatemo_menu">
 			<ul>
-				<li><a href="index.html" class="current">Home</a></li>
+				<li><a href="http://localhost/safaribooks" class="current">Home</a></li>
 				<li><a href="subpage.html">Search</a></li>
 				<li><a href="subpage.html">Books</a></li>            
 				<li><a href="subpage.html">New Releases</a></li>  

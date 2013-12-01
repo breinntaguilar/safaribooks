@@ -94,17 +94,12 @@ function clearForm(elmnt) {
 	}
 }
 
-function updateAddress() {
-	var newAdd = document.getElementById('DetailCmnAddress');
-	var add1 = document.getElementById('DetailAddressLine1');
-	var add2 = document.getElementById('DetailAddressLine2');
-	var add3 = document.getElementById('DetailAddressLine3');
-	var add4 = document.getElementById('DetailAddressLine4');
-	var add5 = document.getElementById('DetailAddressLine5');
-	
-	var tmpAdd = (add1.value + ', ' + add2.value + ', ' + add3.value + ', ' + add4.value + ', ' + add5.value).replace(' ,', '');
-	newAdd.value = tmpAdd;
-	
+function checkAddress() {
+	//var trial = JSvars.testing;
+	//document.getElementById('DetailCmnFname').value = window.JSvars['addresses'][3]['Address']['zipCode'];
+	//document.getElementById('DetailCmnFname').value = JSvars.addresses[3]['Address']['zipCode'];
+	//alert(JSvars.addresses[0]['Address']['zipCode']);
+	//alert(window.JSvars.join('\n'));
 }
 
 // JQueries
