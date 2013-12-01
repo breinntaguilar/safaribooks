@@ -38,8 +38,7 @@
 				</div>
 				<?php echo $this->Html->link(__(h(count($book['BookReview'])) .	' customer reviews'), array('controller' => 'reviews', 'action' => 'index')); ?>
 			</li>
-			<li>$<?php echo '', (!empty($book['Book']['bkDiscPrice']) ? '<strike>' . h($book['Book']['bkPrice']) . '</strike>' : h($book['Book']['bkPrice']));
-				echo '', (!empty($book['Book']['bkDiscPrice']) ? '&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;$' . h($book['Book']['bkDiscPrice']) : ''); ?> (discounted price)</li>
+			<li>$<?php echo '', (!empty($book['Book']['bkDiscPrice']) ? '<strike>' . h($book['Book']['bkPrice']) . '</strike>' : h($book['Book']['bkPrice'])); echo '', (!empty($book['Book']['bkDiscPrice']) ? '&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;$' . h($book['Book']['bkDiscPrice']) . ' (discounted price)' : ''); ?></li>
 		</ul>
 		<p />
 		<p><?php echo nl2br(h($book['Book']['bkSnippet'])); ?></p>
