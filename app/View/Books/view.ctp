@@ -36,7 +36,7 @@
 					data-init="<?php echo h($book['Book']['bkRating']); ?>"
 					data-isLocked="yes">
 				</div>
-				<?php echo $this->Html->link(__(h(count($book['BookReview'])) .	' customer reviews'), array('controller' => 'reviews', 'action' => 'index')); ?>
+				<?php echo $this->Html->link(__(h(count($book['BookReview'])) .	' customer reviews'), array('controller' => 'reviews', 'action' => 'index', $book['Book']['bkID'])); ?>
 			</li>
 			<li>$<?php echo '', (!empty($book['Book']['bkDiscPrice']) ? '<strike>' . h($book['Book']['bkPrice']) . '</strike>' : h($book['Book']['bkPrice'])); echo '', (!empty($book['Book']['bkDiscPrice']) ? '&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;$' . h($book['Book']['bkDiscPrice']) . ' (discounted price)' : ''); ?></li>
 		</ul>
@@ -120,7 +120,7 @@
 
 		<div class="actions">
 			<ul>
-				<li><?php echo $this->Html->link(__('New Book Cart'), array('controller' => 'carts', 'action' => 'add')); ?> </li>
+				<li><?php echo $this->Html->link(__('New Book Cart'), array('controller' => 'carts', 'action' => 'add', $book['Book']['bkID'])); ?> </li>
 			</ul>
 		</div>
 	</div>
