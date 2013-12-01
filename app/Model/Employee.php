@@ -84,4 +84,12 @@ class Employee extends AppModel {
 			'counterQuery' => ''
 		)
 	);
+	
+	// Functions
+	public function beforeSave($options = array()) {
+		if (isset($this->data[$this->alias]['empPass'])) {
+			$this->data[$this->alias]['empPass'] = AuthComponent::password($this->data[$this->alias]['empPass']);
+		}
+		return true;
+	}
 }

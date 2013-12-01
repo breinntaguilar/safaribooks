@@ -36,10 +36,6 @@ class Review extends AppModel {
 			),
 		),
 		'revDesc' => array(
-			'custom' => array(
-				'rule' => array('custom'),
-				//'message' => 'Your custom message here',
-			),
 			'notempty' => array(
 				'rule' => array('notempty'),
 				//'message' => 'Your custom message here',
