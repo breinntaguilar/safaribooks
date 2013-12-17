@@ -13,7 +13,6 @@
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-
 		<li><?php echo $this->Html->link(__('List Employees'), array('action' => 'index')); ?></li>
 		<li><?php echo $this->Html->link(__('List Details'), array('controller' => 'details', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Employee Detail'), array('controller' => 'details', 'action' => 'add')); ?> </li>
