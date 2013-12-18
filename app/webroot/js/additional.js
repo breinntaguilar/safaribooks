@@ -113,9 +113,9 @@ $(function() {
 	$("#datepicker2").datepicker({ dateFormat: 'yy-mm-dd' });
 });
 
-function couponfunction(value)
+function couponFunction(value)
 {
-	if (value == 'freeshipping')
+	if (value == '1')
 		{
 			document.getElementById("CouponCpnParam").value=""
 			document.getElementById("CouponCpnParam").disabled=true

@@ -18,17 +18,17 @@
 		<table align='center'>
 			<?php
 				echo $this->Formadd->inputAdd('cpnID', array('label' => 'Coupon Code', 'error' => false, 'size' => '25%', 'type' => 'text'));
-				echo $this->Formadd->inputAdd('cpnType', array('label' => 'Type', 'error' => false, 'onclick' => 'couponfunction(value)', 'options' => array(
+				echo $this->Formadd->inputAdd('cpnType', array('label' => 'Type', 'error' => false, 'onclick' => 'couponFunction(value)', 'options' => array(
 					'' => '', 
-					'freeshipping' => 'Free Shipping', 
-					'discount' => 'Discount')));
+					'1' => 'Free Shipping', 
+					'0' => 'Discount')));
 				echo $this->Formadd->inputAdd('cpnParam', array('label' => 'Discount', 'error' => false, 'options' => array(
 					'' => '', 
-					'0.1' => '10%', 
-					'0.2' => '20%', 
-					'0.3' => '30%', 
-					'0.4' => '40%', 
-					'0.5' => '50%')));
+					'0.10' => '10%', 
+					'0.20' => '20%', 
+					'0.30' => '30%', 
+					'0.40' => '40%', 
+					'0.50' => '50%')));
 				echo $this->Formadd->inputAdd('cpnDetail', array('label' => 'Description', 'error' => false, 'cols' => '40', 'rows' => '3', 'maxlength' => '100'));
 			?>
 			<tr><td colspan=3><div class="cleaner_with_image" /></td></tr>
