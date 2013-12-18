@@ -13,7 +13,7 @@
 
 <div id="templatemo_content_right">
 	<div class="coupons index">
-		<table cellpadding="1" cellspacing="1">
+		<table class="table table-hover" cellpadding="1" cellspacing="1">
 		<tr>
 				<th><?php echo $this->Paginator->sort('cpnID'); ?></th>
 				<th><?php echo $this->Paginator->sort('cpnType'); ?></th>
