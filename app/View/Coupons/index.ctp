@@ -13,23 +13,29 @@
 
 <div id="templatemo_content_right">
 	<div class="coupons index">
-		<table class="table table-hover" cellpadding="1" cellspacing="1">
+		<table class="table table-condensed table-bordered table-hover" cellpadding="1" cellspacing="1" border="1">
 		<tr>
-				<th><?php echo $this->Paginator->sort('cpnID'); ?></th>
-				<th><?php echo $this->Paginator->sort('cpnType'); ?></th>
-				<th><?php echo $this->Paginator->sort('cpnParam'); ?></th>
-				<th><?php echo $this->Paginator->sort('cpnDetail'); ?></th>
-				<th><?php echo $this->Paginator->sort('cpnStat'); ?></th>
-				<th class="actions"><?php echo __('Actions'); ?></th>
+			<th><?php echo $this->Paginator->sort('cpnID'); ?></th>
+			<th><?php echo $this->Paginator->sort('cpnType'); ?></th>
+			<th><?php echo $this->Paginator->sort('cpnParam'); ?></th>
+			<th><?php echo $this->Paginator->sort('cpnDetail'); ?></th>
+			<th><?php echo $this->Paginator->sort('cpnStat'); ?></th>
+			<th class="actions"><?php echo __('Actions'); ?></th>
+			<!-- <th>Coupon Code</th>
+			<th>Type</th>
+			<th>Parameter</th>
+			<th>Details</th>
+			<th>Status</th>
+			<th class="actions"><?php echo __('Actions'); ?></th> -->
 		</tr>
 		<?php foreach ($coupons as $coupon): ?>
 		<tr>
-			<td><?php echo h($coupon['Coupon']['cpnID']); ?>&nbsp;</td>
-			<td><?php echo h($coupon['Coupon']['cpnType']); ?>&nbsp;</td>
-			<td><?php echo h($coupon['Coupon']['cpnParam']); ?>&nbsp;</td>
-			<td><?php echo h($coupon['Coupon']['cpnDetail']); ?>&nbsp;</td>
-			<td><?php echo h($coupon['Coupon']['cpnStat']); ?>&nbsp;</td>
-			<td class="actions">
+			<td align="center"><?php echo h($coupon['Coupon']['cpnID']); ?>&nbsp;</td>
+			<td align="center"><?php echo h($coupon['Coupon']['cpnType']); ?>&nbsp;</td>
+			<td align="center"><?php echo h($coupon['Coupon']['cpnParam']); ?>&nbsp;</td>
+			<td align="left"><?php echo h($coupon['Coupon']['cpnDetail']); ?>&nbsp;</td>
+			<td align="center"><?php echo h($coupon['Coupon']['cpnStat']); ?>&nbsp;</td>
+			<td align="center" class="actions">
 				<?php echo $this->Html->link(__('View'), array('action' => 'view', $coupon['Coupon']['cpnID'])); ?>
 				<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $coupon['Coupon']['cpnID'])); ?>
 				<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $coupon['Coupon']['cpnID']), null, __('Are you sure you want to delete # %s?', $coupon['Coupon']['cpnID'])); ?>
