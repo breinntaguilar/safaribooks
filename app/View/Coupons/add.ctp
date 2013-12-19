@@ -15,9 +15,9 @@
 	<div class="coupons form">
 		<h1>Add Coupon</h1>
 		<?php echo $this->Form->create('Coupon', array('type' => 'file')); ?>
-		<table align='center'>
+		<table align='left'>
 			<?php
-				echo $this->Formadd->inputAdd('cpnID', array('label' => 'Coupon Code', 'error' => false, 'size' => '25%', 'type' => 'text'));
+				echo $this->Formadd->inputAdd('cpnID', array('label' => 'Coupon Code', 'error' => false, 'size' => '25%', 'type' => 'text', 'maxlength' => '20'));
 				echo $this->Formadd->inputAdd('cpnType', array('label' => 'Type', 'error' => false, 'onclick' => 'couponFunction(value)', 'options' => array(
 					'' => '', 
 					'1' => 'Free Shipping', 
