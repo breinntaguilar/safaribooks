@@ -10,10 +10,9 @@
 		</div>
 	</div>
 </div>
-
 <div id="templatemo_content_right">
 	<div class="coupons index">
-		<table class="table table-condensed table-bordered table-hover" cellpadding="1" cellspacing="1" border="1">
+		<table class="table table-condensed table-bordered table-hover" cellpadding="1" cellspacing="1">
 		<tr>
 			<th><?php echo $this->Paginator->sort('cpnID'); ?></th>
 			<th><?php echo $this->Paginator->sort('cpnType'); ?></th>
@@ -21,12 +20,6 @@
 			<th><?php echo $this->Paginator->sort('cpnDetail'); ?></th>
 			<th><?php echo $this->Paginator->sort('cpnStat'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
-			<!-- <th>Coupon Code</th>
-			<th>Type</th>
-			<th>Parameter</th>
-			<th>Details</th>
-			<th>Status</th>
-			<th class="actions"><?php echo __('Actions'); ?></th> -->
 		</tr>
 		<?php foreach ($coupons as $coupon): ?>
 		<tr>
