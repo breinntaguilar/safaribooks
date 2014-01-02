@@ -4,8 +4,9 @@
 			<h1><?php echo __('Actions'); ?></h1>
 			<ul>
 				<li><?php echo $this->Html->link(__('New Coupon'), array('action' => 'add')); ?></li>
+				<li><?php echo $this->Html->link(__('List Books'), array('controller' => 'books', 'action' => 'index')); ?></li>
 				<li><?php echo $this->Html->link(__('List Checkouts'), array('controller' => 'checkouts', 'action' => 'index')); ?> </li>
-				<li><?php echo $this->Html->link(__('New Coupon Checkout'), array('controller' => 'checkouts', 'action' => 'add')); ?> </li>
+				<li><?php echo $this->Html->link(__('List Reviews'), array('controller' => 'reviews', 'action' => 'index')); ?> </li>
 			</ul>
 		</div>
 	</div>
@@ -34,7 +35,7 @@
 				<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $coupon['Coupon']['cpnID']), null, __('Are you sure you want to delete # %s?', $coupon['Coupon']['cpnID'])); ?>
 			</td>
 		</tr>
-	<?php endforeach; ?>
+		<?php endforeach; ?>
 		</table>
 		<p>
 		<?php

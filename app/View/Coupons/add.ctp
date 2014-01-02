@@ -3,6 +3,7 @@
 		<div class="actions">
 			<h1><?php echo __('Actions'); ?></h1>
 			<ul>
+				<li><?php echo $this->Html->link(__('List Books'), array('controller' => 'books', 'action' => 'index')); ?></li>
 				<li><?php echo $this->Html->link(__('List Coupons'), array('action' => 'index')); ?></li>
 				<li><?php echo $this->Html->link(__('List Checkouts'), array('controller' => 'checkouts', 'action' => 'index')); ?> </li>
 			</ul>
@@ -34,14 +35,11 @@
 				<td colspan="3" align="center">
 					<div class="submit">
 						<hr><br>
-						<?php echo $this->Form->submit(__('Reset'), array('type' => 'button', 'div' => false, 'onclick' => 'clearForm(this.form)')); ?>
-						&emsp;&emsp;&emsp;&emsp;&emsp;
 						<?php echo $this->Form->submit(__('Add Coupon'), array('div' => false)); ?>
-						&nbsp;
 						<?php echo $this->Form->submit(__('Cancel'), array('type' => 'button', 'id' => 'add', 'div' => false, 'onclick' => 'submitForm(id)')); ?>
 						<input type="hidden" name="hiddenCancel" id="hiddenCancel">
+						<?php echo $this->Form->submit(__('Reset'), array('type' => 'button', 'div' => false, 'onclick' => 'clearForm(this.form)')); ?>
 					</div>
-					<?php echo $this->Form->end();?>
 				</td>
 			</tr>
 		</table>
