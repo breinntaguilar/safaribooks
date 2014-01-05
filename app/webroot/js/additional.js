@@ -94,12 +94,11 @@ function clearForm(elmnt) {
 	}
 }
 
-function checkAddress() {
-	//var trial = JSvars.testing;
-	//document.getElementById('DetailCmnFname').value = window.JSvars['addresses'][3]['Address']['zipCode'];
-	//document.getElementById('DetailCmnFname').value = JSvars.addresses[3]['Address']['zipCode'];
-	//alert(JSvars.addresses[0]['Address']['zipCode']);
-	//alert(window.JSvars.join('\n'));
+function checkAddress(elID) {
+	//if (document.getElementById(elID.value) != '') {
+		document.getElementById('hiddenZIP').value = 'zipped';
+		document.getElementsByTagName('form')[0].submit();
+	//}
 }
 
 // JQueries

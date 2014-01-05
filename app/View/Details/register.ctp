@@ -23,7 +23,7 @@
 				echo $this->Formadd->inputAdd('Detail.cmnLname', array('label' => 'Last Name', 'error' => false, 'size' => '76%'));
 				echo $this->Formadd->inputAdd('Detail.cmnAddress1', array('label' => 'Address Line 1', 'error' => false, 'size' => '76%'));
 				echo $this->Formadd->inputAdd('Detail.cmnAddress2', array('label' => 'Address Line 2', 'error' => false, 'size' => '76%'));
-				echo $this->Formadd->inputSel('Detail.cmnZIP', array('label' => 'Zip/Postal Code', 'error' => false, 'size' => '3%', 'type' => 'select', 'options' => $zips, 'onblur' => 'checkAddress()'));
+				echo $this->Formadd->inputSel('Detail.cmnZIP', array('label' => 'Zip/Postal Code', 'error' => false, 'size' => '3%', 'type' => 'select', 'options' => $zips, 'onblur' => 'checkAddress(id)'));
 				echo $this->Formadd->inputAdd('Detail.cmnCity', array('label' => 'Town or City', 'error' => false, 'size' => '76%'));
 				echo $this->Formadd->inputAdd('Detail.cmnProvince', array('label' => 'Province', 'error' => false, 'size' => '76%'));
 				echo $this->Formadd->inputAdd('Detail.cmnPhone', array('label' => 'Phone', 'error' => false, 'size' => '10%', 'type' => 'text', 'maxlength' => '10'));
@@ -32,6 +32,7 @@
 				echo $this->Formadd->inputAdd('Detail.cmnRole', array('type' => 'hidden', 'value' => '1'));
 				echo $this->Formadd->inputAdd('Detail.cmnStat', array('type' => 'hidden', 'value' => 'false'));
 			?>
+			<input type="hidden" name="hiddenZIP" id="hiddenZIP">
 			<tr><td colspan=3><div class="cleaner_with_image" /></td></tr>
 			<tr>
 				<td colspan=3 align=center>

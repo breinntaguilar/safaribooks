@@ -20,13 +20,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<!-- <script>
-		if (isset($JSvars)) {
-			echo $javascript->codeBlock('JSvars = ' . $javascript->object($JSvars) . ';');
-		}
-	</script> -->
-	<?php if (isset($JSvars)) { echo $this->Html->scriptBlock('var JSvars = ' . $this->Js->object($JSvars) . ';'); } ?>
-	
 	<?php echo $this->Html->charset(); ?>
 	<title>
 		<?php echo 'Safari Books' ?>:

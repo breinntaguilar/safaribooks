@@ -33,21 +33,4 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller {
 	public $components = array('DebugKit.Toolbar');
-	
-	function setJSvar($one, $two = null) {
-		if (!is_array($one)) {
-			return $this->viewVars['JSvars'][$one] = $two;
-		}
-		foreach($one as $key => $value) {
-			$this->viewVars['JSvars'][$key] = $value;
-		}
-	}
-	/* var $_jsVars = array();
-	public function setJSvar($name, $value) {
-		$this->_jsVars[$name] = $value;
-	}
-	
-	public function beforeRender() {
-		$this->set('JSVars', $this->_jsVars);
-	} */
 }

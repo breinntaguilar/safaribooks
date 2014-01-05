@@ -26,8 +26,8 @@ class FormaddHelper extends AppHelper {
 	public function inputSel($fieldName, $options = array()) {
 		$output = $this->inputAdd($fieldName, $options);
 		
-		$find = array('/(<select)(.*)(id=)(.*)( required)(.*)/', '/<\/select>/');
-		$replace = array('<input\2list=\4\5\6<datalist \3\4>', '</datalist>');
+		$find = array('/(<select)(.*)(id=")(.*)( required.*)(>)/', '/<\/select>/', '/( req.*)((.*\r\n)*)(.*)( sel.*ted")(>)(\d{4})/');
+		$replace = array('<input\2type="text" \3\4 list="dl\4\5/\6<datalist \3dl\4>', '</datalist>', ' value=\7\1\2\4\6\7');
 		return preg_replace($find, $replace, $output);
 	}
 }

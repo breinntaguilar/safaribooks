@@ -35,28 +35,22 @@ class DetailsController extends AppController {
  */
 	public function register() {
 		$this->loadModel('Address');
-		$this->set('addresses', $this->Address->find('all'));
 		$this->set('zips', $this->Address->find('list'));
-		//$addresses = $this->Address->find('all', array('limit' => '44'));
-		//$this->setJSvar(compact('addresses'));
-		//$this->setJSvar('addresses', array(array('Address' => array('zipCode' => 1000)), array('Address' => array('zipCode' => 2000))));
-		//$this->setJSvar('addresses', array('qwe','asd'));
 		
 		if (!empty($this->request->data)) {
-			if ($detail = $this->Detail->save($this->request->data)) {
+			if ($this->params['data']['hiddenZIP'] == 'zipped') {
+				$foundAddress = $this->Address->find('first', array('conditions' => array('Address.zipCode' => $this->params['data']['Detail']['cmnZIP'])));
+				$this->request->data['Detail']['cmnCity'] = $foundAddress['Address']['cityName'];
+				$this->request->data['Detail']['cmnProvince'] = $foundAddress['Address']['provName'];
+				$this->request->data['Detail']['cmnPhone'] = 0 . $foundAddress['Address']['areaCode'];
+			}
+			else if ($detail = $this->Detail->save($this->request->data)) {
 				if (!empty($detail)) {
 					$this->request->data['Customer']['cmnID'] = $this->Detail->id;
 					$customer = $this->Customer->save($this->request->data);
 					$this->Session->setFlash(__('The detail has been saved.'));
 					return $this->redirect(array('action' => 'view', $this->Detail->id));
 				}
-				/*if(!empty($customer)) {
-					$this->request->data['Credit']['cusID'] = $this->Customer->id;
-					$this->Credit->save($this->request->data);
-					
-					$this->Session->setFlash(__('The detail has been saved.'));
-					return $this->redirect(array('action' => 'index'));
-				}*/
 			}
 			else {
 				$this->Session->setFlash(__('The detail could not be saved. Please, try again.'));
