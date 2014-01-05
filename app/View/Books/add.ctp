@@ -41,13 +41,7 @@
 						<?php echo $this->Form->submit(__('Add book'), array('div' => false)); ?>
 						<?php echo $this->Form->submit(__('Cancel'), array('type' => 'button', 'id' => 'add', 'div' => false, 'onclick' => 'submitForm(id)')); ?>
 						<input type="hidden" name="hiddenCancel" id="hiddenCancel">
-<<<<<<< HEAD
-<<<<<<< HEAD
 						&emsp;&emsp;&emsp;
-=======
->>>>>>> d96cf77ae96cc1aacf2a081fac8e7039ff25e7a1
-=======
->>>>>>> d96cf77ae96cc1aacf2a081fac8e7039ff25e7a1
 						<?php echo $this->Form->submit(__('Reset'), array('type' => 'button', 'div' => false, 'onclick' => 'clearForm(this.form)')); ?>
 					</div>
 					<?php echo $this->Form->end();?>
