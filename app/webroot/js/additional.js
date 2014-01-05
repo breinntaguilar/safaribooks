@@ -101,18 +101,6 @@ function checkAddress(elID) {
 	//}
 }
 
-// JQueries
-$(document).ready(function() {
-	setTimeout(function() {
-		$('.flasher').parent().slideUp('slow');
-	}, 3000);
-});
-
-$(function() {
-	$("#datepicker1").datepicker({ dateFormat: 'yy-mm-dd' });
-	$("#datepicker2").datepicker({ dateFormat: 'yy-mm-dd' });
-});
-
 function couponFunction(value)
 {
 	if (value == '1')
@@ -124,3 +112,17 @@ function couponFunction(value)
 			document.getElementById("CouponCpnParam").disabled=false
 	}
 }
+
+
+
+// JQueries
+$(document).ready(function() {
+	setTimeout(function() {
+		$('.flasher').parent().slideUp('slow');
+	}, 3000);
+});
+
+$(function() {
+	$("#datepicker1").datepicker({ dateFormat: 'yy-mm-dd' });
+	$("#datepicker2").datepicker({ dateFormat: 'yy-mm-dd' });
+});
