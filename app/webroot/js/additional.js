@@ -126,3 +126,15 @@ $(function() {
 	$("#datepicker1").datepicker({ dateFormat: 'yy-mm-dd' });
 	$("#datepicker2").datepicker({ dateFormat: 'yy-mm-dd' });
 });
+
+function couponFunction(value)
+{
+	if (value == '1')
+		{
+			document.getElementById("CouponCpnParam").value=""
+			document.getElementById("CouponCpnParam").disabled=true
+		}
+	else{
+			document.getElementById("CouponCpnParam").disabled=false
+	}
+}
