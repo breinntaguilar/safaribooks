@@ -41,6 +41,7 @@
 						<?php echo $this->Form->submit(__('Add book'), array('div' => false)); ?>
 						<?php echo $this->Form->submit(__('Cancel'), array('type' => 'button', 'id' => 'add', 'div' => false, 'onclick' => 'submitForm(id)')); ?>
 						<input type="hidden" name="hiddenCancel" id="hiddenCancel">
+						&emsp;&emsp;&emsp;
 						<?php echo $this->Form->submit(__('Reset'), array('type' => 'button', 'div' => false, 'onclick' => 'clearForm(this.form)')); ?>
 					</div>
 					<?php echo $this->Form->end();?>
