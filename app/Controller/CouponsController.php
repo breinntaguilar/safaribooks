@@ -49,10 +49,15 @@ class CouponsController extends AppController {
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->Coupon->create();
-			if ($this->Coupon->save($this->request->data)) {
+			if ($this->params['data']['hiddenCancel'] == 'cancelled') {
+				$this->Session->setFlash('Changes were not saved. Operation was cancelled.', 'flasherNeutral');
+				return $this->redirect(array('action' => 'index'));
+			}
+			else if ($this->Coupon->save($this->request->data)) {
 				$this->Session->setFlash(__('The coupon has been saved.'));
 				return $this->redirect(array('action' => 'index'));
-			} else {
+			}
+			else {
 				$this->Session->setFlash(__('The coupon could not be saved. Please, try again.'));
 			}
 		}
