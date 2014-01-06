@@ -32,7 +32,7 @@
 				<div class="product_info">
 					<p><?php echo $this->Text->truncate(h($book['Book']['bkSnippet']), 100, array('ellipsis' => '...', 'exact' => true)); ?></p>
 					<h3>$<?php echo h($book['Book']['bkPrice']); ?></h3>
-					<div class="buy_now_button"><a href="subpage.html">Buy Now</a></div>
+					<div class="buy_now_button"><?php echo $this->Html->link(__('Buy Now'), array('controller' => 'carts', 'action' => 'add', $book['Book']['bkID']));?></div>
                     <div class="detail_button"><?php echo $this->Html->link(__('Details'), array('action' => 'view', $book['Book']['bkID'])); ?></div>
 				</div>
 				<div class="cleaner">&nbsp;</div>
