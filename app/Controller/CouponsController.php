@@ -74,7 +74,11 @@ class CouponsController extends AppController {
 		if (!$this->Coupon->exists($id)) {
 			throw new NotFoundException(__('Invalid coupon'));
 		}
-		if ($this->request->is(array('post', 'put'))) {
+		if ($this->params['data']['hiddenCancel'] == 'cancelled') {
+				$this->Session->setFlash('Changes were not saved. Operation was cancelled.', 'flasherNeutral');
+				return $this->redirect(array('action' => 'index'));
+			}
+		else if ($this->request->is(array('post', 'put'))) {
 			if ($this->Coupon->save($this->request->data)) {
 				$this->Session->setFlash(__('The coupon has been saved.'));
 				return $this->redirect(array('action' => 'index'));
