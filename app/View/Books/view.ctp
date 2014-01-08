@@ -75,8 +75,6 @@
 				<td><?php echo $bookReview['revStat']; ?></td>
 				<td class="actions">
 					<?php echo $this->Html->link(__('View'), array('controller' => 'reviews', 'action' => 'view', $bookReview['revID'])); ?>
-					<?php echo $this->Html->link(__('Edit'), array('controller' => 'reviews', 'action' => 'edit', $bookReview['revID'])); ?>
-					<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'reviews', 'action' => 'delete', $bookReview['revID']), null, __('Are you sure you want to delete # %s?', $bookReview['revID'])); ?>
 				</td>
 			</tr>
 		<?php endforeach; ?>
