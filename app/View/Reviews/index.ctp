@@ -11,7 +11,7 @@
 	</div>
 </div>
 <div id="templatemo_content_right">
-	<div class="coupons index">
+	<div class="reviews index">
 		<table class="table table-condensed table-bordered table-hover" cellpadding="1" cellspacing="1">
 		<tr>
 			<th><?php echo $this->Paginator->sort('revID'); ?></th>
@@ -25,15 +25,15 @@
 		</tr>
 		<?php foreach ($reviews as $review): ?>
 		<tr>
-			<td align="center"><?php echo h($coupon['Coupon']['cpnID']); ?>&nbsp;</td>
-			<td align="center"><?php echo h($coupon['Coupon']['cpnType']); ?>&nbsp;</td>
-			<td align="center"><?php echo h($coupon['Coupon']['cpnParam']); ?>&nbsp;</td>
-			<td align="left"><?php echo h($coupon['Coupon']['cpnDetail']); ?>&nbsp;</td>
-			<td align="center"><?php echo h($coupon['Coupon']['cpnStat']); ?>&nbsp;</td>
-			<td align="center" class="actions">
-				<?php echo $this->Html->link(__('View'), array('action' => 'view', $coupon['Coupon']['cpnID'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $coupon['Coupon']['cpnID'])); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $coupon['Coupon']['cpnID']), null, __('Are you sure you want to delete # %s?', $coupon['Coupon']['cpnID'])); ?>
+			<td><?php echo h($review['Review']['revID']); ?>&nbsp;</td>
+			<td><?php echo $this->Html->link($review['ReviewCustomer']['cusEmail'], array('controller' => 'customers', 'action' => 'view', $review['ReviewCustomer']['cusID'])); ?></td>
+			<td><?php echo $this->Html->link($review['ReviewEmployee']['empID'], array('controller' => 'employees', 'action' => 'view', $review['ReviewEmployee']['empID'])); ?></td>
+			<td><?php echo $this->Html->link($review['ReviewBook']['bkTitle'], array('controller' => 'books', 'action' => 'view', $review['ReviewBook']['bkID'])); ?></td>
+			<td><?php echo h($review['Review']['revDesc']); ?>&nbsp;</td>
+			<td><?php echo h($review['Review']['revRating']); ?>&nbsp;</td>
+			<td><?php echo h($review['Review']['revStat']); ?>&nbsp;</td>
+			<td class="actions">
+				<?php echo $this->Html->link(__('View'), array('action' => 'view', $review['Review']['revID']));?>							
 			</td>
 		</tr>
 		<?php endforeach; ?>
