@@ -28,6 +28,17 @@ class ReviewsController extends AppController {
 	}
 
 /**
+ * index_emp method
+ *
+ * @return void
+ */
+	public function index_emp($id = null) {
+		$this->Review->recursive = 0;
+		$this->Paginator->settings = array('conditions' => array('Review.bkID' => $id));
+		$this->set('reviews', $this->Paginator->paginate());
+	}
+
+/**
  * view method
  *
  * @throws NotFoundException
