@@ -45,7 +45,7 @@
 	<div id="templatemo_container">
 		<div id="templatemo_menu">
 			<ul>
-				<li><a href="http://localhost/safaribooks" class="current">Home</a></li>
+				<li><?php echo $this->Html->link(__('Home'), array('controller' => 'books', 'action' => 'index')); ?></li>
 				<li><a href="subpage.html">Search</a></li>
 				<li><a href="subpage.html">Books</a></li>            
 				<li><a href="subpage.html">New Releases</a></li>  
