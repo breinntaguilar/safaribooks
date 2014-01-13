@@ -47,10 +47,10 @@
 			<ul>
 				<li><?php echo $this->Html->link(__('Home'), array('controller' => 'books', 'action' => 'index')); ?></li>
 				<li><a href="subpage.html">Search</a></li>
-				<li><a href="subpage.html">Books</a></li>            
+				<li><?php echo $this->Html->link(__('Books'), array('controller' => 'books', 'action' => 'index')); ?></li>           
 				<li><a href="subpage.html">New Releases</a></li>  
 				<li><a href="#">Company</a></li> 
-				<li><a href="#">Contact</a></li>
+				<li><?php echo $this->Html->link(__('Contact'), array('controller' => 'contacts', 'action' => 'index')); ?></li>
 			</ul>
 		</div>
 		
