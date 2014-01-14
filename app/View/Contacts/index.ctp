@@ -20,6 +20,7 @@
 <div id="templatemo_content_right">
     <div class="books form">
         <h1>Contact Us</h1>
+        <?php echo $this->Form->create('Contact'); ?>
         <table align='left' border=0>   
             <?php
                 echo $this->Form->create('Contact', array('url' => array('controller' => 'contacts', 'action' => 'contact')));
