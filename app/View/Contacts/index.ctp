@@ -3,7 +3,7 @@
         <div class="actions">
             <h1><?php echo __('Actions'); ?></h1>
             <ul>
-                <li><?php echo $this->Html->link(__('New Book'), array('action' => 'add')); ?></li>
+                <li><?php echo $this->Html->link(__('List Book'), array('controller' => 'books', 'action' => 'index')); ?></li>
                 <li><?php echo $this->Html->link(__('List Reviews'), array('controller' => 'reviews', 'action' => 'index')); ?> </li>
                 <li><?php echo $this->Html->link(__('New Book Review'), array('controller' => 'reviews', 'action' => 'add')); ?> </li>
                 <li><?php echo $this->Html->link(__('List Carts'), array('controller' => 'carts', 'action' => 'index')); ?> </li>
