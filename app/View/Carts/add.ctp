@@ -1,7 +1,7 @@
 <div id="templatemo_content_left">
 	<div class="templatemo_content_left_section">
 		<div class="actions">
-			<h3><?php echo __('Actions'); ?></h3>
+			<h1><?php echo __('Actions'); ?></h1>
 			<ul>
 
 				<li><?php echo $this->Html->link(__('List Carts'), array('action' => 'index')); ?></li>
