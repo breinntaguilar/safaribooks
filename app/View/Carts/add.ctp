@@ -18,16 +18,24 @@
 	<div class="cart form">
 		<h1>Add Cart</h1>
 		<?php echo $this->Form->create('Cart'); ?>
-		<table align='center' border=0>	
+		<table align='left' border=0>	
 			<?php
 				echo $this->Formadd->inputAdd('cusID', array('label' => 'Customer ID', 'size' => '5%'));
 				echo $this->Formadd->inputAdd('bkID', array('label' => 'Book ID', 'default' => $bookId, 'size' => '5%'));
 				echo $this->Formadd->inputAdd('crtQnty', array('label' => 'Cart Quantity', 'size' => '5%'));
 				echo $this->Formadd->inputAdd('crtShip', array('label' => 'Cart Shipment', 'size' => '5%'));
 			?>
-		<tr><td colspan=3><div class="cleaner_with_image" /></td></tr>
+			<tr><td colspan="3"><div class="cleaner_with_image" /></td></tr>
+            <tr>
+                <td colspan="3" align="left">
+                    <div class="submit">
+                        <hr><br>
+                        <?php echo $this->Form->submit(__('Submit'), array('div' => false)); ?>
+                    </div>
+                    <!-- <?php echo $this->Form->end(__('Submit')); ?> -->
+                </td>
+            </tr>			
 		</table>
-		<?php echo $this->Form->end(__('Submit')); ?>
 	</div>
 </div>
 
