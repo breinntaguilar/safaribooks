@@ -17,21 +17,26 @@
         </div>
     </div>
 </div>
-
 <div id="templatemo_content_right">
     <div class="books form">
         <h1>Contact Us</h1>
-        <table align='center'>
-        <?php
-        echo $this->Form->create('Contact', array('url' => array('controller' => 'contacts', 'action' => 'contact')));
-        
-        echo $this->Form->input('name', array('label' => 'Name', 'size' => '75%'));
-        echo $this->Form->input('email', array('label' => 'Email', 'size' => '75%'));
-        echo $this->Form->input('message', array('label' => 'Message', 'cols' => '57', 'rows' => '10', 'maxlength' => '1500'));
-        
-        echo $this->Form->submit();
-        echo $this->Form->end();
-        ?>
+        <table align='left' border=0>   
+            <?php
+                echo $this->Form->create('Contact', array('url' => array('controller' => 'contacts', 'action' => 'contact')));
+                echo $this->Formadd->inputAdd('name', array('label' => 'Name', 'size' => '50%'));
+                echo $this->Formadd->inputAdd('email', array('label' => 'Email', 'size' => '50%'));
+                echo $this->Formadd->inputAdd('message', array('label' => 'Message', 'cols' => '57', 'rows' => '10', 'maxlength' => '1500'));
+            ?>
+            <tr><td colspan="3"><div class="cleaner_with_image" /></td></tr>
+            <tr>
+                <td colspan="3" align="left">
+                    <div class="submit">
+                        <hr><br>
+                        <?php echo $this->Form->submit(__('Submit'), array('div' => false)); ?>
+                    </div>
+                    <!-- <?php echo $this->Form->end(__('Submit')); ?> -->
+                </td>
+            </tr>
         </table>
     </div>
 </div>
