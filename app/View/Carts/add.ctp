@@ -21,7 +21,7 @@
 		<table align='left' border=0>	
 			<?php
 				echo $this->Formadd->inputAdd('cusID', array('label' => 'Customer ID', 'size' => '5%'));
-				echo $this->Formadd->inputAdd('bkID', array('label' => 'Book ID', 'default' => $bookId, 'size' => '5%'));
+				echo $this->Formadd->inputAdd('bkID', array('label' => 'Book ID', 'default' => $bookId, 'size' => '5%', 'readonly' => 'readonly'));
 				echo $this->Formadd->inputAdd('crtQnty', array('label' => 'Cart Quantity', 'size' => '5%'));
 				echo $this->Formadd->inputAdd('crtShip', array('label' => 'Cart Shipment', 'size' => '5%'));
 			?>
