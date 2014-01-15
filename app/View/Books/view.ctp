@@ -155,7 +155,7 @@
 
 		<div class="actions">
 			<ul>
-				<li><?php echo $this->Html->link(__('New Book Procure'), array('controller' => 'procures', 'action' => 'add')); ?> </li>
+				<li><?php echo $this->Html->link(__('New Book Procure'), array('controller' => 'procures', 'action' => 'add', $book['Book']['bkID'])); ?> </li>
 			</ul>
 		</div>
 	</div>
@@ -186,7 +186,7 @@
 
 		<div class="actions">
 			<ul>
-				<li><?php echo $this->Html->link(__('New Book Wishlist'), array('controller' => 'wishlists', 'action' => 'add')); ?> </li>
+				<li><?php echo $this->Html->link(__('New Book Wishlist'), array('controller' => 'wishlists', 'action' => 'add', $book['Book']['bkID'])); ?> </li>
 			</ul>
 		</div>
 	</div>
