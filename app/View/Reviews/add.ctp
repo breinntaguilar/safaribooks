@@ -29,11 +29,11 @@
 		<?php echo $this->Form->create('Review', array('type' => 'file')); ?>
 		<table align='left' border=0>	
 			<?php
-				echo $this->Formadd->inputAdd('cusID', array('label' => 'Customer ID', 'size' => '5%'));
-				echo $this->Formadd->inputAdd('empID', array('label' => 'Employee ID', 'size' => '5%'));				
-				echo $this->Formadd->inputAdd('bkID', array('label' => 'Book ID', 'size' => '5%', 'default' => $bookId));
+				echo $this->Formadd->inputAdd('cusID', array('label' => 'Customer ID', 'size' => '5%', 'readonly' => 'readonly'));
+				echo $this->Formadd->inputAdd('empID', array('label' => 'Employee ID', 'size' => '5%', 'readonly' => 'readonly'));				
+				echo $this->Formadd->inputAdd('bkID', array('label' => 'Book ID', 'size' => '5%', 'default' => $bookId, 'readonly' => 'readonly'));
 				echo $this->Formadd->inputAdd('revDesc', array('label' => 'Description', 'cols' => '57', 'rows' => '10', 'maxlength' => '1500'));
-				echo $this->Formadd->inputAdd('revRating', array('label' => 'Rating', 'size' => '5%'));
+				echo $this->Formadd->inputAdd('revRating', array('label' => 'Rating', 'size' => '5%', 'readonly' => 'readonly'));
 				echo $this->Formadd->inputAdd('revStat', array('label' => 'Status', 'size' => '5%'));
 			?>
 			<tr><td colspan="3"><div class="cleaner_with_image" /></td></tr>
