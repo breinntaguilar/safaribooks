@@ -49,7 +49,7 @@
 	<div class="related">
 		<h3><?php echo __('Related Reviews'); ?></h3>
 		<?php if (!empty($book['BookReview'])): ?>
-		<table cellpadding = "0" cellspacing = "0">
+		<table class="table table-condensed table-bordered table-hover" cellpadding="1" cellspacing="1">
 		<tr>
 			<th><?php echo __('RevID'); ?></th>
 			<th><?php echo __('CusID'); ?></th>
@@ -86,7 +86,7 @@
 	<div class="related">
 		<h3><?php echo __('Related Carts'); ?></h3>
 		<?php if (!empty($book['BookCart'])): ?>
-		<table cellpadding = "0" cellspacing = "0">
+		<table class="table table-condensed table-bordered table-hover" cellpadding="1" cellspacing="1">
 		<tr>
 			<th><?php echo __('CrtID'); ?></th>
 			<th><?php echo __('CusID'); ?></th>
@@ -121,7 +121,7 @@
 	<div class="related">
 		<h3><?php echo __('Related Procures'); ?></h3>
 		<?php if (!empty($book['BookProcure'])): ?>
-		<table cellpadding = "0" cellspacing = "0">
+		<table class="table table-condensed table-bordered table-hover" cellpadding="1" cellspacing="1">
 		<tr>
 			<th><?php echo __('PrcID'); ?></th>
 			<th><?php echo __('BkID'); ?></th>
@@ -158,7 +158,7 @@
 	<div class="related">
 		<h3><?php echo __('Related Wishlists'); ?></h3>
 		<?php if (!empty($book['BookWishlist'])): ?>
-		<table cellpadding = "0" cellspacing = "0">
+		<table class="table table-condensed table-bordered table-hover" cellpadding="1" cellspacing="1">
 		<tr>
 			<th><?php echo __('WshID'); ?></th>
 			<th><?php echo __('CusID'); ?></th>
