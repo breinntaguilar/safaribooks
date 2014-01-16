@@ -20,7 +20,7 @@
 		<?php echo $this->Form->create('Procure'); ?>
 		<table align='left' border=0>	
 			<?php
-				echo $this->Formadd->inputAdd('bkID', array('label' => 'Book ID', 'size' => '5%'));
+				echo $this->Formadd->inputAdd('bkID', array('label' => 'Book ID', 'default' => $bookId, 'size' => '5%', 'readonly' => 'readonly'));
 				echo $this->Formadd->inputAdd('prcQnty', array('label' => 'Procure Quantity', 'size' => '5%'));
 				echo $this->Formadd->inputAdd('prcLprice', array('label' => 'Procure Price', 'size' => '5%'));
 				echo $this->Formadd->inputAdd('empID', array('label' => 'Employee ID', 'size' => '5%'));
