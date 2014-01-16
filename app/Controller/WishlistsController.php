@@ -46,7 +46,7 @@ class WishlistsController extends AppController {
  *
  * @return void
  */
-	public function add() {
+	public function add($id = null) {
 		if ($this->request->is('post')) {
 			$this->Wishlist->create();
 			if ($this->Wishlist->save($this->request->data)) {
@@ -59,6 +59,7 @@ class WishlistsController extends AppController {
 		$wishlistCustomers = $this->Wishlist->WishlistCustomer->find('list');
 		$wishlistBooks = $this->Wishlist->WishlistBook->find('list');
 		$this->set(compact('wishlistCustomers', 'wishlistBooks'));
+		$this->set('bookId', $id);
 	}
 
 /**
