@@ -83,4 +83,9 @@ class BooksController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
+
+	public function search(){
+		$this->Book->recursive = 0;
+		$this->set('books', $this->Paginator->paginate());
+	}
 }

@@ -21,7 +21,7 @@
 	<div class="books form">
 		<h1>Add Book</h1>
 		<?php echo $this->Form->create('Book', array('type' => 'file')); ?>
-		<table align='center'>
+		<table align="center">
 			<?php
 				echo $this->Formadd->inputAdd('bkTitle', array('label' => 'Title', 'error' => false, 'size' => '75%'));
 				echo $this->Formadd->inputAdd('bkAuthor', array('label' => 'Author', 'error' => false, 'size' => '75%'));
