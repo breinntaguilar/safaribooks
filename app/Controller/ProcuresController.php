@@ -46,7 +46,7 @@ class ProcuresController extends AppController {
  *
  * @return void
  */
-	public function add() {
+	public function add($id = null) {
 		if ($this->request->is('post')) {
 			$this->Procure->create();
 			if ($this->Procure->save($this->request->data)) {
@@ -59,6 +59,7 @@ class ProcuresController extends AppController {
 		$procureEmployees = $this->Procure->ProcureEmployee->find('list');
 		$procureBooks = $this->Procure->ProcureBook->find('list');
 		$this->set(compact('procureEmployees', 'procureBooks'));
+		$this->set('bookId', $id);
 	}
 
 /**
