@@ -111,12 +111,11 @@ img {
 	list-style: none;
 }
 
-#templatemo_menu ul li{
+#templatemo_menu ul li {
 	display: inline;
 }
 
-#templatemo_menu ul li a{
-	float: left;
+#templatemo_menu ul li a {
 	padding: 0 20px;
 	font-size: 12px;
 	font-weight: bold;
