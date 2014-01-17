@@ -28,8 +28,8 @@
 		<?php echo $this->Form->create('User'); ?>
 		<table align='center'>
 			<?php
-				echo $this->Form->input('usrEmail');
-				echo $this->Form->input('usrPass');
+				echo $this->Formadd->inputAdd('usrEmail', array('label' => 'Email', 'size' => '5%'));
+				echo $this->Formadd->inputAdd('usrPass', array('label' => 'Password', 'size' => '5%'));
 			?>
 			<tr><td colspan=3><div class="cleaner_with_image" /></td></tr>
 			<tr>
