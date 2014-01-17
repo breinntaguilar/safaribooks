@@ -19,7 +19,7 @@
 		<table align="center">
 			<?php  
 		    	echo $this->Form->create("Book",array('action' => 'search')); 
-		    	echo $this->Form->input("search_key", array('label' => 'Search for')); 
+		    	echo $this->Form->input("search_key", array('label' => 'Search for: ')); 
 		    	echo $this->Form->end("Search"); 
 		    	echo "Total records found: ".count($book);
 		    	for ($i=0; $i<count($book); $i++) {

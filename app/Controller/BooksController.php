@@ -109,11 +109,9 @@ class BooksController extends AppController {
 		        'bkRating' => 'LIKE',
 		        'bkPubDate' => 'LIKE'
 	    	), 'OR');
-
 		
 		$res=$this->Book->find('all', compact('conditions'));
 		
-
 		// $db =& ConnectionManager::getDataSource('default');
 		// $db->showLog();
 
@@ -124,11 +122,9 @@ class BooksController extends AppController {
 		$this->Book->recursive = 0;
 		// $this->set('books', $this->Paginator->paginate());
 		$this->set('book', $res);
-
 	}
 
 	public function new_releases() {
-
 		$this->loadModel("Book");
 		$this->set('releases', $this->Book->getNewReleases());
 	}
