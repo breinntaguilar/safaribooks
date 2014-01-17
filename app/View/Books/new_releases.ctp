@@ -18,14 +18,11 @@
 		<h1>Search</h1>
 		<table align="center">
 			<?php  
-		    	echo $this->Form->create("Book",array('action' => 'search')); 
-		    	echo $this->Form->input("search_key", array('label' => 'Search for')); 
-		    	echo $this->Form->end("Search"); 
-		    	echo "Total records found: ".count($book);
-		    	for ($i=0; $i<count($book); $i++) {
-					echo "<br>Title: ".$book[$i]['Book']['bkTitle'];
-					echo "<br>Author: ".$book[$i]['Book']['bkAuthor'];
-					echo "<br>Rating: ".$book[$i]['Book']['bkRating'];
+		    	echo "Total records found: ".count($releases);
+		    	for ($i=0; $i<count($releases); $i++) {
+					echo "<br>Title: ".$releases[$i]['Book']['bkTitle'];
+					echo "<br>Author: ".$releases[$i]['Book']['bkAuthor'];
+					echo "<br>Rating: ".$releases[$i]['Book']['bkRating'];
 		    	}
 
 		    	
