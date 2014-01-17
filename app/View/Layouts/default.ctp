@@ -50,7 +50,7 @@
 				<li><?php echo $this->Html->link(__('Books'), array('controller' => 'books', 'action' => 'index'), array('style' => 'float: left')); ?></li>
 				<li><?php echo $this->Html->link(__('New Releases'), array('controller' => 'books', 'action' => 'new_releases'), array('style' => 'float: left')); ?></li>
 				<li><a style="float: left" href="#">Company</a></li>
-				<li><?php echo $this->Html->link(__('Contact'), array('controller' => 'contacts', 'action' => 'index'), array('style' => 'float: left')); ?></li>
+				<li><?php echo $this->Html->link(__('Contact Us'), array('controller' => 'contacts', 'action' => 'index'), array('style' => 'float: left')); ?></li>
 				<li><?php
 					if (isset($this->Session->read('Auth')['User'])) {
 						echo $this->Html->link(__('Logout'), array('controller' => 'users', 'action' => 'logout'), array('style' => 'float: right'));
@@ -91,8 +91,16 @@
 		</div>
 		
 		<div id="templatemo_footer">
-			<?php echo $this->Html->link(__('Home'), array('controller' => 'books', 'action' => 'index')); ?> | <a>Search</a> | <a>Books</a> | <a>New Releases</a> | <a>Contact Us</a><br />
-			Copyright © 2014 <strong>Safari Books</strong>
+			<?php
+				echo
+					$this->Html->link(__('Home'), array('controller' => 'books', 'action' => 'index')) . ' | ' . 
+					$this->Html->link(__('Search'), array('controller' => 'books', 'action' => 'search')) . ' | ' . 
+					$this->Html->link(__('Books'), array('controller' => 'books', 'action' => 'index')) . ' | ' . 
+					$this->Html->link(__('New Releases'), array('controller' => 'books', 'action' => 'new_releases')) . ' | ' . 
+					$this->Html->link(__('Contact Us'), array('controller' => 'contacts', 'action' => 'index'));
+				?>
+				<br>
+				Copyright © 2014 <strong>Safari Books</strong>
 		</div>
 	</div>
 </body>
