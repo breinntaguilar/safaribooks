@@ -1,18 +1,16 @@
 <div id="templatemo_content_left">
 	<div class="templatemo_content_left_section">
-		<div class="actions">
-			<h1><?php echo __('Actions'); ?></h1>
-			<ul>
-				<li><?php echo $this->Html->link(__('Edit Book'), array('action' => 'edit', $book['Book']['bkID'])); ?> </li>
-				<li><?php echo $this->Form->postLink(__('Delete Book'), array('action' => 'delete', $book['Book']['bkID']), null, __('Are you sure you want to delete # %s?', $book['Book']['bkID'])); ?> </li>
-				<li><?php echo $this->Html->link(__('List Books'), array('action' => 'index')); ?> </li>
-				<li><?php echo $this->Html->link(__('New Book'), array('action' => 'add')); ?> </li>
-				<li><?php echo $this->Html->link(__('List Reviews'), array('controller' => 'reviews', 'action' => 'index')); ?> </li>
-				<li><?php echo $this->Html->link(__('List Carts'), array('controller' => 'carts', 'action' => 'index')); ?> </li>
-				<li><?php echo $this->Html->link(__('List Procures'), array('controller' => 'procures', 'action' => 'index')); ?> </li>
-				<li><?php echo $this->Html->link(__('List Wishlists'), array('controller' => 'wishlists', 'action' => 'index')); ?> </li>
-			</ul>
-		</div>
+		<h1><?php echo __('Actions'); ?></h1>
+		<ul>
+			<li><?php echo $this->Html->link(__('Edit Book'), array('action' => 'edit', $book['Book']['bkID'])); ?> </li>
+			<li><?php echo $this->Form->postLink(__('Delete Book'), array('action' => 'delete', $book['Book']['bkID']), null, __('Are you sure you want to delete # %s?', $book['Book']['bkID'])); ?> </li>
+			<li><?php echo $this->Html->link(__('List Books'), array('action' => 'index')); ?> </li>
+			<li><?php echo $this->Html->link(__('New Book'), array('action' => 'add')); ?> </li>
+			<li><?php echo $this->Html->link(__('List Reviews'), array('controller' => 'reviews', 'action' => 'index')); ?> </li>
+			<li><?php echo $this->Html->link(__('List Carts'), array('controller' => 'carts', 'action' => 'index')); ?> </li>
+			<li><?php echo $this->Html->link(__('List Procures'), array('controller' => 'procures', 'action' => 'index')); ?> </li>
+			<li><?php echo $this->Html->link(__('List Wishlists'), array('controller' => 'wishlists', 'action' => 'index')); ?> </li>
+		</ul>
 	</div>
 </div>
 
