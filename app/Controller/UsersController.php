@@ -64,7 +64,7 @@ class UsersController extends AppController {
 		parent::beforeFilter();
 		$this->Auth->allow('add', 'logout');
 	}
-	//http://miftyisbored.com/a-complete-login-and-authentication-application-tutorial-for-cakephp-2-3/
+	
 	public function login() {
 		if ($this->Session->check('Auth.User')) {
 			$this->redirect(array('action' => 'index'));

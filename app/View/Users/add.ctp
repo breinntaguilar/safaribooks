@@ -1,29 +1,50 @@
 <div id="templatemo_content_left">
 	<div class="templatemo_content_left_section">
-		<div class="actions">
-			<h1><?php echo __('Actions'); ?></h1>
-			<ul>
-				<li><?php echo $this->Html->link(__('List Users'), array('action' => 'index')); ?></li>
-				<li><?php echo $this->Html->link(__('List Credits'), array('controller' => 'credits', 'action' => 'index')); ?> </li>
-				<li><?php echo $this->Html->link(__('New User Credit'), array('controller' => 'credits', 'action' => 'add')); ?> </li>
-				<li><?php echo $this->Html->link(__('List Carts'), array('controller' => 'carts', 'action' => 'index')); ?> </li>
-				<li><?php echo $this->Html->link(__('New User Cart'), array('controller' => 'carts', 'action' => 'add')); ?> </li>
-				<li><?php echo $this->Html->link(__('List Checkouts'), array('controller' => 'checkouts', 'action' => 'index')); ?> </li>
-				<li><?php echo $this->Html->link(__('New User Checkout'), array('controller' => 'checkouts', 'action' => 'add')); ?> </li>
-				<li><?php echo $this->Html->link(__('List Reviews'), array('controller' => 'reviews', 'action' => 'index')); ?> </li>
-				<li><?php echo $this->Html->link(__('New User Review'), array('controller' => 'reviews', 'action' => 'add')); ?> </li>
-				<li><?php echo $this->Html->link(__('List Wishlists'), array('controller' => 'wishlists', 'action' => 'index')); ?> </li>
-				<li><?php echo $this->Html->link(__('New User Wishlist'), array('controller' => 'wishlists', 'action' => 'add')); ?> </li>
-				<li><?php echo $this->Html->link(__('List Procures'), array('controller' => 'procures', 'action' => 'index')); ?> </li>
-				<li><?php echo $this->Html->link(__('New User Procure'), array('controller' => 'procures', 'action' => 'add')); ?> </li>
-			</ul>
-		</div>
+		<h1><?php echo __('Actions'); ?></h1>
+		<ul>
+			<?php
+				if (isset($this->Session->read('Auth')['User']) && $this->Session->read('Auth')['User']['usrRole'] === '1') {
+					echo '<li>' . $this->Html->link(__('List Books'), array('controller' => 'books', 'action' => 'index')) . '</li>';
+					echo '<li>' . $this->Html->link(__('List Active Coupons'), array('controller' => 'coupons', 'action' => 'index')) . '</li>';
+				}
+				elseif (isset($this->Session->read('Auth')['User']) && $this->Session->read('Auth')['User']['usrRole'] === '2') {
+					echo '<li>' . $this->Html->link(__('List Customers'), array('controller' => 'users', 'action' => 'index')) . '</li>';
+					echo '<li>' . $this->Html->link(__('Register Customer'), array('controller' => 'users', 'action' => 'add')) . '</li>';
+				}
+				elseif (isset($this->Session->read('Auth')['User']) && $this->Session->read('Auth')['User']['usrRole'] === '3') {
+					echo '<li>' . $this->Html->link(__('Register User'), array('controller' => 'users', 'action' => 'add')) . '</li>';
+					echo '<li>' . $this->Html->link(__('List Users'), array('action' => 'index')) . '</li>';
+				}
+			?>
+			<li><?php echo $this->Html->link(__('List Credits'), array('controller' => 'credits', 'action' => 'index')); ?> </li>
+			<li><?php echo $this->Html->link(__('New User Credit'), array('controller' => 'credits', 'action' => 'add')); ?> </li>
+			<li><?php echo $this->Html->link(__('List Carts'), array('controller' => 'carts', 'action' => 'index')); ?> </li>
+			<li><?php echo $this->Html->link(__('New User Cart'), array('controller' => 'carts', 'action' => 'add')); ?> </li>
+			<li><?php echo $this->Html->link(__('List Checkouts'), array('controller' => 'checkouts', 'action' => 'index')); ?> </li>
+			<li><?php echo $this->Html->link(__('New User Checkout'), array('controller' => 'checkouts', 'action' => 'add')); ?> </li>
+			<li><?php echo $this->Html->link(__('List Reviews'), array('controller' => 'reviews', 'action' => 'index')); ?> </li>
+			<li><?php echo $this->Html->link(__('New User Review'), array('controller' => 'reviews', 'action' => 'add')); ?> </li>
+			<li><?php echo $this->Html->link(__('List Wishlists'), array('controller' => 'wishlists', 'action' => 'index')); ?> </li>
+			<li><?php echo $this->Html->link(__('New User Wishlist'), array('controller' => 'wishlists', 'action' => 'add')); ?> </li>
+			<li><?php echo $this->Html->link(__('List Procures'), array('controller' => 'procures', 'action' => 'index')); ?> </li>
+			<li><?php echo $this->Html->link(__('New User Procure'), array('controller' => 'procures', 'action' => 'add')); ?> </li>
+		</ul>
 	</div>
+	<?php
+		if (isset($this->Session->read('Auth')['User']) && $this->Session->read('Auth')['User']['usrRole'] === '3') {
+			echo '<div class="templatemo_content_left_section">';
+			echo '<h1>' . __('Admin') . '</h1>';
+			echo '<ul>';
+			echo '<li>' . $this->Html->link(__('List Users'), array('action' => 'index')) . '</li>';
+			echo '</ul>';
+			echo '</div>';
+		}
+	?>
 </div>
 
 <div id="templatemo_content_right">
 	<div class="users form">
-		<h1>Add User</h1>
+		<h1>Register User</h1>
 		<?php echo $this->Form->create('User'); ?>
 		<table align='center'>
 			<?php

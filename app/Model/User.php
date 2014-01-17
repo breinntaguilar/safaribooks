@@ -36,6 +36,12 @@ class User extends AppModel {
 				//'message' => 'Your custom message here',
 			),
 		),
+		'usrPassOld' => array(
+			'custom' => array(
+				'rule' => '/[a-z0-9_\.]/',
+				'message' => 'Allowed characters are alphanumeric, underscore (_), and period (.) only.',
+			),
+		),
 		'usrFname' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
