@@ -1,10 +1,10 @@
 <div id="templatemo_content_left">
     <div class="templatemo_content_left_section">
 		<div class="actions">
-			<h3><?php echo __('Actions'); ?></h3>
+			<h1><?php echo __('Actions'); ?></h1>
 			<ul>
-				<li><?php echo $this->Html->link(__('List Customers'), array('controller' => 'customers', 'action' => 'index')); ?> </li>
-				<li><?php echo $this->Html->link(__('New Cart Customer'), array('controller' => 'customers', 'action' => 'add')); ?> </li>
+				<li><?php echo $this->Html->link(__('List Customers'), array('controller' => 'users', 'action' => 'index')); ?> </li>
+				<li><?php echo $this->Html->link(__('New Cart Customer'), array('controller' => 'users', 'action' => 'add')); ?> </li>
 				<li><?php echo $this->Html->link(__('List Books'), array('controller' => 'books', 'action' => 'index')); ?> </li>
 			</ul>
 		</div>
@@ -12,11 +12,11 @@
 </div>
 <div id="templatemo_content_right">
 		<div class="carts index">
-			<h1>Cart Lists</h1>
+			<h1>Cart List</h1>
 			<table class="table table-condensed table-bordered table-hover" cellpadding="1" cellspacing="1">
 			<tr>
 					<th><?php echo $this->Paginator->sort('crtID'); ?></th>
-					<th><?php echo $this->Paginator->sort('cusID'); ?></th>
+					<th><?php echo $this->Paginator->sort('usrID'); ?></th>
 					<th><?php echo $this->Paginator->sort('bkID'); ?></th>
 					<th><?php echo $this->Paginator->sort('crtQnty'); ?></th>
 					<th><?php echo $this->Paginator->sort('crtShip'); ?></th>
@@ -26,7 +26,7 @@
 			<tr>
 				<td><?php echo h($cart['Cart']['crtID']); ?>&nbsp;</td>
 				<td>
-					<?php echo $this->Html->link($cart['CartCustomer']['cusEmail'], array('controller' => 'customers', 'action' => 'view', $cart['CartCustomer']['cusID'])); ?>
+					<?php echo $this->Html->link($cart['CartCustomer']['cusEmail'], array('controller' => 'users', 'action' => 'view', $cart['CartUser']['usrID'])); ?>
 				</td>
 				<td>
 					<?php echo $this->Html->link($cart['CartBook']['bkTitle'], array('controller' => 'books', 'action' => 'view', $cart['CartBook']['bkID'])); ?>
