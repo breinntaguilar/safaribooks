@@ -129,10 +129,8 @@ class BooksController extends AppController {
 		$this->set('releases', $this->Book->getNewReleases());
 	}
 
-	public function isAuthorized($user) {
-		if (isset($user['usrRole']) && $user['usrRole'] === '2') {
-			return true;
-		}
-		return parent::isAuthorized($user);
+	public function beforeFilter() {
+		parent::beforeFilter();
+		$this->Auth->allow('search', 'new_releases');
 	}
 }

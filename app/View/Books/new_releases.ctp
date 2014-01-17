@@ -15,7 +15,7 @@
 
 <div id="templatemo_content_right">
 	<div class="books form">
-		<h1>Search</h1>
+		<h1>New Releases</h1>
 		<table align="center">
 			<?php  
 		    	echo "Total records found: ".count($releases);
