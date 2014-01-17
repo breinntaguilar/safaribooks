@@ -68,21 +68,21 @@ class BooksController extends AppController {
 		}
 	}
 	
-	public function delete($id = null) {
-		$this->Book->id = $id;
-		if (!$this->Book->exists()) {
-			throw new NotFoundException(__('Invalid book'));
-		}
+	// public function delete($id = null) {
+	// 	$this->Book->id = $id;
+	// 	if (!$this->Book->exists()) {
+	// 		throw new NotFoundException(__('Invalid book'));
+	// 	}
 		
-		$this->request->onlyAllow('post', 'delete');
-		if ($this->Book->delete()) {
-			$this->Session->setFlash(__('The book has been deleted.', 'flasherGood'));
-		}
-		else {
-			$this->Session->setFlash(__('The book could not be deleted. Please, try again.', 'flasherBad'));
-		}
-		return $this->redirect(array('action' => 'index'));
-	}
+	// 	$this->request->onlyAllow('post', 'delete');
+	// 	if ($this->Book->delete()) {
+	// 		$this->Session->setFlash(__('The book has been deleted.', 'flasherGood'));
+	// 	}
+	// 	else {
+	// 		$this->Session->setFlash(__('The book could not be deleted. Please, try again.', 'flasherBad'));
+	// 	}
+	// 	return $this->redirect(array('action' => 'index'));
+	// }
 
 	public function search(){
 		// echo "<pre>";
@@ -109,11 +109,9 @@ class BooksController extends AppController {
 		        'bkRating' => 'LIKE',
 		        'bkPubDate' => 'LIKE'
 	    	), 'OR');
-
 		
 		$res=$this->Book->find('all', compact('conditions'));
 		
-
 		// $db =& ConnectionManager::getDataSource('default');
 		// $db->showLog();
 
@@ -124,12 +122,17 @@ class BooksController extends AppController {
 		$this->Book->recursive = 0;
 		// $this->set('books', $this->Paginator->paginate());
 		$this->set('book', $res);
-
 	}
 
 	public function new_releases() {
-
 		$this->loadModel("Book");
 		$this->set('releases', $this->Book->getNewReleases());
+	}
+
+	public function isAuthorized($user) {
+		if (isset($user['usrRole']) && $user['usrRole'] === '2') {
+			return true;
+		}
+		return parent::isAuthorized($user);
 	}
 }
