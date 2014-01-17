@@ -3,7 +3,7 @@
 	<table cellpadding="0" cellspacing="0">
 	<tr>
 			<th><?php echo $this->Paginator->sort('chkID'); ?></th>
-			<th><?php echo $this->Paginator->sort('cusID'); ?></th>
+			<th><?php echo $this->Paginator->sort('usrID'); ?></th>
 			<th><?php echo $this->Paginator->sort('usedCC'); ?></th>
 			<th><?php echo $this->Paginator->sort('cpnID'); ?></th>
 			<th><?php echo $this->Paginator->sort('chkDate'); ?></th>
@@ -14,7 +14,7 @@
 	<tr>
 		<td><?php echo h($checkout['Checkout']['chkID']); ?>&nbsp;</td>
 		<td>
-			<?php echo $this->Html->link($checkout['CheckoutCustomer']['cusEmail'], array('controller' => 'customers', 'action' => 'view', $checkout['CheckoutCustomer']['cusID'])); ?>
+			<?php echo $this->Html->link($checkout['CheckoutUser']['usrEmail'], array('controller' => 'users', 'action' => 'view', $checkout['CheckoutUser']['usrID'])); ?>
 		</td>
 		<td><?php echo h($checkout['Checkout']['usedCC']); ?>&nbsp;</td>
 		<td><?php echo h($checkout['Checkout']['cpnID']); ?>&nbsp;</td>
@@ -46,8 +46,8 @@
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 		<li><?php echo $this->Html->link(__('New Checkout'), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List Customers'), array('controller' => 'customers', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Checkout Customer'), array('controller' => 'customers', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Customers'), array('controller' => 'users', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Checkout Customer'), array('controller' => 'users', 'action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('List Coupons'), array('controller' => 'coupons', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Checkout Coupon'), array('controller' => 'coupons', 'action' => 'add')); ?> </li>
 	</ul>

@@ -56,8 +56,8 @@ class CheckoutsController extends AppController {
 				$this->Session->setFlash(__('The checkout could not be saved. Please, try again.'));
 			}
 		}
-		$checkoutCustomers = $this->Checkout->CheckoutCustomer->find('list');
-		$this->set(compact('checkoutCustomers'));
+		$checkoutUsers = $this->Checkout->CheckoutUser->find('list');
+		$this->set(compact('checkoutUsers'));
 	}
 
 /**
@@ -82,8 +82,8 @@ class CheckoutsController extends AppController {
 			$options = array('conditions' => array('Checkout.' . $this->Checkout->primaryKey => $id));
 			$this->request->data = $this->Checkout->find('first', $options);
 		}
-		$checkoutCustomers = $this->Checkout->CheckoutCustomer->find('list');
-		$this->set(compact('checkoutCustomers'));
+		$checkoutUsers = $this->Checkout->CheckoutUser->find('list');
+		$this->set(compact('checkoutUsers'));
 	}
 
 /**
