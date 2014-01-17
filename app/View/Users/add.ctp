@@ -44,26 +44,69 @@
 
 <div id="templatemo_content_right">
 	<div class="users form">
-		<h1>Register User</h1>
+		<h1>Add User</h1>
 		<?php echo $this->Form->create('User'); ?>
 		<table align='center'>
 			<?php
-				echo $this->Form->input('usrFname');
-				echo $this->Form->input('usrLname');
-				echo $this->Form->input('usrAddress1');
-				echo $this->Form->input('usrAddress2');
-				echo $this->Form->input('usrCity');
-				echo $this->Form->input('usrProvince');
-				echo $this->Form->input('usrZIP');
-				echo $this->Form->input('usrPhone');
-				echo $this->Form->input('usrSSN');
-				echo $this->Form->input('usrRole', array('options' => array(
-					'1' => 'Customer',
-					'2' => 'Employee',
-					'3' => 'Manager')));
-				echo $this->Form->input('usrEmail');
-				echo $this->Form->input('usrPass');
-				echo $this->Form->input('usrStat');
+				echo $this->Formadd->inputAdd('usrFname', array(
+					'label' => 'First Name',
+					'error' => false,
+					'size' => '25%'));
+				echo $this->Formadd->inputAdd('usrLname', array(
+					'label' => 'Last Name',
+					'error' => false,
+					'size' => '25%'));
+				echo $this->Formadd->inputAdd('usrAddress1', array(
+					'label' => 'Street',
+					'error' => false,
+					'size' => '50%'));
+				echo $this->Formadd->inputAdd('usrAddress2', array(
+					'label' => 'Barangay',
+					'error' => false,
+					'size' => '50%'));
+				echo $this->Formadd->inputAdd('usrCity', array(
+					'label' => 'City',
+					'error' => false,
+					'size' => '50%'));
+				echo $this->Formadd->inputAdd('usrProvince', array(
+					'label' => 'Province',
+					'error' => false,
+					'size' => '50%'));
+				echo $this->Formadd->inputAdd('usrZIP', array(
+					'label' => 'ZIP Code',
+					'error' => false,
+					'size' => '2%',
+					'type' => 'text',
+					'maxlength' => '4',
+					'onkeypress' => 'return isNumKey(event)'));
+				echo $this->Formadd->inputAdd('usrPhone', array(
+					'label' => 'Phone',
+					'error' => false,
+					'size' => '11%',
+					'type' => 'text',
+					'maxlength' => '11',
+					'onkeypress' => 'return isNumKey(event)'));
+				echo $this->Formadd->inputAdd('usrSSN', array(
+					'label' => 'Social Security Number',
+					'error' => false,
+					'size' => '11%',
+					'type' => 'text',
+					'maxlength' => '10',
+					'onkeypress' => 'return isNumKey(event)'));
+				echo $this->Formadd->inputAdd('usrRole', array(
+					'label' => 'Role',
+					'options' => array(
+						'1' => 'Customer',
+						'2' => 'Employee',
+						'3' => 'Manager')));
+				echo $this->Formadd->inputAdd('usrEmail', array(
+					'label' => 'Email Address',
+					'error' => false,
+					'size' => '25%'));
+				echo $this->Formadd->inputAdd('usrPass', array(
+					'label' => 'Password',
+					'error' => false,
+					'size' => '25%'));
 			?>
 			<tr><td colspan=3><div class="cleaner_with_image" /></td></tr>
 			<tr>
