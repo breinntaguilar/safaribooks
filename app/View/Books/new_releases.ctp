@@ -24,12 +24,7 @@
 					echo "<br>Author: ".$releases[$i]['Book']['bkAuthor'];
 					echo "<br>Rating: ".$releases[$i]['Book']['bkRating'];
 		    	}
-
-		    	
-	
 			?> 
 		</table>
-		
 	</div>
-	
 </div>
