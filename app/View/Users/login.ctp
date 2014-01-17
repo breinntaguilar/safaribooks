@@ -2,7 +2,7 @@
 	<div class="templatemo_content_left_section">
 		<h1><?php echo __('Actions'); ?></h1>
 		<ul>
-			<li><?php echo $this->Html->link(__('List Books'), array('controller' => 'books', 'action' => 'index')); ?> </li>
+			<li><?php echo $this->Html->link(__('Register User'), array('controller' => 'users', 'action' => 'add')); ?> </li>
 		</ul>
 	</div>
 </div>

@@ -215,7 +215,7 @@ class User extends AppModel {
 		return true;
 	}
 
-	// usrID bkID value before saving.
+	// Generate usrID value before saving.
 	public function beforeValidate($options = array()) {
 		if (empty($this->data['User']['usrID'])) {
 			$lname = substr(strtolower($this->data['User']['usrLname']), 0, (strlen($this->data['User']['usrLname']) > 3 ? 4 : strlen($this->data['User']['usrLname'])));
@@ -224,5 +224,10 @@ class User extends AppModel {
 			$this->data['User']['usrID'] = $newID;
 		}
 		return true;
+	}
+
+	// Check if current user is the owner.
+	public function isOwner($curUser, $user) {
+		return $this->field('usrID', array('usrID' => $curUser, 'usrID' => $user)) === $curUser;
 	}
 }

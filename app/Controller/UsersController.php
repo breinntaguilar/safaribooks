@@ -24,7 +24,7 @@ class UsersController extends AppController {
 				$this->Session->setFlash(__('The user has been saved.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
+				$this->Session->setFlash('The user could not be saved. Please, try again.', 'flasherBad');
 			}
 		}
 	}
@@ -46,19 +46,19 @@ class UsersController extends AppController {
 		}
 	}
 	
-	public function delete($id = null) {
-		$this->User->id = $id;
-		if (!$this->User->exists()) {
-			throw new NotFoundException(__('Invalid user'));
-		}
-		$this->request->onlyAllow('post', 'delete');
-		if ($this->User->delete()) {
-			$this->Session->setFlash(__('The user has been deleted.'));
-		} else {
-			$this->Session->setFlash(__('The user could not be deleted. Please, try again.'));
-		}
-		return $this->redirect(array('action' => 'index'));
-	}
+	// public function delete($id = null) {
+	// 	$this->User->id = $id;
+	// 	if (!$this->User->exists()) {
+	// 		throw new NotFoundException(__('Invalid user'));
+	// 	}
+	// 	$this->request->onlyAllow('post', 'delete');
+	// 	if ($this->User->delete()) {
+	// 		$this->Session->setFlash(__('The user has been deleted.'));
+	// 	} else {
+	// 		$this->Session->setFlash(__('The user could not be deleted. Please, try again.'));
+	// 	}
+	// 	return $this->redirect(array('action' => 'index'));
+	// }
 	
 	public function beforeFilter() {
 		parent::beforeFilter();
@@ -66,20 +66,27 @@ class UsersController extends AppController {
 	}
 	
 	public function login() {
-		if ($this->Session->check('Auth.User')) {
-			$this->redirect(array('action' => 'index'));
-		}
 		if ($this->request->is('post')) {
 			if ($this->Auth->login()) {
 				return $this->redirect($this->Auth->redirect());
 			}
 			else {
-				$this->Session->setFlash(__('Invalid email address or password, please try again.'));
+				$this->Session->setFlash('Invalid email address or password, please try again.', 'flasherBad');
 			}
 		}
 	}
 	
 	public function logout() {
 		return $this->redirect($this->Auth->logout());
+	}
+
+	public function isAuthorized($user) {
+		if ($this->action === 'edit') {	
+			$curUser = $this->request->params['pass'][0];
+			if ($this->User->isOwner($curUser, $user['id'])) {
+				return true;
+			}
+		}
+		return parent::isAuthorized($user);
 	}
 }

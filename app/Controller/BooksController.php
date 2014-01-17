@@ -29,7 +29,7 @@ class BooksController extends AppController {
 				return $this->redirect(array('action' => 'index'));
 			}
 			else if ($this->Book->save($this->request->data)) {
-				$this->Session->setFlash(__('The book has been saved.'));
+				$this->Session->setFlash('The book has been saved.', 'flasherGood');
 				return $this->redirect(array('action' => 'index'));
 			}
 			else {
