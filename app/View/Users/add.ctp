@@ -106,7 +106,8 @@
 				echo $this->Formadd->inputAdd('usrPass', array(
 					'label' => 'Password',
 					'error' => false,
-					'size' => '25%'));
+					'size' => '25%',
+					'type' => 'password'));
 			?>
 			<tr><td colspan=3><div class="cleaner_with_image" /></td></tr>
 			<tr>

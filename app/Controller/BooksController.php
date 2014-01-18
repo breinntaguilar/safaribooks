@@ -133,4 +133,11 @@ class BooksController extends AppController {
 		parent::beforeFilter();
 		$this->Auth->allow('search', 'new_releases');
 	}
+
+	public function isAuthorized($user) {
+		if ($this->action === 'view') {
+			return true;
+		}
+		return parent::isAuthorized($user);
+	}
 }

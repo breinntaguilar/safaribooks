@@ -21,7 +21,7 @@ class UsersController extends AppController {
 		if ($this->request->is('post')) {
 			$this->User->create();
 			if ($this->User->save($this->request->data)) {
-				$this->Session->setFlash(__('The user has been saved.'));
+				$this->Session->setFlash('The user has been saved.', 'flasherGood');
 				return $this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash('The user could not be saved. Please, try again.', 'flasherBad');
@@ -35,10 +35,10 @@ class UsersController extends AppController {
 		}
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->User->save($this->request->data)) {
-				$this->Session->setFlash(__('The user has been saved.'));
+				$this->Session->setFlash('The user has been saved.', 'flasherGood');
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
+				$this->Session->setFlash('The user could not be saved. Please, try again.', 'flasherBad');
 			}
 		} else {
 			$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
@@ -81,6 +81,9 @@ class UsersController extends AppController {
 	}
 
 	public function isAuthorized($user) {
+		if ($this->action === 'view') {
+			return true;
+		}
 		if ($this->action === 'edit') {	
 			$curUser = $this->request->params['pass'][0];
 			if ($this->User->isOwner($curUser, $user['id'])) {
