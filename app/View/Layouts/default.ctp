@@ -45,22 +45,35 @@
 	<div id="templatemo_container">
 		<div id="templatemo_menu">
 			<ul>
-				<li><?php echo $this->Html->link(__('Home'), array('controller' => 'books', 'action' => 'index')); ?></li>
-				<li><?php echo $this->Html->link(__('Search'), array('controller' => 'books', 'action' => 'search')); ?></li>
-				<li><?php echo $this->Html->link(__('Books'), array('controller' => 'books', 'action' => 'index')); ?></li>
-				<li><?php echo $this->Html->link(__('New Releases'), array('controller' => 'books', 'action' => 'new_releases')); ?></li>
-				<li><a href="#">Company</a></li> 
-				<li><?php echo $this->Html->link(__('Contact'), array('controller' => 'contacts', 'action' => 'index')); ?></li>
+				<li><?php echo $this->Html->link(__('Home'), array('controller' => 'books', 'action' => 'index'), array('style' => 'float: left')); ?></li>
+				<li><?php echo $this->Html->link(__('Search'), array('controller' => 'books', 'action' => 'search'), array('style' => 'float: left')); ?></li>
+				<li><?php echo $this->Html->link(__('Books'), array('controller' => 'books', 'action' => 'index'), array('style' => 'float: left')); ?></li>
+				<li><?php echo $this->Html->link(__('New Releases'), array('controller' => 'books', 'action' => 'new_releases'), array('style' => 'float: left')); ?></li>
+				<li><a style="float: left" href="#">Company</a></li>
+				<li><?php echo $this->Html->link(__('Contact Us'), array('controller' => 'contacts', 'action' => 'index'), array('style' => 'float: left')); ?></li>
+				<li><?php
+					if (isset($this->Session->read('Auth')['User'])) {
+						echo $this->Html->link(__('Logout'), array('controller' => 'users', 'action' => 'logout'), array('style' => 'float: right'));
+					}
+					else {
+						echo $this->Html->link(__('Login'), array('controller' => 'users', 'action' => 'login'), array('style' => 'float: right'));
+					}
+				?></li>
+				<li><?php
+					if (isset($this->Session->read('Auth')['User'])) {
+						echo $this->Html->link(__($this->Session->read('Auth')['User']['usrFname'] . ' ' . $this->Session->read('Auth')['User']['usrLname']),
+							array('controller' => 'users', 'action' => 'view', $this->Session->read('Auth')['User']['usrID']), array('style' => 'float: right'));
+					}
+				?></li>
 			</ul>
 		</div>
-		
+
 		<div id="templatemo_header">
 			<div id="templatemo_special_offers">
-				Test
+				...
 			</div>
-			
 			<div id="templatemo_new_books">
-				Test
+				...
 			</div>
 		</div>
 		
@@ -74,13 +87,20 @@
 			
 			<?php echo $this->Session->flash(); ?>
 			<?php echo $this->fetch('content'); ?>
-			
 			<div class="cleaner_with_height">&nbsp;</div>
 		</div>
 		
 		<div id="templatemo_footer">
-			<a>Home</a> | <a>Search</a> | <a>Books</a> | <a>New Releases</a> | <a>FAQs</a> | <a>Contact Us</a><br />
-			Copyright © 2013 <a><strong>Safari Books</strong></a>
+			<?php
+				echo
+					$this->Html->link(__('Home'), array('controller' => 'books', 'action' => 'index')) . ' | ' . 
+					$this->Html->link(__('Search'), array('controller' => 'books', 'action' => 'search')) . ' | ' . 
+					$this->Html->link(__('Books'), array('controller' => 'books', 'action' => 'index')) . ' | ' . 
+					$this->Html->link(__('New Releases'), array('controller' => 'books', 'action' => 'new_releases')) . ' | ' . 
+					$this->Html->link(__('Contact Us'), array('controller' => 'contacts', 'action' => 'index'));
+				?>
+				<br>
+				Copyright © 2014 <strong>Safari Books</strong>
 		</div>
 	</div>
 </body>

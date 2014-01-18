@@ -4,7 +4,7 @@
 		<legend><?php echo __('Edit Checkout'); ?></legend>
 	<?php
 		echo $this->Form->input('chkID');
-		echo $this->Form->input('cusID');
+		echo $this->Form->input('usrID');
 		echo $this->Form->input('usedCC');
 		echo $this->Form->input('cpnID');
 		echo $this->Form->input('chkDate');
@@ -19,8 +19,8 @@
 
 		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('Checkout.chkID')), null, __('Are you sure you want to delete # %s?', $this->Form->value('Checkout.chkID'))); ?></li>
 		<li><?php echo $this->Html->link(__('List Checkouts'), array('action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link(__('List Customers'), array('controller' => 'customers', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Checkout Customer'), array('controller' => 'customers', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Customers'), array('controller' => 'users', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Checkout Customer'), array('controller' => 'users', 'action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('List Coupons'), array('controller' => 'coupons', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Checkout Coupon'), array('controller' => 'coupons', 'action' => 'add')); ?> </li>
 	</ul>

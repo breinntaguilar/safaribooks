@@ -16,6 +16,7 @@
 
 <div id="templatemo_content_right">
 	<div class="books form">
+<<<<<<< HEAD
 		<h1>New Releases for the past 24 months!!!</h1>
 		<table class="table table-condensed table-bordered table-hover" cellpadding="1" cellspacing="1" align="center">
 			<tr>
@@ -23,6 +24,10 @@
 				<th><?php echo $this->Paginator->sort('bkAuthor', 'Author'); ?></th>
 				<th><?php echo $this->Paginator->sort('bkRating', 'Rating'); ?></th>
 			</tr>
+=======
+		<h1>New Releases</h1>
+		<table align="center">
+>>>>>>> c1943e0ea5ab48c36c5b0fc2e6f8e08f0e2407a1
 			<?php  
 		    	echo "Total records found: ".count($releases);
 		    	for ($i=0; $i<count($releases); $i++) {

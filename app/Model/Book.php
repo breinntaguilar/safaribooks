@@ -245,7 +245,7 @@ class Book extends AppModel {
 		return true;
 	}
 	
-	// Add generated bkID value before saving.
+	// Generate bkID value before saving.
 	public function beforeValidate($options = array()) {
 		if (empty($this->data['Book']['bkID'])) {
 			$newID = preg_replace('/(\d{2})(\d{2})-(\d{2})-(\d{2})/', '\2\3', $this->data['Book']['bkPubDate']) . '001';

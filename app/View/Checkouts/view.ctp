@@ -8,7 +8,7 @@
 		</dd>
 		<dt><?php echo __('Checkout Customer'); ?></dt>
 		<dd>
-			<?php echo $this->Html->link($checkout['CheckoutCustomer']['cusEmail'], array('controller' => 'customers', 'action' => 'view', $checkout['CheckoutCustomer']['cusID'])); ?>
+			<?php echo $this->Html->link($checkout['CheckoutUser']['usrEmail'], array('controller' => 'users', 'action' => 'view', $checkout['CheckoutUser']['usrID'])); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('UsedCC'); ?></dt>
@@ -40,8 +40,8 @@
 		<li><?php echo $this->Form->postLink(__('Delete Checkout'), array('action' => 'delete', $checkout['Checkout']['chkID']), null, __('Are you sure you want to delete # %s?', $checkout['Checkout']['chkID'])); ?> </li>
 		<li><?php echo $this->Html->link(__('List Checkouts'), array('action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Checkout'), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Customers'), array('controller' => 'customers', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Checkout Customer'), array('controller' => 'customers', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Customers'), array('controller' => 'users', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Checkout Customer'), array('controller' => 'users', 'action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('List Coupons'), array('controller' => 'coupons', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Checkout Coupon'), array('controller' => 'coupons', 'action' => 'add')); ?> </li>
 	</ul>

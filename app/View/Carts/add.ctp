@@ -5,7 +5,7 @@
 			<ul>
 
 				<li><?php echo $this->Html->link(__('List Carts'), array('action' => 'index')); ?></li>
-				<li><?php echo $this->Html->link(__('List Customers'), array('controller' => 'customers', 'action' => 'index')); ?> </li>
+				<li><?php echo $this->Html->link(__('List Customers'), array('controller' => 'users', 'action' => 'index')); ?> </li>
 				<li><?php echo $this->Html->link(__('List Books'), array('controller' => 'books', 'action' => 'index')); ?> </li>
 				
 			</ul>
@@ -19,7 +19,7 @@
 		<?php echo $this->Form->create('Cart'); ?>
 		<table align='left' border=0>	
 			<?php
-				echo $this->Formadd->inputAdd('cusID', array('label' => 'Customer ID', 'size' => '5%'));
+				echo $this->Formadd->inputAdd('usrID', array('label' => 'Customer ID', 'size' => '5%'));
 				echo $this->Formadd->inputAdd('bkID', array('label' => 'Book ID', 'default' => $bookId, 'size' => '5%', 'readonly' => 'readonly'));
 				echo $this->Formadd->inputAdd('crtQnty', array('label' => 'Cart Quantity', 'size' => '5%'));
 				echo $this->Formadd->inputAdd('crtShip', array('label' => 'Cart Shipment', 'size' => '5%'));

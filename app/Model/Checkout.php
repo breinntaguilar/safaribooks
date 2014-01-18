@@ -16,9 +16,9 @@ class Checkout extends AppModel {
 				//'message' => 'Your custom message here',
 			),
 		),
-		'cusID' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
+		'usrID' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
 				//'message' => 'Your custom message here',
 			),
 		),
@@ -66,9 +66,9 @@ class Checkout extends AppModel {
 	
 	// belongsTo associations
 	public $belongsTo = array(
-		'CheckoutCustomer' => array(
-			'className' => 'Customer',
-			'foreignKey' => 'cusID',
+		'CheckoutUser' => array(
+			'className' => 'User',
+			'foreignKey' => 'usrID',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''

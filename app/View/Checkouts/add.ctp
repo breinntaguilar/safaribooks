@@ -3,7 +3,7 @@
 	<fieldset>
 		<legend><?php echo __('Add Checkout'); ?></legend>
 	<?php
-		echo $this->Form->input('cusID');
+		echo $this->Form->input('usrID');
 		echo $this->Form->input('usedCC');
 		echo $this->Form->input('cpnID');
 		echo $this->Form->input('chkDate');
@@ -17,8 +17,8 @@
 	<ul>
 
 		<li><?php echo $this->Html->link(__('List Checkouts'), array('action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link(__('List Customers'), array('controller' => 'customers', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Checkout Customer'), array('controller' => 'customers', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Customers'), array('controller' => 'users', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Checkout Customer'), array('controller' => 'users', 'action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('List Coupons'), array('controller' => 'coupons', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Checkout Coupon'), array('controller' => 'coupons', 'action' => 'add')); ?> </li>
 	</ul>

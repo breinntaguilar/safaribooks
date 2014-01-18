@@ -8,7 +8,7 @@
 		</dd>
 		<dt><?php echo __('Credit Customer'); ?></dt>
 		<dd>
-			<?php echo $this->Html->link($credit['CreditCustomer']['cusEmail'], array('controller' => 'customers', 'action' => 'view', $credit['CreditCustomer']['cusID'])); ?>
+			<?php echo $this->Html->link($credit['CreditUser']['usrEmail'], array('controller' => 'users', 'action' => 'view', $credit['CreditUser']['usrID'])); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('CcType'); ?></dt>
@@ -25,7 +25,7 @@
 		<li><?php echo $this->Form->postLink(__('Delete Credit'), array('action' => 'delete', $credit['Credit']['ccID']), null, __('Are you sure you want to delete # %s?', $credit['Credit']['ccID'])); ?> </li>
 		<li><?php echo $this->Html->link(__('List Credits'), array('action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Credit'), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Customers'), array('controller' => 'customers', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Credit Customer'), array('controller' => 'customers', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Customers'), array('controller' => 'users', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Credit Customer'), array('controller' => 'users', 'action' => 'add')); ?> </li>
 	</ul>
 </div>
