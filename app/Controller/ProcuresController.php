@@ -56,10 +56,11 @@ class ProcuresController extends AppController {
 				$this->Session->setFlash(__('The procure could not be saved. Please, try again.'));
 			}
 		}
-		$procureEmployees = $this->Procure->ProcureEmployee->find('list');
+		$procureUsers = $this->Procure->ProcureUser->find('list');
 		$procureBooks = $this->Procure->ProcureBook->find('list');
-		$this->set(compact('procureEmployees', 'procureBooks'));
+		$this->set(compact('procureUsers', 'procureBooks'));
 		$this->set('bookId', $id);
+		$this->set('userId', $this->Session->read('Auth')['User']['usrID']);
 	}
 
 /**
@@ -84,9 +85,9 @@ class ProcuresController extends AppController {
 			$options = array('conditions' => array('Procure.' . $this->Procure->primaryKey => $id));
 			$this->request->data = $this->Procure->find('first', $options);
 		}
-		$procureEmployees = $this->Procure->ProcureEmployee->find('list');
+		$procureUsers = $this->Procure->ProcureUser->find('list');
 		$procureBooks = $this->Procure->ProcureBook->find('list');
-		$this->set(compact('procureEmployees', 'procureBooks'));
+		$this->set(compact('procureUsers', 'procureBooks'));
 	}
 
 /**

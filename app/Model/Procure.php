@@ -46,9 +46,9 @@ class Procure extends AppModel {
 				//'message' => 'Your custom message here',
 			),
 		),
-		'empID' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
+		'usrID' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
 				//'message' => 'Your custom message here',
 			),
 		),
@@ -62,9 +62,9 @@ class Procure extends AppModel {
 	
 	// belongsTo associations
 	public $belongsTo = array(
-		'ProcureEmployee' => array(
-			'className' => 'Employee',
-			'foreignKey' => 'empID',
+		'ProcureUser' => array(
+			'className' => 'User',
+			'foreignKey' => 'usrID',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''

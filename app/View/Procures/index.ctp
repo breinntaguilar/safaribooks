@@ -4,8 +4,8 @@
 			<h1><?php echo __('Actions'); ?></h1>
 			<ul>
 				<li><?php echo $this->Html->link(__('New Procure'), array('action' => 'add')); ?></li>
-				<li><?php echo $this->Html->link(__('List Employees'), array('controller' => 'employees', 'action' => 'index')); ?> </li>
-				<li><?php echo $this->Html->link(__('New Procure Employee'), array('controller' => 'employees', 'action' => 'add')); ?> </li>
+				<li><?php echo $this->Html->link(__('List Employees'), array('controller' => 'users', 'action' => 'index')); ?> </li>
+				<li><?php echo $this->Html->link(__('New Procure Employee'), array('controller' => 'users', 'action' => 'add')); ?> </li>
 				<li><?php echo $this->Html->link(__('List Books'), array('controller' => 'books', 'action' => 'index')); ?> </li>
 				<li><?php echo $this->Html->link(__('New Procure Book'), array('controller' => 'books', 'action' => 'add')); ?> </li>
 			</ul>
@@ -22,7 +22,7 @@
 				<th><?php echo $this->Paginator->sort('bkID'); ?></th>
 				<th><?php echo $this->Paginator->sort('prcQnty'); ?></th>
 				<th><?php echo $this->Paginator->sort('prcLprice'); ?></th>
-				<th><?php echo $this->Paginator->sort('empID'); ?></th>
+				<th><?php echo $this->Paginator->sort('usrID'); ?></th>
 				<th><?php echo $this->Paginator->sort('prcStat'); ?></th>
 				<th class="actions"><?php echo __('Actions'); ?></th>
 		</tr>
@@ -35,7 +35,7 @@
 			<td><?php echo h($procure['Procure']['prcQnty']); ?>&nbsp;</td>
 			<td><?php echo h($procure['Procure']['prcLprice']); ?>&nbsp;</td>
 			<td>
-				<?php echo $this->Html->link($procure['ProcureEmployee']['empID'], array('controller' => 'employees', 'action' => 'view', $procure['ProcureEmployee']['empID'])); ?>
+				<?php echo $this->Html->link($procure['ProcureUser']['usrID'], array('controller' => 'users', 'action' => 'view', $procure['ProcureUser']['usrID'])); ?>
 			</td>
 			<td><?php echo h($procure['Procure']['prcStat']); ?>&nbsp;</td>
 			<td class="actions">

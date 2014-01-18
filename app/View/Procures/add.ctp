@@ -5,8 +5,8 @@
 			<ul>
 
 				<li><?php echo $this->Html->link(__('List Procures'), array('action' => 'index')); ?></li>
-				<li><?php echo $this->Html->link(__('List Employees'), array('controller' => 'employees', 'action' => 'index')); ?> </li>
-				<li><?php echo $this->Html->link(__('New Procure Employee'), array('controller' => 'employees', 'action' => 'add')); ?> </li>
+				<li><?php echo $this->Html->link(__('List Employees'), array('controller' => 'users', 'action' => 'index')); ?> </li>
+				<li><?php echo $this->Html->link(__('New Procure Employee'), array('controller' => 'users', 'action' => 'add')); ?> </li>
 				<li><?php echo $this->Html->link(__('List Books'), array('controller' => 'books', 'action' => 'index')); ?> </li>
 				<li><?php echo $this->Html->link(__('New Procure Book'), array('controller' => 'books', 'action' => 'add')); ?> </li>
 			</ul>
@@ -23,7 +23,7 @@
 				echo $this->Formadd->inputAdd('bkID', array('label' => 'Book ID', 'default' => $bookId, 'size' => '5%', 'readonly' => 'readonly'));
 				echo $this->Formadd->inputAdd('prcQnty', array('label' => 'Procure Quantity', 'size' => '5%'));
 				echo $this->Formadd->inputAdd('prcLprice', array('label' => 'Procure Price', 'size' => '5%'));
-				echo $this->Formadd->inputAdd('empID', array('label' => 'Employee ID', 'size' => '5%'));
+				echo $this->Formadd->inputAdd('usrID', array('label' => 'Employee ID', 'size' => '10%', 'default' => $userId));
 				echo $this->Formadd->inputAdd('prcStat', array('label' => 'Procure Status', 'size' => '5%'));
 			?>
 			<tr><td colspan="3"><div class="cleaner_with_image" /></td></tr>

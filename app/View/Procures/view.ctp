@@ -23,7 +23,7 @@
 		</dd>
 		<dt><?php echo __('Procure Employee'); ?></dt>
 		<dd>
-			<?php echo $this->Html->link($procure['ProcureEmployee']['empID'], array('controller' => 'employees', 'action' => 'view', $procure['ProcureEmployee']['empID'])); ?>
+			<?php echo $this->Html->link($procure['ProcureUser']['usrID'], array('controller' => 'users', 'action' => 'view', $procure['ProcureUser']['usrID'])); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('PrcStat'); ?></dt>
@@ -40,8 +40,8 @@
 		<li><?php echo $this->Form->postLink(__('Delete Procure'), array('action' => 'delete', $procure['Procure']['prcID']), null, __('Are you sure you want to delete # %s?', $procure['Procure']['prcID'])); ?> </li>
 		<li><?php echo $this->Html->link(__('List Procures'), array('action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Procure'), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Employees'), array('controller' => 'employees', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Procure Employee'), array('controller' => 'employees', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Employees'), array('controller' => 'users', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Procure Employee'), array('controller' => 'users', 'action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('List Books'), array('controller' => 'books', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Procure Book'), array('controller' => 'books', 'action' => 'add')); ?> </li>
 	</ul>

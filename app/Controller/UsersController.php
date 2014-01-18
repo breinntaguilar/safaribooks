@@ -87,12 +87,11 @@ class UsersController extends AppController {
 		if ($this->action === 'view') {
 			return true;
 		}
-		if ($this->action === 'edit') {	
-			$curUser = $this->request->params['pass'][0];
-			if ($this->User->isOwner($curUser, $user['id'])) {
-				return true;
-			}
-		}
+		if (in_array($this->action, array('edit', 'delete'))) {
+	        if ($this->Session->read('Auth')['User']['usrRole'] === '2') {
+	            return true;
+	        }
+    	}
 		return parent::isAuthorized($user);
 	}
 }

@@ -27,6 +27,7 @@
 			<li><?php echo $this->Html->link(__('List Books'), array('action' => 'index')); ?> </li>
 			<li><?php echo $this->Html->link(__('List Reviews'), array('controller' => 'reviews', 'action' => 'index')); ?> </li>
 			<li><?php echo $this->Html->link(__('List Carts'), array('controller' => 'carts', 'action' => 'index')); ?> </li>
+			<li><?php echo $this->Html->link(__('Procure Book'), array('controller' => 'procures', 'action' => 'add', $book['Book']['bkID'])); ?> </li>
 			<li><?php echo $this->Html->link(__('List Procures'), array('controller' => 'procures', 'action' => 'index')); ?> </li>
 			<!-- <li><?php echo $this->Html->link(__('List Wishlists'), array('controller' => 'wishlists', 'action' => 'index')); ?> </li> -->
 
@@ -64,7 +65,7 @@
 		</ul>
 	</div>
 	
-	<div class="related">
+	<!-- <div class="related">
 		<h3><?php echo __('Related Carts'); ?></h3>
 		<?php if (!empty($book['BookCart'])): ?>
 		<table class="table table-condensed table-bordered table-hover" cellpadding="1" cellspacing="1">
@@ -98,8 +99,8 @@
 				<li><?php echo $this->Html->link(__('Add to Cart'), array('controller' => 'carts', 'action' => 'add', $book['Book']['bkID'])); ?> </li>
 			</ul>
 		</div>
-	</div>
-	<div class="related">
+	</div> -->
+	<!-- <div class="related">
 		<h3><?php echo __('Related Procures'); ?></h3>
 		<?php if (!empty($book['BookProcure'])): ?>
 		<table class="table table-condensed table-bordered table-hover" cellpadding="1" cellspacing="1">
@@ -135,7 +136,7 @@
 				<li><?php echo $this->Html->link(__('New Book Procure'), array('controller' => 'procures', 'action' => 'add', $book['Book']['bkID'])); ?> </li>
 			</ul>
 		</div>
-	</div>
+	</div> -->
 	<!-- <div class="related">
 		<h3><?php echo __('Related Wishlists'); ?></h3>
 		<?php if (!empty($book['BookWishlist'])): ?>
