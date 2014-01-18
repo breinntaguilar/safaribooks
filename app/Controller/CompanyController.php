@@ -11,5 +11,9 @@ class CompanyController extends AppController
         //$this->Book->recursive = 0;
         //$this->set('company', $this->Paginator->paginate());
     }
+
+    public function beforeFilter() {
+		$this->Auth->allow();
+	}
 }
-?>
+

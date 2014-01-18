@@ -21,18 +21,18 @@ class ReviewsController extends AppController {
  *
  * @return void
  */
-	public function index($id = null) {
-		$this->Review->recursive = 0;
-		//$this->Paginator->settings = array('conditions' => array('Review.bkID' => $id));
-		$this->set('reviews', $this->Paginator->paginate());
-	}
+	// public function index($id = null) {
+	// 	$this->Review->recursive = 0;
+	// 	//$this->Paginator->settings = array('conditions' => array('Review.bkID' => $id));
+	// 	$this->set('reviews', $this->Paginator->paginate());
+	// }
 	
 /**
  * index_book method
  *
  * @return void
  */
-	public function index_book($id = null) {
+	public function index($id = null) {
 		$this->Review->recursive = 0;
 		$this->Paginator->settings = array('conditions' => array('Review.bkID' => $id));
 		$this->set('reviews', $this->Paginator->paginate());
@@ -134,6 +134,10 @@ class ReviewsController extends AppController {
 		return $this->redirect(array('action' => 'index'));
 	}
 	
+	public function beforeFilter() {
+		$this->Auth->allow('index');
+	}
+
 	public function isAuthorized($user) {
 		if ($this->action === 'add') {
 			return true;

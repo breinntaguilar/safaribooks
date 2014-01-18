@@ -146,6 +146,11 @@ class BooksController extends AppController {
 		if ($this->action === 'view') {
 			return true;
 		}
+		if (in_array($this->action, array('edit', 'delete'))) {
+	        if ($this->Session->read('Auth')['User']['usrRole'] === '2') {
+	            return true;
+	        }
+    	}
 		return parent::isAuthorized($user);
 	}
 }

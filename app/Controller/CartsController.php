@@ -56,10 +56,11 @@ class CartsController extends AppController {
 				$this->Session->setFlash('The cart could not be saved. Please, try again.', 'flasherBad');
 			}
 		}
-		$cartCustomers = $this->Cart->CartCustomer->find('list');
+		$cartUsers = $this->Cart->CartUser->find('list');
 		$cartBooks = $this->Cart->CartBook->find('list');
-		$this->set(compact('cartCustomers', 'cartBooks'));
+		$this->set(compact('cartUsers', 'cartBooks'));
 		$this->set('bookId', $id);
+		$this->set('userId', $this->Session->read('Auth')['User']['usrID']);
 	}
 
 /**
@@ -108,5 +109,16 @@ class CartsController extends AppController {
 			$this->Session->setFlash(__('The cart could not be deleted. Please, try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
+	}
+
+	public function beforeFilter() {
+		$this->Auth->allow('index');
+	}
+
+	public function isAuthorized($user) {
+		if (in_array($this->action, array('add', 'view', 'edit', 'delete'))) {
+			return true;
+		}
+		return parent::isAuthorized($user);
 	}
 }

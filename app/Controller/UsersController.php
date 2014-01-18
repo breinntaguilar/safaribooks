@@ -20,6 +20,10 @@ class UsersController extends AppController {
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->User->create();
+			if ($this->params['data']['hiddenCancel'] == 'cancelled') {
+				$this->Session->setFlash('Changes were not saved. Operation was cancelled.', 'flasherNeutral');
+				return $this->redirect(array('controller' => 'books', 'action' => 'index'));
+			}
 			if ($this->User->save($this->request->data)) {
 				$this->Session->setFlash('The user has been saved.', 'flasherGood');
 				return $this->redirect(array('action' => 'index'));

@@ -14,10 +14,8 @@
 </div>
 <div id="templatemo_content_right">
 	<div class="company index">
-	<h1>Company</h1>
+	<h1>About Us</h1>
 		<table class="table table-condensed table-bordered table-hover" cellpadding="1" cellspacing="1">
-			<p>About Us</p><br />
-
 			<p>In 2001, two of the world’s most prominent technology publishers, O’Reilly Media, Inc. and Pearson Education, joined forces to create Safari Books Online. The new company was officially launched in September, 2001.</p><br />
 
 			<p>The premise was simple:  compile the best technology books from leading authors and publishers into an online database that technology, IT and management professionals could quickly and easily search for reliable, definitive answers to mission-critical questions.  Since that earliest implementation, we have expanded Safari Books Online in several ways:</p><br />
