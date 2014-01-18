@@ -7,8 +7,8 @@
 			<li><?php echo $this->Form->postLink(__('Delete Review'), array('action' => 'delete', $review['Review']['revID']), null, __('Are you sure you want to delete # %s?', $review['Review']['revID'])); ?> </li>
 			<li><?php echo $this->Html->link(__('List Reviews'), array('action' => 'index')); ?> </li>
 			<li><?php echo $this->Html->link(__('New Review'), array('action' => 'add')); ?> </li>
-			<li><?php echo $this->Html->link(__('List Customers'), array('controller' => 'customers', 'action' => 'index')); ?> </li>
-			<li><?php echo $this->Html->link(__('New Review Customer'), array('controller' => 'customers', 'action' => 'add')); ?> </li>
+			<li><?php echo $this->Html->link(__('List Customers'), array('controller' => 'users', 'action' => 'index')); ?> </li>
+			<li><?php echo $this->Html->link(__('New Review Customer'), array('controller' => 'users', 'action' => 'add')); ?> </li>
 			<li><?php echo $this->Html->link(__('List Books'), array('controller' => 'books', 'action' => 'index')); ?> </li>
 			<li><?php echo $this->Html->link(__('New Review Book'), array('controller' => 'books', 'action' => 'add')); ?> </li>
 			<li><?php echo $this->Html->link(__('List Employees'), array('controller' => 'employees', 'action' => 'index')); ?> </li>
@@ -26,7 +26,7 @@
 			</tr>
 			<tr>
 				<td align="center">Customer ID</td>
-				<td align="left"><?php echo $this->Html->link($review['ReviewCustomer']['cusEmail'], array('controller' => 'customers', 'action' => 'view', $review['ReviewCustomer']['cusID'])); ?>&nbsp;</td>
+				<td align="left"><?php echo $this->Html->link($review['ReviewUser']['usrEmail'], array('controller' => 'users', 'action' => 'view', $review['ReviewUser']['usrID'])); ?>&nbsp;</td>
 			</tr>
 			<tr>
 				<td align="center">Employee ID</td>

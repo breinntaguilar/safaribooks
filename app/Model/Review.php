@@ -16,9 +16,9 @@ class Review extends AppModel {
 				//'message' => 'Your custom message here',
 			),
 		),
-		'cusID' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
+		'usrID' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
 				//'message' => 'Your custom message here',
 			),
 		),
@@ -62,9 +62,9 @@ class Review extends AppModel {
 	
 	// belongsTo associations
 	public $belongsTo = array(
-		'ReviewCustomer' => array(
-			'className' => 'Customer',
-			'foreignKey' => 'cusID',
+		'ReviewUser' => array(
+			'className' => 'User',
+			'foreignKey' => 'usrID',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
@@ -72,13 +72,6 @@ class Review extends AppModel {
 		'ReviewBook' => array(
 			'className' => 'Book',
 			'foreignKey' => 'bkID',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		),
-		'ReviewEmployee' => array(
-			'className' => 'Employee',
-			'foreignKey' => 'empID',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''

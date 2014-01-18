@@ -79,11 +79,11 @@ class ReviewsController extends AppController {
 				$this->Session->setFlash(__('The review could not be saved. Please, try again.'));
 			}
 		}
-		$reviewCustomers = $this->Review->ReviewCustomer->find('list');
+		$reviewUsers = $this->Review->ReviewUser->find('list');
 		$reviewBooks = $this->Review->ReviewBook->find('list');
-		$reviewEmployees = $this->Review->ReviewEmployee->find('list');
-		$this->set(compact('reviewCustomers', 'reviewBooks', 'reviewEmployees'));
+		$this->set(compact('reviewUsers', 'reviewBooks'));
 		$this->set('bookId', $id);
+		$this->set('userId', $this->Session->read('Auth')['User']['usrID']);
 	}
 
 /**
@@ -108,10 +108,9 @@ class ReviewsController extends AppController {
 			$options = array('conditions' => array('Review.' . $this->Review->primaryKey => $id));
 			$this->request->data = $this->Review->find('first', $options);
 		}
-		$reviewCustomers = $this->Review->ReviewCustomer->find('list');
+		$reviewUsers = $this->Review->ReviewUser->find('list');
 		$reviewBooks = $this->Review->ReviewBook->find('list');
-		$reviewEmployees = $this->Review->ReviewEmployee->find('list');
-		$this->set(compact('reviewCustomers', 'reviewBooks', 'reviewEmployees'));
+		$this->set(compact('reviewUsers', 'reviewBooks'));
 	}
 
 /**
@@ -133,4 +132,12 @@ class ReviewsController extends AppController {
 			$this->Session->setFlash(__('The review could not be deleted. Please, try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
-	}}
+	}
+
+	public function isAuthorized($user) {
+		if ($this->action === 'add') {
+			return true;
+		}
+		return parent::isAuthorized($user);
+	}
+}

@@ -45,43 +45,6 @@
 	</div>
 	
 	<div class="related">
-		<h3><?php echo __('Related Reviews'); ?></h3>
-		<?php if (!empty($book['BookReview'])): ?>
-		<table class="table table-condensed table-bordered table-hover" cellpadding="1" cellspacing="1">
-		<tr>
-			<th><?php echo __('RevID'); ?></th>
-			<th><?php echo __('CusID'); ?></th>
-			<th><?php echo __('EmpID'); ?></th>
-			<th><?php echo __('BkID'); ?></th>
-			<th><?php echo __('RevDesc'); ?></th>
-			<th><?php echo __('RevRating'); ?></th>
-			<th><?php echo __('RevStat'); ?></th>
-			<th class="actions"><?php echo __('Actions'); ?></th>
-		</tr>
-		<?php foreach ($book['BookReview'] as $bookReview): ?>
-			<tr>
-				<td><?php echo $bookReview['revID']; ?></td>
-				<td><?php echo $bookReview['cusID']; ?></td>
-				<td><?php echo $bookReview['empID']; ?></td>
-				<td><?php echo $bookReview['bkID']; ?></td>
-				<td><?php echo $bookReview['revDesc']; ?></td>
-				<td><?php echo $bookReview['revRating']; ?></td>
-				<td><?php echo $bookReview['revStat']; ?></td>
-				<td class="actions">
-					<?php echo $this->Html->link(__('View'), array('controller' => 'reviews', 'action' => 'view', $bookReview['revID'])); ?>
-				</td>
-			</tr>
-		<?php endforeach; ?>
-		</table>
-	<?php endif; ?>
-
-		<div class="actions">
-			<ul>
-				<li><?php echo $this->Html->link(__('New Book Review'), array('controller' => 'reviews', 'action' => 'add', $book['Book']['bkID'])); ?> </li>
-			</ul>
-		</div>
-	</div>
-	<div class="related">
 		<h3><?php echo __('Related Carts'); ?></h3>
 		<?php if (!empty($book['BookCart'])): ?>
 		<table class="table table-condensed table-bordered table-hover" cellpadding="1" cellspacing="1">
@@ -166,7 +129,7 @@
 		<?php foreach ($book['BookWishlist'] as $bookWishlist): ?>
 			<tr>
 				<td><?php echo $bookWishlist['wshID']; ?></td>
-				<td><?php echo $bookWishlist['cusID']; ?></td>
+				<td><?php echo $bookWishlist['usrID']; ?></td>
 				<td><?php echo $bookWishlist['bkID']; ?></td>
 				<td class="actions">
 					<?php echo $this->Html->link(__('View'), array('controller' => 'wishlists', 'action' => 'view', $bookWishlist['wshID'])); ?>
