@@ -66,6 +66,10 @@ class UsersController extends AppController {
 	
 	public function login() {
 		if ($this->request->is('post')) {
+			if ($this->params['data']['hiddenCancel'] == 'cancelled') {
+				$this->Session->setFlash('Login cancelled.', 'flasherNeutral');
+				return $this->redirect(array('controller' => 'books', 'action' => 'index'));
+			}
 			if ($this->Auth->login()) {
 				return $this->redirect($this->Auth->redirect());
 			}
