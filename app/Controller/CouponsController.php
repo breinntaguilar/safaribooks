@@ -54,11 +54,11 @@ class CouponsController extends AppController {
 				return $this->redirect(array('action' => 'index'));
 			}
 			else if ($this->Coupon->save($this->request->data)) {
-				$this->Session->setFlash(__('The coupon has been saved.'));
+				$this->Session->setFlash('The coupon has been saved.', 'flasherGood');
 				return $this->redirect(array('action' => 'index'));
 			}
 			else {
-				$this->Session->setFlash(__('The coupon could not be saved. Please, try again.'));
+				$this->Session->setFlash('The coupon could not be saved. Please, try again.', 'flasherBad');
 			}
 		}
 	}
@@ -80,10 +80,10 @@ class CouponsController extends AppController {
 				return $this->redirect(array('action' => 'index'));
 			}
 			if ($this->Coupon->save($this->request->data)) {
-				$this->Session->setFlash(__('The coupon has been saved.'));
+				$this->Session->setFlash('The coupon has been saved.', 'flasherGood');
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The coupon could not be saved. Please, try again.'));
+				$this->Session->setFlash('The coupon could not be saved. Please, try again.', 'flasherBad');
 			}
 		} else {
 			$options = array('conditions' => array('Coupon.' . $this->Coupon->primaryKey => $id));
@@ -110,4 +110,5 @@ class CouponsController extends AppController {
 			$this->Session->setFlash(__('The coupon could not be deleted. Please, try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
-	}}
+	}
+}

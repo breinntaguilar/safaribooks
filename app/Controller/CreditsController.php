@@ -50,14 +50,14 @@ class CreditsController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Credit->create();
 			if ($this->Credit->save($this->request->data)) {
-				$this->Session->setFlash(__('The credit has been saved.'));
+				$this->Session->setFlash('The credit has been saved.', 'flasherGood');
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The credit could not be saved. Please, try again.'));
+				$this->Session->setFlash('The credit could not be saved. Please, try again.', 'flasherBad');
 			}
 		}
-		$creditCustomers = $this->Credit->CreditCustomer->find('list');
-		$this->set(compact('creditCustomers'));
+		$creditUsers = $this->Credit->CreditUser->find('list');
+		$this->set(compact('creditUsers'));
 	}
 
 /**
@@ -73,17 +73,17 @@ class CreditsController extends AppController {
 		}
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Credit->save($this->request->data)) {
-				$this->Session->setFlash(__('The credit has been saved.'));
+				$this->Session->setFlash('The credit has been saved.', 'flasherGood');
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The credit could not be saved. Please, try again.'));
+				$this->Session->setFlash('The credit could not be saved. Please, try again.', 'flasherBad');
 			}
 		} else {
 			$options = array('conditions' => array('Credit.' . $this->Credit->primaryKey => $id));
 			$this->request->data = $this->Credit->find('first', $options);
 		}
-		$creditCustomers = $this->Credit->CreditCustomer->find('list');
-		$this->set(compact('creditCustomers'));
+		$creditUsers = $this->Credit->CreditUser->find('list');
+		$this->set(compact('creditUsers'));
 	}
 
 /**
@@ -105,4 +105,5 @@ class CreditsController extends AppController {
 			$this->Session->setFlash(__('The credit could not be deleted. Please, try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
-	}}
+	}
+}

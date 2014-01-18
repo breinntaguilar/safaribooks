@@ -24,9 +24,9 @@ class Credit extends AppModel {
 				//'message' => 'Your custom message here',
 			),
 		),
-		'cusID' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
+		'usrID' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
 				//'message' => 'Your custom message here',
 			),
 		),
@@ -44,9 +44,9 @@ class Credit extends AppModel {
 	
 	// belongsTo associations
 	public $belongsTo = array(
-		'CreditCustomer' => array(
-			'className' => 'Customer',
-			'foreignKey' => 'cusID',
+		'CreditUser' => array(
+			'className' => 'User',
+			'foreignKey' => 'usrID',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''

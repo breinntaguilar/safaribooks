@@ -50,10 +50,10 @@ class CartsController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Cart->create();
 			if ($this->Cart->save($this->request->data)) {
-				$this->Session->setFlash(__('The cart has been saved.'));
+				$this->Session->setFlash('The cart has been saved.', 'flasherGood');
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The cart could not be saved. Please, try again.'));
+				$this->Session->setFlash('The cart could not be saved. Please, try again.', 'flasherBad');
 			}
 		}
 		$cartCustomers = $this->Cart->CartCustomer->find('list');
@@ -75,7 +75,7 @@ class CartsController extends AppController {
 		}
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Cart->save($this->request->data)) {
-				$this->Session->setFlash(__('The cart has been saved.'));
+				$this->Session->setFlash('The cart has been saved.', 'flasherGood');
 				return $this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The cart could not be saved. Please, try again.'));
