@@ -49,7 +49,7 @@
 				<li><?php echo $this->Html->link(__('Search'), array('controller' => 'books', 'action' => 'search'), array('style' => 'float: left')); ?></li>
 				<li><?php echo $this->Html->link(__('Books'), array('controller' => 'books', 'action' => 'index'), array('style' => 'float: left')); ?></li>
 				<li><?php echo $this->Html->link(__('New Releases'), array('controller' => 'books', 'action' => 'new_releases'), array('style' => 'float: left')); ?></li>
-				<li><a style="float: left" href="#">Company</a></li>
+				<li><?php echo $this->Html->link(__('Company'), array('controller' => 'company', 'action' => 'index'), array('style' => 'float: left')); ?></li>
 				<li><?php echo $this->Html->link(__('Contact Us'), array('controller' => 'contacts', 'action' => 'index'), array('style' => 'float: left')); ?></li>
 				<li><?php
 					if (isset($this->Session->read('Auth')['User'])) {
