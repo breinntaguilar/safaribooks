@@ -20,27 +20,27 @@
 	<div class="users index">
 		<h2><?php echo __('Users'); ?></h2>
 		<table class="table table-condensed table-bordered table-hover" cellpadding="0" cellspacing="0">
-		<tr>
+			<tr>
 				<th><?php echo $this->Paginator->sort('usrID', 'User ID'); ?></th>
 				<th><?php echo $this->Paginator->sort('usrEmail', 'Email'); ?></th>
 				<th><?php echo $this->Paginator->sort('usrFname', 'First Name'); ?></th>
 				<th><?php echo $this->Paginator->sort('usrLname', 'Last Name'); ?></th>
 				<th><?php echo $this->Paginator->sort('usrRole', 'Role'); ?></th>
 				<th class="actions"><?php echo __('Actions'); ?></th>
-		</tr>
+			</tr>
 		<?php foreach ($users as $user): ?>
-		<tr>
-			<td><?php echo h($user['User']['usrID']); ?>&nbsp;</td>
-			<td><?php echo h($user['User']['usrEmail']); ?>&nbsp;</td>
-			<td><?php echo h($user['User']['usrFname']); ?>&nbsp;</td>
-			<td><?php echo h($user['User']['usrLname']); ?>&nbsp;</td>
-			<td><?php echo h($user['User']['usrRole']); ?>&nbsp;</td>
-			<td class="actions" align="center">
-				<?php echo $this->Html->link(__('View'), array('action' => 'view', $user['User']['usrID'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $user['User']['usrID'])); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $user['User']['usrID']), null, __('Are you sure you want to delete # %s?', $user['User']['usrID'])); ?>
-			</td>
-		</tr>
+			<tr>
+				<td><?php echo h($user['User']['usrID']); ?>&nbsp;</td>
+				<td><?php echo h($user['User']['usrEmail']); ?>&nbsp;</td>
+				<td><?php echo h($user['User']['usrFname']); ?>&nbsp;</td>
+				<td><?php echo h($user['User']['usrLname']); ?>&nbsp;</td>
+				<td><?php echo h($user['User']['usrRole']); ?>&nbsp;</td>
+				<td class="actions" align="center">
+					<?php echo $this->Html->link(__('View'), array('action' => 'view', $user['User']['usrID'])); ?>
+					<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $user['User']['usrID'])); ?>
+					<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $user['User']['usrID']), null, __('Are you sure you want to delete # %s?', $user['User']['usrID'])); ?>
+				</td>
+			</tr>
 	<?php endforeach; ?>
 		</table>
 		<p>

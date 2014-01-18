@@ -21,6 +21,10 @@ class Book extends AppModel {
 				'rule' => array('notempty'),
 				'message' => 'Title should not be empty.',
 			),
+			'isUnique' => array(
+				'rule' => 'isUnique',
+				'message' => 'Title should be unique.',
+			),
 		),
 		'bkAuthor' => array(
 			'notempty' => array(

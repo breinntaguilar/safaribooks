@@ -21,6 +21,10 @@ class User extends AppModel {
 				'rule' => array('email'),
 				//'message' => 'Your custom message here',
 			),
+			'isUnique' => array(
+				'rule' => 'isUnique',
+				'message' => 'Email already used.',
+			),
 			'notempty' => array(
 				'rule' => array('notempty'),
 				//'message' => 'Your custom message here',
