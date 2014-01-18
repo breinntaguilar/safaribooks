@@ -27,19 +27,21 @@
 		    	echo $this->Form->input("search_key", array('label' => 'Search for: ')); 
 		    	echo "<br>".$this->Form->end("Search")."<br>";
 		    	echo "Total records found: ".count($book)."<br>";
-		    	if (count($book) == 0) echo "No results found.";
-		    	echo "<tr>";
-		    	echo "<th>"."Book Title";
-		    	echo "<th>"."Author";
-		    	echo "<th>"."Published Date";
-		    	echo "<th>"."Rating";
-		    	echo "</tr>";
+		    	if (count($book) == 0) echo "No results found.<br>"; 
+			    	echo "<tr>";
+			    	echo "<th>"."Book Title";
+			    	echo "<th>"."Author";
+			    	echo "<th>"."Published Date";
+			    	echo "<th>"."Rating";
+			    	echo "<th class='actions'>". __('Actions');
+			    	echo "</tr>";
 		    	for ($i=0; $i<count($book); $i++) {
 		    		echo "<tr>";
 					echo "<td>".$book[$i]['Book']['bkTitle'];
-					echo "<td>".$book[$i]['Book']['bkAuthor'];
-					echo "<td>".$book[$i]['Book']['bkPubDate'];
-					echo "<td>".$book[$i]['Book']['bkRating'];
+					echo "<td align='center'>".$book[$i]['Book']['bkAuthor'];
+					echo "<td align='center'>".$book[$i]['Book']['bkPubDate'];
+					echo "<td align='center'>".$book[$i]['Book']['bkRating'];
+					echo "<td align='center' class='actions'>".$this->Html->link(__('View'), array('action' => 'view', $book[$i]['Book']['bkID']));
 					echo "</tr>";
 		    	}
 		    	echo "<br>";
