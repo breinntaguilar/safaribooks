@@ -14,15 +14,15 @@
 </div>
 <div id="templatemo_content_right">
 	<div class="reviews index">
-		<table class="table table-condensed table-bordered table-hover" cellpadding="1" cellspacing="1">
+		<table class="table table-condensed table-bordered table-hover" cellpadding="0" cellspacing="0">
 		<tr>
-			<th><?php echo $this->Paginator->sort('revID'); ?></th>
-			<th><?php echo $this->Paginator->sort('usrID'); ?></th>
+			<th><?php echo $this->Paginator->sort('revID', 'Review ID'); ?></th>
+			<th><?php echo $this->Paginator->sort('usrID', 'User ID'); ?></th>
 			<!-- <th><?php echo $this->Paginator->sort('empID'); ?></th>
 			<th><?php echo $this->Paginator->sort('bkID'); ?></th> -->
-			<th><?php echo $this->Paginator->sort('revDesc'); ?></th>
-			<th><?php echo $this->Paginator->sort('revRating'); ?></th>
-			<th><?php echo $this->Paginator->sort('revStat'); ?></th>
+			<th><?php echo $this->Paginator->sort('revDesc', 'Description'); ?></th>
+			<th><?php echo $this->Paginator->sort('revRating', 'Rating'); ?></th>
+			<th><?php echo $this->Paginator->sort('revStat', 'Status'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 		</tr>
 		<?php foreach ($reviews as $review): ?>
