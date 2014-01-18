@@ -68,21 +68,21 @@ class BooksController extends AppController {
 		}
 	}
 	
-	// public function delete($id = null) {
-	// 	$this->Book->id = $id;
-	// 	if (!$this->Book->exists()) {
-	// 		throw new NotFoundException(__('Invalid book'));
-	// 	}
+	public function delete($id = null) {
+		$this->Book->id = $id;
+		if (!$this->Book->exists()) {
+			throw new NotFoundException(__('Invalid book'));
+		}
 		
-	// 	$this->request->onlyAllow('post', 'delete');
-	// 	if ($this->Book->delete()) {
-	// 		$this->Session->setFlash(__('The book has been deleted.', 'flasherGood'));
-	// 	}
-	// 	else {
-	// 		$this->Session->setFlash(__('The book could not be deleted. Please, try again.', 'flasherBad'));
-	// 	}
-	// 	return $this->redirect(array('action' => 'index'));
-	// }
+		$this->request->onlyAllow('post', 'delete');
+		if ($this->Book->delete()) {
+			$this->Session->setFlash(__('The book has been deleted.', 'flasherGood'));
+		}
+		else {
+			$this->Session->setFlash(__('The book could not be deleted. Please, try again.', 'flasherBad'));
+		}
+		return $this->redirect(array('action' => 'index'));
+	}
 
 	public function search(){
 		// echo "<pre>";
@@ -127,6 +127,15 @@ class BooksController extends AppController {
 	public function new_releases() {
 		$this->loadModel("Book");
 		$this->set('releases', $this->Book->getNewReleases());
+
+		// $conditions = $this->postConditions(
+		//     $this->request->data,
+		//     array(
+		//         'bkPubDate' => 'DATE_SUB(now()',
+	 //    	));
+		
+		// $this->set('releases', $this->Book->find('all', compact('conditions')));
+		//$res=$this->Book->find('all', compact('conditions'));
 	}
 
 	public function beforeFilter() {
