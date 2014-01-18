@@ -21,8 +21,21 @@
 			<?php
 				echo $this->Formadd->inputAdd('usrID', array('label' => 'Customer ID', 'size' => '5%', 'default' => $userId));
 				echo $this->Formadd->inputAdd('bkID', array('label' => 'Book ID', 'default' => $bookId, 'size' => '5%', 'readonly' => 'readonly'));
-				echo $this->Formadd->inputAdd('crtQnty', array('label' => 'Cart Quantity', 'size' => '5%'));
-				echo $this->Formadd->inputAdd('crtShip', array('label' => 'Cart Shipment', 'size' => '5%'));
+				echo $this->Formadd->inputAdd('crtQnty', array(
+					'label' => 'Quantity',
+					'error' => false,
+					'size' => '5%',
+					'type' => 'text',
+					'maxlength' => '3',
+					'onkeypress' => 'return isNumKey(event)'));
+				echo $this->Formadd->inputAdd('crtShip', array(
+					'label' => 'Shipment Price',
+					'error' => false,
+					'size' => '5%',
+					'type' => 'text',
+					'maxlength' => '7',
+					'onkeypress' => 'return isDecKey(event)',
+					'onblur' => 'convDecimal(id)'));
 			?>
 			<tr><td colspan="3"><div class="cleaner_with_image" /></td></tr>
             <tr>
