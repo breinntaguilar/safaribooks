@@ -22,7 +22,7 @@
         <h1>Contact Us</h1>
         <table align='left' border=0>   
             <?php
-                echo $this->Form->create('Contact', array('url' => array('controller' => 'contacts', 'action' => 'contact')));
+                echo $this->Form->create('Contact', array('url' => array('controller' => 'contacts', 'action' => 'index')));
                 echo $this->Formadd->inputAdd('name', array('label' => 'Name', 'size' => '50%'));
                 echo $this->Formadd->inputAdd('email', array('label' => 'Email', 'size' => '50%'));
                 echo $this->Formadd->inputAdd('message', array('label' => 'Message', 'cols' => '57', 'rows' => '10', 'maxlength' => '1500'));

@@ -108,4 +108,5 @@ class CartsController extends AppController {
 			$this->Session->setFlash(__('The cart could not be deleted. Please, try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
-	}}
+	}
+}

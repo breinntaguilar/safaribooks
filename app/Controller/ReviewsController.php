@@ -133,7 +133,7 @@ class ReviewsController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
-
+	
 	public function isAuthorized($user) {
 		if ($this->action === 'add') {
 			return true;

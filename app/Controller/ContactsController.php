@@ -18,12 +18,11 @@ class ContactsController extends AppController
             $email->send($userMessage);
 
             if ($email->send($userMessage)) {
-                $this->Session->setFlash('Thank you for contacting us');
+                $this->Session->setFlash('Thank you for contacting us.', 'flasherNeutral');
             } 
             else {
-                $this->Session->setFlash('Mail Not Sent');
+                $this->Session->setFlash('Mail Not Sent', 'flasherBad');
             }
-
         }
     }
 
@@ -39,15 +38,16 @@ class ContactsController extends AppController
             $email->send($userMessage);
 
             if ($email->send($userMessage)) {
-                $this->Session->setFlash('Thank you for contacting us');
+                $this->Session->setFlash('Thank you for contacting us.', 'flasherNeutral');
                 $this->redirect(array('controller' => 'pages', 'action' => 'index'));
             } 
             else {
-                $this->Session->setFlash('Mail Not Sent');
+                $this->Session->setFlash('Mail Not Sent', 'flasherBad');
             }
-
         }
     }
 
+    public function beforeFilter() {
+        $this->Auth->allow();
+    }
 }
-?>

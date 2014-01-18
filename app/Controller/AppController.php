@@ -45,10 +45,6 @@ class AppController extends Controller {
 		)
 	);
 	
-	public function beforeFilter() {
-		$this->Auth->allow(array('controller' => 'books', 'action' => 'index'));
-	}
-	
 	public function isAuthorized($user) {
 		if (isset($user['usrRole']) && $user['usrRole'] === '3') {
 			return true;

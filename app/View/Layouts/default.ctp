@@ -56,6 +56,7 @@
 						echo $this->Html->link(__('Logout'), array('controller' => 'users', 'action' => 'logout'), array('style' => 'float: right'));
 					}
 					else {
+						echo $this->Html->link(__('Register'), array('controller' => 'users', 'action' => 'add'), array('style' => 'float: right'));
 						echo $this->Html->link(__('Login'), array('controller' => 'users', 'action' => 'login'), array('style' => 'float: right'));
 					}
 				?></li>

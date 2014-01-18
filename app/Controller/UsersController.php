@@ -60,11 +60,6 @@ class UsersController extends AppController {
 	// 	return $this->redirect(array('action' => 'index'));
 	// }
 	
-	public function beforeFilter() {
-		parent::beforeFilter();
-		$this->Auth->allow('add', 'logout');
-	}
-	
 	public function login() {
 		if ($this->request->is('post')) {
 			if ($this->Auth->login()) {
@@ -78,6 +73,10 @@ class UsersController extends AppController {
 	
 	public function logout() {
 		return $this->redirect($this->Auth->logout());
+	}
+
+	public function beforeFilter() {
+		$this->Auth->allow('add', 'logout');
 	}
 
 	public function isAuthorized($user) {
