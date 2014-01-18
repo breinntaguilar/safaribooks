@@ -93,15 +93,12 @@
 					'type' => 'text',
 					'maxlength' => '10',
 					'onkeypress' => 'return isNumKey(event)'));
-				if (isset($this->Session->read('Auth')['User']) && $this->Session->read('Auth')['User']['usrRole'] === '1') {
-					echo $this->Formadd->inputAdd('usrRole', array(
-						'label' => 'Role',
-						'options' => array(
-							'1' => 'Customer',
-							'2' => 'Employee',
-							'3' => 'Manager'),
-						'readonly'));
-				}
+				echo $this->Formadd->inputAdd('usrRole', array(
+					'label' => 'Role',
+					'options' => array(
+						'1' => 'Customer',
+						'2' => 'Employee',
+						'3' => 'Manager')));
 				echo $this->Formadd->inputAdd('usrEmail', array(
 					'label' => 'Email Address',
 					'error' => false,
