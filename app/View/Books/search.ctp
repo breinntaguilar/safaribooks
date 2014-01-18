@@ -3,6 +3,7 @@
 		<div class="actions">
 			<h1><?php echo __('Actions'); ?></h1>
 			<ul>
+				<li><?php echo $this->Html->link(__('List Books'), array('controller' => 'books', 'action' => 'index')); ?> </li>
 				<li><?php echo $this->Html->link(__('List Reviews'), array('controller' => 'reviews', 'action' => 'index')); ?> </li>
 				<li><?php echo $this->Html->link(__('List Carts'), array('controller' => 'carts', 'action' => 'index')); ?> </li>
 				<li><?php echo $this->Html->link(__('List Coupons'), array('controller' => 'coupons', 'action' => 'index')); ?></li>
@@ -15,18 +16,22 @@
 
 <div id="templatemo_content_right">
 	<div class="books form">
-		<h1>Search</h1>
+		<h1>Looking for:</h1>
 		<table align="center">
 			<?php  
 		    	echo $this->Form->create("Book",array('action' => 'search')); 
 		    	echo $this->Form->input("search_key", array('label' => 'Search for: ')); 
 		    	echo $this->Form->end("Search"); 
-		    	echo "Total records found: ".count($book);
+		    	echo "<br>";
+		    	echo "Total records found: ".count($book)."<br>";
+		    	if (count($book) == 0) echo "No results found.";
 		    	for ($i=0; $i<count($book); $i++) {
 					echo "<br>Title: ".$book[$i]['Book']['bkTitle'];
 					echo "<br>Author: ".$book[$i]['Book']['bkAuthor'];
 					echo "<br>Rating: ".$book[$i]['Book']['bkRating'];
+					echo "<br>";
 		    	}
+		    	echo "<br>";
 			?> 
 		</table>
 	</div>
