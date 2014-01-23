@@ -20,31 +20,35 @@
 
 <div id="templatemo_content_right">
 	<div class="books form">
-		<h1>Looking for:</h1>
+		<h1>Search</h1>
 		<table class="table table-condensed table-bordered table-hover" cellpadding="0" cellspacing="0" align="center">
 			<?php  
-		    	echo $this->Form->create("Book",array('action' => 'search')); 
-		    	echo $this->Form->input("search_key", array('label' => 'Search for: ')); 
-		    	echo "<br>".$this->Form->end("Search")."<br>";
-		    	echo "Total records found: ".count($book)."<br>";
-		    	if (count($book) == 0) echo "No results found.<br>"; 
-			    	echo "<tr>";
-			    	echo "<th>"."Book Title";
-			    	echo "<th>"."Author";
-			    	echo "<th>"."Published Date";
-			    	echo "<th>"."Rating";
-			    	echo "<th class='actions'>". __('Actions');
-			    	echo "</tr>";
-		    	for ($i=0; $i<count($book); $i++) {
-		    		echo "<tr>";
-					echo "<td>".$book[$i]['Book']['bkTitle'];
-					echo "<td align='center'>".$book[$i]['Book']['bkAuthor'];
-					echo "<td align='center'>".$book[$i]['Book']['bkPubDate'];
-					echo "<td align='center'>".$book[$i]['Book']['bkRating'];
-					echo "<td align='center' class='actions'>".$this->Html->link(__('View'), array('action' => 'view', $book[$i]['Book']['bkID']));
+		    	echo $this->Form->create("Book",array('action' => 'search'));
+				echo $this->Form->input('search_key', array('label' => 'Search: ', 'size' => '50%', 'div' => false)) .
+					$this->Form->end(array('label'=> 'Go', 'div' => false)) . '&nbsp;&nbsp;&nbsp;' .
+					$this->Form->create("Book",array('action' => 'search')) . $this->Form->end(array('label'=> 'Show all books', 'div' => false));;
+				if (isset($book)) {
+					echo "<br><br>Total records found: ".count($book)."<br>";
+					echo "<tr>";
+					echo "<th>"."Title";
+					echo "<th>"."Author";
+					echo '<th>' . 'Book Number';
+					echo "<th>"."Rating";
+					echo '<th>' . 'Price';
+					echo '<th>' . 'Stock';
 					echo "</tr>";
-		    	}
-		    	echo "<br>";
+					for ($i=0; $i<count($book); $i++) {
+						echo "<tr>";
+						echo '<td>' . $this->Html->link(__($book[$i]['Book']['bkTitle']), array('action' => 'view', $book[$i]['Book']['bkID']));
+						echo "<td align='center'>".$book[$i]['Book']['bkAuthor'];
+						echo '<td align=\'center\'>' . $book[$i]['Book']['bkID'];
+						echo "<td align='center'>".$book[$i]['Book']['bkRating'];
+						echo '<td align=\'center\'>$' . (empty($book[$i]['Book']['bkDiscPrice']) ? $book[$i]['Book']['bkPrice'] : $book[$i]['Book']['bkDiscPrice']);
+						echo '<td align=\'center\'>' . ($book[$i]['Book']['bkQnty'] < 6 ? $book[$i]['Book']['bkQnty'] . ' remaining' : 'in stock');
+						echo "</tr>";
+					}
+					echo "<br>";
+				}
 			?> 
 		</table>
 	</div>

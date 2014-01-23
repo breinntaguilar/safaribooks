@@ -85,57 +85,38 @@ class BooksController extends AppController {
 	}
 
 	public function search(){
-		// echo "<pre>";
-		// print_r($this->request->data);
+		if ($this->request->is('post')) {
+			$search_key=$this->request->data('Book')['search_key'];
+			$this->request->data=
+				array(
+					'Book' => array(
+						'bkTitle' => $search_key,
+						'bkAuthor' => $search_key,
+						'bkRating' => $search_key,
+						'bkPubDate' => $search_key
+					)
+				);
 
-		// echo "<br><br>";
-		// // echo "\r\nKEY:".$search_key=$this->request->data(['Book']['search_key']);
-		$search_key=$this->request->data('Book')['search_key']; //$this->request['search_key']; exit;
-		$this->request->data=
-			array(
-			    'Book' => array(
-			        'bkTitle' => $search_key,
-			        'bkAuthor' => $search_key,
-					'bkRating' => $search_key,
-					'bkPubDate' => $search_key
-			    )
-			);
-
-		$conditions = $this->postConditions(
-		    $this->request->data,
-		    array(
-		        'bkTitle' => 'LIKE',
-		        'bkAuthor' => 'LIKE',
-		        'bkRating' => 'LIKE',
-		        'bkPubDate' => 'LIKE'
-	    	), 'OR');
-		
-		$res=$this->Book->find('all', compact('conditions'));
-		
-		// $db =& ConnectionManager::getDataSource('default');
-		// $db->showLog();
-
-		// echo "<pre>\r\nresult:";
-		// print_r($res);
-		// echo "\r\ncount:".count($res);
-
-		$this->Book->recursive = 0;
-		// $this->set('books', $this->Paginator->paginate());
-		$this->set('book', $res);
+			$conditions = $this->postConditions(
+				$this->request->data,
+				array(
+					'bkTitle' => 'LIKE',
+					'bkAuthor' => 'LIKE',
+					'bkRating' => 'LIKE',
+					'bkPubDate' => 'LIKE'
+				), 'OR');
+			
+			$res=$this->Book->find('all', compact('conditions'));
+			
+			$this->Book->recursive = 0;
+			$this->set('book', $res);
+			$res = Set::sort($res, '{n}.Book.bkTitle', 'asc');
+		}
 	}
 	
 	public function new_releases() {
 		$this->loadModel("Book");
 		$this->set('releases', $this->Book->getNewReleases());
-
-		// $conditions = $this->postConditions(
-		//     $this->request->data,
-		//     array(
-		//         'bkPubDate' => 'DATE_SUB(now()',
-	 //    	));
-		
-		// $this->set('releases', $this->Book->find('all', compact('conditions')));
-		//$res=$this->Book->find('all', compact('conditions'));
 	}
 	
 	public function beforeFilter() {
