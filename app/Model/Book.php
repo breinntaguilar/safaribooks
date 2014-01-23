@@ -263,8 +263,4 @@ class Book extends AppModel {
 		}
 		return true;
 	}
-
-	public function getNewReleases() {
-		return $this->query("SELECT * FROM Book WHERE bkPubDate > DATE_SUB(now(), INTERVAL 12 MONTH)");
-	}
 }

@@ -51,21 +51,25 @@
 				<li><?php echo $this->Html->link(__('New Releases'), array('controller' => 'books', 'action' => 'new_releases'), array('style' => 'float: left')); ?></li>
 				<li><?php echo $this->Html->link(__('Company'), array('controller' => 'company', 'action' => 'index'), array('style' => 'float: left')); ?></li>
 				<li><?php echo $this->Html->link(__('Contact Us'), array('controller' => 'contacts', 'action' => 'index'), array('style' => 'float: left')); ?></li>
-				<li><?php
-					if (isset($this->Session->read('Auth')['User'])) {
-						echo $this->Html->link(__('Logout'), array('controller' => 'users', 'action' => 'logout'), array('style' => 'float: right'));
-					}
-					else {
-						echo $this->Html->link(__('Register'), array('controller' => 'users', 'action' => 'add'), array('style' => 'float: right'));
-						echo $this->Html->link(__('Login'), array('controller' => 'users', 'action' => 'login'), array('style' => 'float: right'));
-					}
-				?></li>
-				<li><?php
-					if (isset($this->Session->read('Auth')['User'])) {
-						echo $this->Html->link(__($this->Session->read('Auth')['User']['usrFname'] . ' ' . $this->Session->read('Auth')['User']['usrLname']),
-							array('controller' => 'users', 'action' => 'view', $this->Session->read('Auth')['User']['usrID']), array('style' => 'float: right'));
-					}
-				?></li>
+				<li>
+					<?php
+						if (isset($this->Session->read('Auth')['User'])) {
+							echo $this->Html->link(__('Logout'), array('controller' => 'users', 'action' => 'logout'), array('style' => 'float: right'));
+						}
+						else {
+							echo $this->Html->link(__('Register'), array('controller' => 'users', 'action' => 'add'), array('style' => 'float: right'));
+							echo $this->Html->link(__('Login'), array('controller' => 'users', 'action' => 'login'), array('style' => 'float: right'));
+						}
+					?>
+				</li>
+				<li>
+					<?php
+						if (isset($this->Session->read('Auth')['User'])) {
+							echo $this->Html->link(__($this->Session->read('Auth')['User']['usrFname'] . ' ' . $this->Session->read('Auth')['User']['usrLname']),
+								array('controller' => 'users', 'action' => 'view', $this->Session->read('Auth')['User']['usrID']), array('style' => 'float: right'));
+						}
+					?>
+				</li>
 			</ul>
 		</div>
 

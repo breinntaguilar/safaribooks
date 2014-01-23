@@ -115,8 +115,9 @@ class BooksController extends AppController {
 	}
 	
 	public function new_releases() {
-		$this->loadModel("Book");
-		$this->set('releases', $this->Book->getNewReleases());
+		$this->Book->recursive = 0;
+		$conditions = array('Book.bkPubDate >' => date('Y-m-d', strtotime('-12 months')));
+		$this->set('releases', $this->Book->find('all', array('conditions' => $conditions, 'order' => 'Book.bkPubDate DESC')));
 	}
 	
 	public function beforeFilter() {
