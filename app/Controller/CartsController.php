@@ -85,9 +85,9 @@ class CartsController extends AppController {
 			$options = array('conditions' => array('Cart.' . $this->Cart->primaryKey => $id));
 			$this->request->data = $this->Cart->find('first', $options);
 		}
-		$cartCustomers = $this->Cart->CartCustomer->find('list');
+		$cartUsers = $this->Cart->CartUser->find('list');
 		$cartBooks = $this->Cart->CartBook->find('list');
-		$this->set(compact('cartCustomers', 'cartBooks'));
+		$this->set(compact('cartUsers', 'cartBooks'));
 	}
 
 /**

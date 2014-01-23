@@ -38,6 +38,13 @@ class ReviewsController extends AppController {
 		$this->set('reviews', $this->Paginator->paginate());
 	}
 
+public function index_1($id = null) {
+		$this->Review->recursive = 0;
+		//$this->Paginator->settings = array('conditions' => array('Review.bkID' => $id));
+		$this->set('reviews', $this->Paginator->paginate());
+	}
+
+
 /**
  * index_emp method
  *
