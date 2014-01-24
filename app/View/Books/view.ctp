@@ -1,38 +1,31 @@
 <div id="templatemo_content_left">
-	<div class="templatemo_content_left_section">
-		<h1><?php echo __('Actions'); ?></h1>
-		<ul>
-			<li><?php
-					if (isset($this->Session->read('Auth')['User']) && ($this->Session->read('Auth')['User']['usrRole'] === '2' || $this->Session->read('Auth')['User']['usrRole'] === '3')) {
-						echo $this->Html->link(__('Edit Book'), array('action' => 'edit', $book['Book']['bkID']));
-					}
-			?></li>
-
-			<li><?php
-					if (isset($this->Session->read('Auth')['User']) && ($this->Session->read('Auth')['User']['usrRole'] === '2' || $this->Session->read('Auth')['User']['usrRole'] === '3')) {
-						echo $this->Html->link(__('New Book'), array('action' => 'add'));
-					}
-			?></li>
-
-			<li><?php
-					if (isset($this->Session->read('Auth')['User']) && ($this->Session->read('Auth')['User']['usrRole'] === '2' || $this->Session->read('Auth')['User']['usrRole'] === '3')) {
-						echo $this->Form->postLink(__('Delete Book'), array('action' => 'delete', $book['Book']['bkID']), null, __('Are you sure you want to delete # %s?', $book['Book']['bkID']));
-					}
-			?></li>
-		
-			<li><?php echo $this->Html->link(__('Add Book Review'), array('controller' => 'reviews', 'action' => 'add', $book['Book']['bkID'])); ?> </li>
-			<li><?php echo $this->Html->link(__('Add to Cart'), array('controller' => 'carts', 'action' => 'add', $book['Book']['bkID'])); ?> </li>
-			<!-- <li><?php echo $this->Html->link(__('Add Wishlist'), array('controller' => 'wishlists', 'action' => 'add')); ?> </li> -->
-
-			<li><?php echo $this->Html->link(__('List Books'), array('action' => 'index')); ?> </li>
-			<li><?php echo $this->Html->link(__('List Reviews'), array('controller' => 'reviews', 'action' => 'index')); ?> </li>
-			<li><?php echo $this->Html->link(__('List Carts'), array('controller' => 'carts', 'action' => 'index')); ?> </li>
-			<li><?php echo $this->Html->link(__('Procure Book'), array('controller' => 'procures', 'action' => 'add', $book['Book']['bkID'])); ?> </li>
-			<li><?php echo $this->Html->link(__('List Procures'), array('controller' => 'procures', 'action' => 'index')); ?> </li>
-			<!-- <li><?php echo $this->Html->link(__('List Wishlists'), array('controller' => 'wishlists', 'action' => 'index')); ?> </li> -->
-
-		</ul>
-	</div>
+	<?php
+		if ((!isset($this->Session->read('Auth')['User'])) OR (isset($this->Session->read('Auth')['User']) && $this->Session->read('Auth')['User']['usrRole'] === '1')) {
+			echo '<div class="templatemo_content_left_section">';
+			echo '<h1>' . __('Actions') . '</h1>';
+			echo '<ul>';
+			echo '<li>' . $this->Html->link(__('Review the book'), array('controller' => 'reviews', 'action' => 'add', $book['Book']['bkID'])) . '</li>';
+			echo '<li>' . $this->Html->link(__('Add to Wishlist'), array('controller' => 'wishlists', 'action' => 'add', $book['Book']['bkID'])) . '</li>';
+			echo '<li>' . $this->Html->link(__('Add to Cart'), array('controller' => 'carts', 'action' => 'add', $book['Book']['bkID'])) . '</li>';
+			echo '</ul>';
+			echo '</div>';
+		}
+		elseif (isset($this->Session->read('Auth')['User']) && $this->Session->read('Auth')['User']['usrRole'] !== '1') {
+			echo '<div class="templatemo_content_left_section">';
+			echo '<h1>' . __('Admin') . '</h1>';
+			echo '<ul>';
+			if ($this->Session->read('Auth')['User']['usrRole'] === '2') {
+				echo '<li>' . $this->Html->link(__('View reviews'), array('controller' => 'reviews', 'action' => 'index', $book['Book']['bkID'])) . '</li>';
+			}
+			elseif ($this->Session->read('Auth')['User']['usrRole'] === '3') {
+				echo '<li>' . $this->Html->link(__('Edit book'), array('action' => 'edit', $book['Book']['bkID'])) . '</li>';
+				echo '<li>' . $this->Html->link(__('Delete book'), array('action' => 'delete', $book['Book']['bkID']), null, __('Are you sure you want to delete this book?')) . '</li>';
+				echo '<li>' . $this->Html->link(__('Add new book'), array('action' => 'add')) . '</li>';
+			}
+			echo '</ul>';
+			echo '</div>';
+		}
+	?>
 </div>
 
 <div id="templatemo_content_right">
@@ -53,119 +46,12 @@
 				</div>
 				<?php echo $this->Html->link(__(h(count($book['BookReview'])) .	' customer reviews'), array('controller' => 'reviews', 'action' => 'index', $book['Book']['bkID'])); ?>
 			</li>
-			<li>$<?php echo '', (!empty($book['Book']['bkDiscPrice']) ? '<strike>' . h($book['Book']['bkPrice']) . '</strike>' : h($book['Book']['bkPrice'])); echo '', (!empty($book['Book']['bkDiscPrice']) ? '&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;$' . h($book['Book']['bkDiscPrice']) . ' (discounted price)' : ''); ?></li>
+			<li><?php echo '', (!empty($book['Book']['bkDiscPrice']) ? '<strike><font color="orange">$' . h($book['Book']['bkPrice']) . '</font></strike>' : '$' . h($book['Book']['bkPrice'])); echo '', (!empty($book['Book']['bkDiscPrice']) ? '&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;$' . h($book['Book']['bkDiscPrice']) : false); ?></li>
+			<li><?php echo ($book['Book']['bkQnty'] < 6 ? 'only ' . h($book['Book']['bkQnty']) . ' remaining' : 'in stock'); ?></li>
+			<li><?php echo ($book['Book']['bkStat'] == 1 ? '<strong><font color="red">Discontinued</font></strong>' : false); ?></li>
 		</ul>
 		<p />
 		<p><?php echo nl2br(h($book['Book']['bkSnippet'])); ?></p>
 		<div class="cleaner_with_height">&nbsp;</div>
-		<ul>
-			<li>In stock: <?php echo h($book['Book']['bkQnty']); ?></li>
-			<li>Status: <?php echo h($book['Book']['bkStat']); ?></li>
-			<li>Added date: <?php echo h($book['Book']['bkAddedDate']); ?></li>
-		</ul>
 	</div>
-	
-	<!-- <div class="related">
-		<h3><?php echo __('Related Carts'); ?></h3>
-		<?php if (!empty($book['BookCart'])): ?>
-		<table class="table table-condensed table-bordered table-hover" cellpadding="1" cellspacing="1">
-		<tr>
-			<th><?php echo __('CrtID'); ?></th>
-			<th><?php echo __('CusID'); ?></th>
-			<th><?php echo __('BkID'); ?></th>
-			<th><?php echo __('CrtQnty'); ?></th>
-			<th><?php echo __('CrtShip'); ?></th>
-			<th class="actions"><?php echo __('Actions'); ?></th>
-		</tr>
-		<?php foreach ($book['BookCart'] as $bookCart): ?>
-			<tr>
-				<td><?php echo $bookCart['crtID']; ?></td>
-				<td><?php echo $bookCart['cusID']; ?></td>
-				<td><?php echo $bookCart['bkID']; ?></td>
-				<td><?php echo $bookCart['crtQnty']; ?></td>
-				<td><?php echo $bookCart['crtShip']; ?></td>
-				<td class="actions">
-					<?php echo $this->Html->link(__('View'), array('controller' => 'carts', 'action' => 'view', $bookCart['crtID'])); ?>
-					<?php echo $this->Html->link(__('Edit'), array('controller' => 'carts', 'action' => 'edit', $bookCart['crtID'])); ?>
-					<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'carts', 'action' => 'delete', $bookCart['crtID']), null, __('Are you sure you want to delete # %s?', $bookCart['crtID'])); ?>
-				</td>
-			</tr>
-		<?php endforeach; ?>
-		</table>
-	<?php endif; ?>
-
-		<div class="actions">
-			<ul>
-				<li><?php echo $this->Html->link(__('Add to Cart'), array('controller' => 'carts', 'action' => 'add', $book['Book']['bkID'])); ?> </li>
-			</ul>
-		</div>
-	</div> -->
-	<!-- <div class="related">
-		<h3><?php echo __('Related Procures'); ?></h3>
-		<?php if (!empty($book['BookProcure'])): ?>
-		<table class="table table-condensed table-bordered table-hover" cellpadding="1" cellspacing="1">
-		<tr>
-			<th><?php echo __('PrcID'); ?></th>
-			<th><?php echo __('BkID'); ?></th>
-			<th><?php echo __('PrcQnty'); ?></th>
-			<th><?php echo __('PrcLprice'); ?></th>
-			<th><?php echo __('EmpID'); ?></th>
-			<th><?php echo __('PrcStat'); ?></th>
-			<th class="actions"><?php echo __('Actions'); ?></th>
-		</tr>
-		<?php foreach ($book['BookProcure'] as $bookProcure): ?>
-			<tr>
-				<td><?php echo $bookProcure['prcID']; ?></td>
-				<td><?php echo $bookProcure['bkID']; ?></td>
-				<td><?php echo $bookProcure['prcQnty']; ?></td>
-				<td><?php echo $bookProcure['prcLprice']; ?></td>
-				<td><?php echo $bookProcure['empID']; ?></td>
-				<td><?php echo $bookProcure['prcStat']; ?></td>
-				<td class="actions">
-					<?php echo $this->Html->link(__('View'), array('controller' => 'procures', 'action' => 'view', $bookProcure['prcID'])); ?>
-					<?php echo $this->Html->link(__('Edit'), array('controller' => 'procures', 'action' => 'edit', $bookProcure['prcID'])); ?>
-					<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'procures', 'action' => 'delete', $bookProcure['prcID']), null, __('Are you sure you want to delete # %s?', $bookProcure['prcID'])); ?>
-				</td>
-			</tr>
-		<?php endforeach; ?>
-		</table>
-	<?php endif; ?>
-
-		<div class="actions">
-			<ul>
-				<li><?php echo $this->Html->link(__('New Book Procure'), array('controller' => 'procures', 'action' => 'add', $book['Book']['bkID'])); ?> </li>
-			</ul>
-		</div>
-	</div> -->
-	<!-- <div class="related">
-		<h3><?php echo __('Related Wishlists'); ?></h3>
-		<?php if (!empty($book['BookWishlist'])): ?>
-		<table class="table table-condensed table-bordered table-hover" cellpadding="1" cellspacing="1">
-		<tr>
-			<th><?php echo __('WshID'); ?></th>
-			<th><?php echo __('CusID'); ?></th>
-			<th><?php echo __('BkID'); ?></th>
-			<th class="actions"><?php echo __('Actions'); ?></th>
-		</tr>
-		<?php foreach ($book['BookWishlist'] as $bookWishlist): ?>
-			<tr>
-				<td><?php echo $bookWishlist['wshID']; ?></td>
-				<td><?php echo $bookWishlist['usrID']; ?></td>
-				<td><?php echo $bookWishlist['bkID']; ?></td>
-				<td class="actions">
-					<?php echo $this->Html->link(__('View'), array('controller' => 'wishlists', 'action' => 'view', $bookWishlist['wshID'])); ?>
-					<?php echo $this->Html->link(__('Edit'), array('controller' => 'wishlists', 'action' => 'edit', $bookWishlist['wshID'])); ?>
-					<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'wishlists', 'action' => 'delete', $bookWishlist['wshID']), null, __('Are you sure you want to delete # %s?', $bookWishlist['wshID'])); ?>
-				</td>
-			</tr>
-		<?php endforeach; ?>
-		</table>
-	<?php endif; ?>
-
-		<div class="actions">
-			<ul>
-				<li><?php echo $this->Html->link(__('New Book Wishlist'), array('controller' => 'wishlists', 'action' => 'add', $book['Book']['bkID'])); ?> </li>
-			</ul>
-		</div>
-	</div> -->
 </div>

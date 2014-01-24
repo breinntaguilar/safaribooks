@@ -23,18 +23,22 @@
 		<h1>New releases for the past year!!!</h1>
 		<table class="table table-condensed table-bordered table-hover" cellpadding="0" cellspacing="0" align="center">
 			<tr>
-				<th>Book Title</th>
+				<th>Title</th>
 				<th>Author</th>
-				<th>Published Date</th>
+				<th>Book Number</th>
 				<th>Rating</th>
+				<th>Price</th>
+				<th>Stock</th>
 			</tr>
 				<?php 
 			    	for ($i=0; $i<count($releases); $i++) {
 			    		echo "<tr>";
-						echo "<td>".$releases[$i]['Book']['bkTitle'];
-						echo "<td>".$releases[$i]['Book']['bkAuthor'];
-						echo "<td>".$releases[$i]['Book']['bkPubDate'];
-						echo "<td>".$releases[$i]['Book']['bkRating'];
+						echo '<td>' . $this->Html->link(__($releases[$i]['Book']['bkTitle']), array('action' => 'view', $releases[$i]['Book']['bkID']));
+						echo "<td align='center'>".$releases[$i]['Book']['bkAuthor'];
+						echo '<td align=\'center\'>' . $releases[$i]['Book']['bkID'];
+						echo "<td align='center'>".$releases[$i]['Book']['bkRating'];
+						echo '<td align=\'center\'>$' . (empty($releases[$i]['Book']['bkDiscPrice']) ? $releases[$i]['Book']['bkPrice'] : $releases[$i]['Book']['bkDiscPrice']);
+						echo '<td align=\'center\'>' . ($releases[$i]['Book']['bkQnty'] < 6 ? $releases[$i]['Book']['bkQnty'] . ' remaining' : 'in stock');
 						echo "</tr>";
 			    	}
 			    	echo "<br>";

@@ -84,33 +84,21 @@ class BooksController extends AppController {
 		return $this->redirect(array('action' => 'index'));
 	}
 
-	public function search(){
+	public function search($field = null, $order = null){
 		if ($this->request->is('post')) {
-			$search_key=$this->request->data('Book')['search_key'];
-			$this->request->data=
-				array(
-					'Book' => array(
-						'bkTitle' => $search_key,
-						'bkAuthor' => $search_key,
-						'bkRating' => $search_key,
-						'bkPubDate' => $search_key
-					)
-				);
-
-			$conditions = $this->postConditions(
-				$this->request->data,
-				array(
-					'bkTitle' => 'LIKE',
-					'bkAuthor' => 'LIKE',
-					'bkRating' => 'LIKE',
-					'bkPubDate' => 'LIKE'
-				), 'OR');
-			
-			$res=$this->Book->find('all', compact('conditions'));
-			
+			$search_key = $this->request->data('Book')['search_key'];
 			$this->Book->recursive = 0;
-			$this->set('book', $res);
-			$res = Set::sort($res, '{n}.Book.bkTitle', 'asc');
+			$conditions = array('OR' => array(
+				'Book.bkTitle LIKE' => '%' . $search_key . '%',
+				'Book.bkAuthor LIKE' => '%' . $search_key . '%',
+				'Book.bkID LIKE' => '%' . $search_key . '%'));
+			
+			if (empty($field) OR empty($order)) {
+				$this->set('book', $this->Book->find('all', array('conditions' => $conditions, 'order' => 'Book.bkTitle ASC')));
+			}
+			else {
+				$this->set('book', $this->Book->find('all', array('conditions' => $conditions, 'order' => $field . ' ' . $order)));
+			}
 		}
 	}
 	
@@ -128,8 +116,8 @@ class BooksController extends AppController {
 		if ($this->action === 'view') {
 			return true;
 		}
-		if (in_array($this->action, array('edit', 'delete'))) {
-	        if ($this->Session->read('Auth')['User']['usrRole'] === '2') {
+		if (in_array($this->action, array('add', 'edit', 'delete'))) {
+	        if ($this->Session->read('Auth')['User']['usrRole'] === '3') {
 	            return true;
 	        }
     	}
