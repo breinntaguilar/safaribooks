@@ -26,7 +26,12 @@ class UsersController extends AppController {
 			}
 			if ($this->User->save($this->request->data)) {
 				$this->Session->setFlash('The user has been saved.', 'flasherGood');
-				return $this->redirect(array('action' => 'index'));
+				if (!isset($this->Session->read('Auth')['User'])) {
+					return $this->redirect(array('action' => 'login'));
+				}
+				else {
+					return $this->redirect(array('action' => 'view', $this->User->id));
+				}
 			} else {
 				$this->Session->setFlash('The user could not be saved. Please, try again.', 'flasherBad');
 			}
@@ -50,19 +55,20 @@ class UsersController extends AppController {
 		}
 	}
 	
-	// public function delete($id = null) {
-	// 	$this->User->id = $id;
-	// 	if (!$this->User->exists()) {
-	// 		throw new NotFoundException(__('Invalid user'));
-	// 	}
-	// 	$this->request->onlyAllow('post', 'delete');
-	// 	if ($this->User->delete()) {
-	// 		$this->Session->setFlash(__('The user has been deleted.'));
-	// 	} else {
-	// 		$this->Session->setFlash(__('The user could not be deleted. Please, try again.'));
-	// 	}
-	// 	return $this->redirect(array('action' => 'index'));
-	// }
+	public function delete($id = null) {
+		$this->User->id = $id;
+		if (!$this->User->exists()) {
+			throw new NotFoundException(__('Invalid user'));
+		}
+		
+		if ($this->User->saveField('usrStat', 1)) {
+			$this->Session->setFlash('The user has been deleted.', 'flasherGood');
+		}
+		else {
+			$this->Session->setFlash('The user could not be deleted. Please, try again.', 'flasherBad');
+		}
+		return $this->redirect(array('action' => 'index'));
+	}
 	
 	public function login() {
 		if ($this->request->is('post')) {
@@ -70,6 +76,12 @@ class UsersController extends AppController {
 				$this->Session->setFlash('Login cancelled.', 'flasherNeutral');
 				return $this->redirect(array('controller' => 'books', 'action' => 'index'));
 			}
+
+			// App::Import('Utility', 'Validation');
+			// if (isset($this->data['User']['usrID']) && Validation::email($this->data['User']['usrID'])) {
+			// 	$this->request->data['User']['usrEmail'] = $this->data['User']['usrID'];
+			// 	$this->Auth->authenticate['Form'] = array('fields' => array('username' => 'usrEmail'));
+			// }
 			if ($this->Auth->login()) {
 				return $this->redirect($this->Auth->redirect());
 			}

@@ -32,8 +32,8 @@ class User extends AppModel {
 		),
 		'usrPass' => array(
 			'custom' => array(
-				'rule' => '/[a-z0-9_\.]/',
-				'message' => 'Allowed characters are alphanumeric, underscore (_), and period (.) only.',
+				'rule' => '/[a-zA-Z0-9_\.]{6,12}/',
+				'message' => 'Password should be 6 to 12 characters. Allowed characters are alphanumeric, underscore (_), and period (.) only.',
 			),
 			'notempty' => array(
 				'rule' => array('notempty'),
@@ -41,9 +41,13 @@ class User extends AppModel {
 			),
 		),
 		'usrPassOld' => array(
-			'custom' => array(
-				'rule' => '/[a-z0-9_\.]/',
-				'message' => 'Allowed characters are alphanumeric, underscore (_), and period (.) only.',
+			'notempty' => array(
+				'rule' => array('notempty'),
+				'message' => 'Password should be confirmed.',
+			),
+			'confirmPassword' => array(
+				'rule' => array('confirmPassword', 'usrPass'),
+				'message' => 'Both passwords should match.',
 			),
 		),
 		'usrFname' => array(
@@ -210,11 +214,21 @@ class User extends AppModel {
 		)
 	);
 	
+	// Check both passwords.
+	public function confirmPassword($check, $field) {
+		$fname = '';
+		foreach ($check as $key => $value) {
+			$fname = $key;
+			break;
+		}
+		return $this->data[$this->name][$field] === $this->data[$this->name][$fname];
+	}
+	
 	// Hash password before saving.
 	public function beforeSave($options = array()) {
 		if (isset($this->data[$this->alias]['usrPass'])) {
-			$passHasher = new SimplePasswordHasher();
-			$this->data[$this->alias]['usrPass'] = $passHasher->hash($this->data[$this->alias]['usrPass']);
+			$passHasher1 = new SimplePasswordHasher();
+			$this->data[$this->alias]['usrPass'] = $passHasher1->hash($this->data[$this->alias]['usrPass']);
 		}
 		return true;
 	}

@@ -38,7 +38,7 @@
 
 <div id="templatemo_content_right">
 	<div class="users form">
-		<h1>Add User</h1>
+		<h1>Register Account</h1>
 		<?php echo $this->Form->create('User'); ?>
 		<table align='center'>
 			<?php
@@ -80,19 +80,24 @@
 					'type' => 'text',
 					'maxlength' => '11',
 					'onkeypress' => 'return isNumKey(event)'));
-				echo $this->Formadd->inputAdd('usrSSN', array(
-					'label' => 'Social Security Number',
-					'error' => false,
-					'size' => '11%',
-					'type' => 'text',
-					'maxlength' => '10',
-					'onkeypress' => 'return isNumKey(event)'));
-				echo $this->Formadd->inputAdd('usrRole', array(
-					'label' => 'Role',
-					'options' => array(
-						'1' => 'Customer',
-						'2' => 'Employee',
-						'3' => 'Manager')));
+				if ((!isset($this->Session->read('Auth')['User'])) OR (isset($this->Session->read('Auth')['User']) && $this->Session->read('Auth')['User']['usrRole'] !== '3')) {
+					echo $this->Form->hidden('usrSSN', array('value' => 0));
+					echo $this->Form->hidden('usrRole', array('value' => 1));
+				}
+				else {
+					echo $this->Formadd->inputAdd('usrSSN', array(
+						'label' => 'Social Security Number',
+						'error' => false,
+						'size' => '11%',
+						'type' => 'text',
+						'maxlength' => '10',
+						'onkeypress' => 'return isNumKey(event)'));
+					echo $this->Formadd->inputAdd('usrRole', array(
+						'label' => 'Role',
+						'options' => array(
+							'2' => 'Employee',
+							'3' => 'Manager')));
+				}
 				echo $this->Formadd->inputAdd('usrEmail', array(
 					'label' => 'Email Address',
 					'error' => false,
@@ -102,13 +107,18 @@
 					'error' => false,
 					'size' => '25%',
 					'type' => 'password'));
+				echo $this->Formadd->inputAdd('usrPassOld', array(
+					'label' => 'Verify Password',
+					'error' => false,
+					'size' => '25%',
+					'type' => 'password'));
 			?>
 			<tr><td colspan=3><div class="cleaner_with_image" /></td></tr>
 			<tr>
 				<td colspan=3 align=center>
 					<div class="submit">
 						<hr><br>
-						<?php echo $this->Form->submit(__('Add user'), array('div' => false)); ?>
+						<?php echo $this->Form->submit(__('Register'), array('div' => false)); ?>
 						<?php echo $this->Form->submit(__('Cancel'), array('type' => 'button', 'id' => 'add', 'div' => false, 'onclick' => 'submitForm(id)')); ?>
 						<input type="hidden" name="hiddenCancel" id="hiddenCancel">
 						&emsp;&emsp;&emsp;
