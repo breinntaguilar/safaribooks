@@ -19,15 +19,15 @@ class User extends AppModel {
 		'usrEmail' => array(
 			'email' => array(
 				'rule' => array('email'),
-				//'message' => 'Your custom message here',
+				'message' => 'Email should be in correct format.',
 			),
 			'isUnique' => array(
 				'rule' => 'isUnique',
-				'message' => 'Email already used.',
+				'message' => 'Email is already used.',
 			),
 			'notempty' => array(
 				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
+				'message' => 'Email should not be empty.',
 			),
 		),
 		'usrPass' => array(
@@ -37,7 +37,7 @@ class User extends AppModel {
 			),
 			'notempty' => array(
 				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
+				'message' => 'Password should not be empty.',
 			),
 		),
 		'usrPassOld' => array(
@@ -49,61 +49,61 @@ class User extends AppModel {
 		'usrFname' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
+				'message' => 'First name should not be empty.',
 			),
 		),
 		'usrLname' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
+				'message' => 'Last name should not be empty.',
 			),
 		),
 		'usrAddress1' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
+				'message' => 'Address should not be empty.',
 			),
 		),
 		'usrCity' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
+				'message' => 'City should not be empty.',
 			),
 		),
 		'usrProvince' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
+				'message' => 'Province should not be empty.',
 			),
 		),
 		'usrZIP' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
+				'message' => 'ZIP code should only be numeric',
 			),
 			'notempty' => array(
 				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
+				'message' => 'ZIP code should not be empty.',
 			),
 		),
 		'usrPhone' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
+				'message' => 'Phone should only be numeric. Mobile or landline is accepted.',
 			),
 			'notempty' => array(
 				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
+				'message' => 'Phone should not be empty.',
 			),
 		),
 		'usrSSN' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
+				'message' => 'SSN should only be numeric.',
 			),
 			'notempty' => array(
 				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
+				'message' => 'SSN should not be empty.',
 			),
 		),
 		'usrRole' => array(
@@ -113,7 +113,7 @@ class User extends AppModel {
 			),
 			'notempty' => array(
 				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
+				'message' => 'User role should not be empty.',
 			),
 		),
 		'usrStat' => array(
@@ -123,7 +123,7 @@ class User extends AppModel {
 			),
 			'notempty' => array(
 				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
+				'message' => 'User status should not be empty.',
 			),
 		),
 	);
@@ -218,7 +218,7 @@ class User extends AppModel {
 		}
 		return true;
 	}
-
+	
 	// Generate usrID value before saving.
 	public function beforeValidate($options = array()) {
 		if (empty($this->data['User']['usrID'])) {
@@ -229,7 +229,7 @@ class User extends AppModel {
 		}
 		return true;
 	}
-
+	
 	// Check if current user is the owner.
 	public function isOwner($curUser, $user) {
 		return $this->field('usrID', array('usrID' => $curUser, 'usrID' => $user)) === $curUser;

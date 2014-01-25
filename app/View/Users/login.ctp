@@ -14,7 +14,7 @@
 		<?php echo $this->Form->create('User'); ?>
 		<table align='center'>
 			<?php
-				echo $this->Formadd->inputAdd('usrEmail', array('label' => 'Email Address', 'size' => '25%'));
+				echo $this->Formadd->inputAdd('usrEmail', array('label' => 'Email Address', 'size' => '25%', 'id' => 'focusme'));
 				echo $this->Formadd->inputAdd('usrPass', array('label' => 'Password', 'size' => '25%', 'type' => 'password'));
 			?>
 			<tr><td colspan=3><div class="cleaner_with_image" /></td></tr>

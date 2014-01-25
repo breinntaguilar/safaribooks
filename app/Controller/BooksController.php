@@ -83,7 +83,7 @@ class BooksController extends AppController {
 		}
 		return $this->redirect(array('action' => 'view', $id));
 	}
-
+	
 	public function readd($id = null) {
 		$this->Book->id = $id;
 		if (!$this->Book->exists()) {
@@ -98,7 +98,7 @@ class BooksController extends AppController {
 		}
 		return $this->redirect(array('action' => 'view', $id));
 	}
-
+	
 	public function search($field = null, $order = null){
 		if ($this->request->is('post')) {
 			$search_key = $this->request->data('Book')['search_key'];
