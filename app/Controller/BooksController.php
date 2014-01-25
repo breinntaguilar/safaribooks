@@ -6,6 +6,7 @@ class BooksController extends AppController {
 	
 	public function index() {
 		$this->Book->recursive = 0;
+		$this->paginate = array('limit' => 6, 'order' => array('Book.bkTitle' => 'ASC'));
 		$this->set('books', $this->Paginator->paginate());
 	}
 	
@@ -83,7 +84,7 @@ class BooksController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
-
+	
 	public function search($field = null, $order = null){
 		if ($this->request->is('post')) {
 			$search_key = $this->request->data('Book')['search_key'];
@@ -92,20 +93,24 @@ class BooksController extends AppController {
 				'Book.bkTitle LIKE' => '%' . $search_key . '%',
 				'Book.bkAuthor LIKE' => '%' . $search_key . '%',
 				'Book.bkID LIKE' => '%' . $search_key . '%'));
-			
 			if (empty($field) OR empty($order)) {
-				$this->set('book', $this->Book->find('all', array('conditions' => $conditions, 'order' => 'Book.bkTitle ASC')));
+				$this->set('books', $this->Book->find('all', array('conditions' => $conditions, 'order' => 'Book.bkTitle ASC')));
 			}
 			else {
-				$this->set('book', $this->Book->find('all', array('conditions' => $conditions, 'order' => $field . ' ' . $order)));
+				$this->set('books', $this->Book->find('all', array('conditions' => $conditions, 'order' => $field . ' ' . $order)));
 			}
 		}
 	}
 	
-	public function new_releases() {
+	public function new_releases($field = null, $order = null) {
 		$this->Book->recursive = 0;
 		$conditions = array('Book.bkPubDate >' => date('Y-m-d', strtotime('-12 months')));
-		$this->set('releases', $this->Book->find('all', array('conditions' => $conditions, 'order' => 'Book.bkPubDate DESC')));
+		if (empty($field) OR empty($order)) {
+			$this->set('releases', $this->Book->find('all', array('conditions' => $conditions, 'order' => 'Book.bkPubDate DESC')));
+		}
+		else {
+			$this->set('releases', $this->Book->find('all', array('conditions' => $conditions, 'order' => $field . ' ' . $order)));
+		}
 	}
 	
 	public function beforeFilter() {
@@ -113,14 +118,11 @@ class BooksController extends AppController {
 	}
 	
 	public function isAuthorized($user) {
-		if ($this->action === 'view') {
-			return true;
-		}
 		if (in_array($this->action, array('add', 'edit', 'delete'))) {
 	        if ($this->Session->read('Auth')['User']['usrRole'] === '3') {
 	            return true;
-	        }
-    	}
+			}
+		}
 		return parent::isAuthorized($user);
 	}
 }

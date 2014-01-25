@@ -1,21 +1,30 @@
 <div id="templatemo_content_left">
-	<div class="templatemo_content_left_section">
-		<div class="actions">
-			<h1><?php echo __('Actions'); ?></h1>
-			<ul>
-				<li><?php
-					if (isset($this->Session->read('Auth')['User']) && ($this->Session->read('Auth')['User']['usrRole'] === '2' || $this->Session->read('Auth')['User']['usrRole'] === '3')) {
-						echo $this->Html->link(__('New Book'), array('action' => 'add'));
-					}
-				?></li>
-				<li><?php echo $this->Html->link(__('List Reviews'), array('controller' => 'reviews', 'action' => 'index_1')); ?> </li>
-				<li><?php echo $this->Html->link(__('List Carts'), array('controller' => 'carts', 'action' => 'index')); ?> </li>
-				<li><?php echo $this->Html->link(__('List Coupons'), array('controller' => 'coupons', 'action' => 'index')); ?></li>
-				<li><?php echo $this->Html->link(__('List Procures'), array('controller' => 'procures', 'action' => 'index')); ?> </li>
-				<li><?php echo $this->Html->link(__('List Wishlists'), array('controller' => 'wishlists', 'action' => 'index')); ?> </li>
-			</ul>
-		</div>
-	</div>
+	<?php
+		if ((!isset($this->Session->read('Auth')['User'])) OR (isset($this->Session->read('Auth')['User']) && $this->Session->read('Auth')['User']['usrRole'] === '1')) {
+			echo '<div class="templatemo_content_left_section">';
+			echo '<h1>' . __('Actions') . '</h1>';
+			echo '<ul>';
+			echo '<li>' . $this->Html->link(__('View active coupons'), array('controller' => 'coupons', 'action' => 'index_active')) . '</li>';
+			echo '</ul>';
+			echo '</div>';
+		}
+		elseif (isset($this->Session->read('Auth')['User']) && $this->Session->read('Auth')['User']['usrRole'] !== '1') {
+			echo '<div class="templatemo_content_left_section">';
+			echo '<h1>' . __('Admin') . '</h1>';
+			echo '<ul>';
+			if ($this->Session->read('Auth')['User']['usrRole'] === '2') {
+				echo '<li>' . $this->Html->link(__('View reviews'), array('controller' => 'reviews', 'action' => 'index')) . '</li>';
+			}
+			elseif ($this->Session->read('Auth')['User']['usrRole'] === '3') {
+				echo '<li>' . $this->Html->link(__('Add new book'), array('action' => 'add')) . '</li>';
+				echo '<li>' . $this->Html->link(__('View book procurements'), array('controller' => 'procures', 'action' => 'index')) . '</li>';
+				echo '<li>' . $this->Html->link(__('View coupons'), array('controller' => 'coupons', 'action' => 'index')) . '</li>';
+				echo '<li>' . $this->Html->link(__('View wishlist'), array('controller' => 'wishlists', 'action' => 'index')) . '</li>';
+			}
+			echo '</ul>';
+			echo '</div>';
+		}
+	?>
 </div>
 
 <div id="templatemo_content_right">
@@ -31,9 +40,9 @@
 					array('alt' => $book['Book']['bkTitle'], 'width' => 100, 'url' => array('action' => 'view', $book['Book']['bkID']))); ?>
 				<div class="product_info">
 					<p><?php echo $this->Text->truncate(h($book['Book']['bkSnippet']), 100, array('ellipsis' => '...', 'exact' => true)); ?></p>
-					<h3>$<?php echo h($book['Book']['bkPrice']); ?></h3>
+					<h3><?php echo '', (!empty($book['Book']['bkDiscPrice']) ? '<strike><font color="orange">$' . h($book['Book']['bkPrice']) . '</font></strike>' : '$' . h($book['Book']['bkPrice'])); echo '', (!empty($book['Book']['bkDiscPrice']) ? '<font color="black">|</font>$' . h($book['Book']['bkDiscPrice']) : false); ?></h3>
 					<div class="buy_now_button"><?php echo $this->Html->link(__('Buy Now'), array('controller' => 'carts', 'action' => 'add', $book['Book']['bkID']));?></div>
-                    <div class="detail_button"><?php echo $this->Html->link(__('Details'), array('action' => 'view', $book['Book']['bkID'])); ?></div>
+					<div class="detail_button"><?php echo $this->Html->link(__('Details'), array('action' => 'view', $book['Book']['bkID'])); ?></div>
 				</div>
 				<div class="cleaner">&nbsp;</div>
 			</div>
@@ -41,52 +50,15 @@
 				$cnt++;
 				echo '<div class="cleaner_with_', ($cnt % 2 == 0 ? 'width' : 'height') . '">&nbsp;</div>';
 		endforeach; ?>
-		<!-- <table cellpadding="0" cellspacing="0">
-		<tr>
-				<th><?php echo $this->Paginator->sort('bkID'); ?></th>
-				<th><?php echo $this->Paginator->sort('bkTitle'); ?></th>
-				<th><?php echo $this->Paginator->sort('bkAuthor'); ?></th>
-				<th><?php echo $this->Paginator->sort('bkPubDate'); ?></th>
-				<th><?php echo $this->Paginator->sort('bkQnty'); ?></th>
-				<th><?php echo $this->Paginator->sort('bkRating'); ?></th>
-				<th><?php echo $this->Paginator->sort('bkPrice'); ?></th>
-				<th><?php echo $this->Paginator->sort('bkDiscPrice'); ?></th>
-				<th><?php echo $this->Paginator->sort('bkStat'); ?></th>
-				<th><?php echo $this->Paginator->sort('bkAddedDate'); ?></th>
-				<th class="actions"><?php echo __('Actions'); ?></th>
-		</tr>
-		<?php foreach ($books as $book): ?>
-		<tr>
-			<td><?php echo h($book['Book']['bkID']); ?>&nbsp;</td>
-			<td><?php echo h($book['Book']['bkTitle']); ?>&nbsp;</td>
-			<td><?php echo h($book['Book']['bkAuthor']); ?>&nbsp;</td>
-			<td><?php echo h($book['Book']['bkPubDate']); ?>&nbsp;</td>
-			<td><?php echo h($book['Book']['bkQnty']); ?>&nbsp;</td>
-			<td><?php echo h($book['Book']['bkRating']); ?>&nbsp;</td>
-			<td><?php echo h($book['Book']['bkPrice']); ?>&nbsp;</td>
-			<td><?php echo h($book['Book']['bkDiscPrice']); ?>&nbsp;</td>
-			<td><?php echo h($book['Book']['bkStat']); ?>&nbsp;</td>
-			<td><?php echo h($book['Book']['bkAddedDate']); ?>&nbsp;</td>
-			<td class="actions">
-				<?php echo $this->Html->link(__('View'), array('action' => 'view', $book['Book']['bkID'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $book['Book']['bkID'])); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $book['Book']['bkID']), null, __('Are you sure you want to delete # %s?', $book['Book']['bkID'])); ?>
-			</td>
-		</tr>
-	<?php endforeach; ?>
-		</table> -->
-		<p>
-		<?php
-		echo $this->Paginator->counter(array(
-		'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
-		));
-		?>	</p>
-		<div class="paging">
-		<?php
-			echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled'));
-			echo $this->Paginator->numbers(array('separator' => ''));
-			echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
-		?>
+		
+		<div class="cleaner_with_height">&nbsp;</div>
+		<hr>
+		<div class="paging" align="center">
+			<?php
+				echo $this->Paginator->prev('<< ', array(), null, array('class' => 'prev disabled'));
+				echo $this->Paginator->numbers(array('separator' => ' '));
+				echo $this->Paginator->next(' >>', array(), null, array('class' => 'next disabled'));
+			?>
 		</div>
 	</div>
 </div>

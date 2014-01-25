@@ -10,11 +10,19 @@
 		</ul>
 	</div>
 	<?php
-		if (isset($this->Session->read('Auth')['User']) && ($this->Session->read('Auth')['User']['usrRole'] === '2' || $this->Session->read('Auth')['User']['usrRole'] === '3')) {
+		if (isset($this->Session->read('Auth')['User']) && $this->Session->read('Auth')['User']['usrRole'] !== '1') {
 			echo '<div class="templatemo_content_left_section">';
 			echo '<h1>' . __('Admin') . '</h1>';
 			echo '<ul>';
-			echo '<li>' . $this->Html->link(__('New Book'), array('action' => 'add')) . '</li>';
+			if ($this->Session->read('Auth')['User']['usrRole'] === '2') {
+				echo '<li>' . $this->Html->link(__('View reviews'), array('controller' => 'reviews', 'action' => 'index')) . '</li>';
+			}
+			elseif ($this->Session->read('Auth')['User']['usrRole'] === '3') {
+				echo '<li>' . $this->Html->link(__('Add new book'), array('action' => 'add')) . '</li>';
+				echo '<li>' . $this->Html->link(__('View book procurements'), array('controller' => 'procures', 'action' => 'index')) . '</li>';
+				echo '<li>' . $this->Html->link(__('View coupons'), array('controller' => 'coupons', 'action' => 'index')) . '</li>';
+				echo '<li>' . $this->Html->link(__('View wishlist'), array('controller' => 'wishlists', 'action' => 'index')) . '</li>';
+			}
 			echo '</ul>';
 			echo '</div>';
 		}
@@ -27,11 +35,9 @@
 		<table class="table table-condensed table-bordered table-hover" cellpadding="0" cellspacing="0" align="center">
 			<?php  
 		    	echo $this->Form->create("Book",array('action' => 'search'));
-				echo $this->Form->input('search_key', array('label' => 'Search: ', 'size' => '50%', 'div' => false)) .
-					$this->Form->end(array('label'=> 'Go', 'div' => false)) . '&nbsp;&nbsp;&nbsp;' .
-					$this->Form->create("Book",array('action' => 'search')) . $this->Form->end(array('label'=> 'Show all books', 'div' => false));;
-				if (isset($book)) {
-					echo "<br><br>Total records found: ".count($book)."<br>";
+				echo $this->Form->input('search_key', array('label' => 'Search: ', 'size' => '50%', 'div' => false)) . $this->Form->end(array('label'=> 'Go', 'div' => false)) . '&nbsp;&nbsp;&nbsp;' . $this->Form->create("Book",array('action' => 'search')) . $this->Form->end(array('label'=> 'Show all books', 'div' => false));
+				if (isset($books)) {
+					echo "<br><br>Total records found: ".count($books)."<br>";
 					echo "<tr>";
 					echo "<th>"."Title";
 					echo "<th>"."Author";
@@ -40,19 +46,19 @@
 					echo '<th>' . 'Price';
 					echo '<th>' . 'Stock';
 					echo "</tr>";
-					for ($i=0; $i<count($book); $i++) {
+					for ($i=0; $i<count($books); $i++) {
 						echo "<tr>";
-						echo '<td>' . $this->Html->link(__($book[$i]['Book']['bkTitle']), array('action' => 'view', $book[$i]['Book']['bkID']));
-						echo "<td align='center'>".$book[$i]['Book']['bkAuthor'];
-						echo '<td align=\'center\'>' . $book[$i]['Book']['bkID'];
-						echo "<td align='center'>".$book[$i]['Book']['bkRating'];
-						echo '<td align=\'center\'>$' . (empty($book[$i]['Book']['bkDiscPrice']) ? $book[$i]['Book']['bkPrice'] : $book[$i]['Book']['bkDiscPrice']);
-						echo '<td align=\'center\'>' . ($book[$i]['Book']['bkQnty'] < 6 ? $book[$i]['Book']['bkQnty'] . ' remaining' : 'in stock');
+						echo '<td>' . $this->Html->link(__($books[$i]['Book']['bkTitle']), array('action' => 'view', $books[$i]['Book']['bkID']));
+						echo "<td align='center'>".$books[$i]['Book']['bkAuthor'];
+						echo '<td align="center">' . $books[$i]['Book']['bkID'];
+						echo "<td align='center'>".$books[$i]['Book']['bkRating'];
+						echo '<td align="center">$' . (empty($books[$i]['Book']['bkDiscPrice']) ? $books[$i]['Book']['bkPrice'] : $books[$i]['Book']['bkDiscPrice']);
+						echo '<td align="center">' . ($books[$i]['Book']['bkQnty'] < 6 ? $books[$i]['Book']['bkQnty'] . ' remaining' : 'in stock');
 						echo "</tr>";
 					}
 					echo "<br>";
 				}
-			?> 
+			?>
 		</table>
 	</div>
 </div>
