@@ -119,10 +119,14 @@ function couponFunction(value)
 $(document).ready(function() {
 	setTimeout(function() {
 		$('.flasher').parent().slideUp('slow');
-	}, 2000);
+	}, 2500);
 });
 
 $(function() {
 	$("#datepicker1").datepicker({ dateFormat: 'yy-mm-dd' });
 	$("#datepicker2").datepicker({ dateFormat: 'yy-mm-dd' });
+});
+
+$(document).ready(function() {
+	$('#focusme').focus();
 });

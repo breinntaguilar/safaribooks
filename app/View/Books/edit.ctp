@@ -1,13 +1,14 @@
 <div id="templatemo_content_left">
 	<div class="templatemo_content_left_section">
 		<div class="actions">
-			<h1><?php echo __('Actions'); ?></h1>
+			<h1><?php echo __('Admin'); ?></h1>
 			<ul>
-			<li><?php echo $this->Html->link(__('List Books'), array('action' => 'index')); ?> </li>
-			<li><?php echo $this->Html->link(__('List Reviews'), array('controller' => 'reviews', 'action' => 'index')); ?> </li>
-			<li><?php echo $this->Html->link(__('List Carts'), array('controller' => 'carts', 'action' => 'index')); ?> </li>
-			<li><?php echo $this->Html->link(__('List Procures'), array('controller' => 'procures', 'action' => 'index')); ?> </li>
-			<li><?php echo $this->Html->link(__('List Wishlists'), array('controller' => 'wishlists', 'action' => 'index')); ?> </li>
+				<li><?php echo $this->Html->link(__('Add new book'), array('action' => 'add')); ?> </li>
+				<li><?php echo $this->Html->link(__('View books'), array('action' => 'index')); ?></li>
+				<li><?php echo $this->Html->link(__('View reviews'), array('controller' => 'reviews', 'action' => 'index')); ?> </li>
+				<li><?php echo $this->Html->link(__('View book procurements'), array('controller' => 'procures', 'action' => 'index')); ?> </li>
+				<li><?php echo $this->Html->link(__('View coupons'), array('controller' => 'coupons', 'action' => 'index')); ?> </li>
+				<li><?php echo $this->Html->link(__('View wishlist'), array('controller' => 'wishlists', 'action' => 'index')); ?> </li>
 			</ul>
 		</div>
 	</div>
@@ -20,14 +21,48 @@
 		<table align='center'>
 			<?php
 				echo $this->Form->input('bkID');
-				echo $this->Formadd->inputAdd('bkTitle', array('label' => 'Title', 'error' => false, 'size' => '75%'));
-				echo $this->Formadd->inputAdd('bkAuthor', array('label' => 'Author', 'error' => false, 'size' => '75%'));
-				echo $this->Formadd->inputAdd('bkPubDate', array('label' => 'Published', 'error' => false, 'type' => 'text', 'id' => 'datepicker1'));
-				echo $this->Formadd->inputAdd('bkQnty', array('label' => 'Quantity', 'error' => false, 'size' => '1%', 'type' => 'text', 'onkeypress' => 'return isNumKey(event)', 'maxlength' => '3'));
-				echo $this->Formadd->inputAdd('bkPrice', array('label' => 'Price', 'error' => false, 'size' => '5%', 'type' => 'text', 'onkeypress' => 'return isDecKey(event)', 'maxlength' => '7', 'onblur' => 'convDecimal(id)'));
-				echo $this->Formadd->inputAdd('bkDiscPrice', array('label' => 'Discounted Price', 'error' => false, 'size' => '5%', 'type' => 'text', 'onkeypress' => 'return isDecKey(event)', 'maxlength' => '7', 'onblur' => 'convDecimal(id)'));
-				echo $this->Formadd->inputAdd('bkSnippet', array('label' => 'Description', 'error' => false, 'cols' => '57', 'rows' => '10', 'maxlength' => '1500'));
-				echo $this->Formadd->inputAdd('bkStat', array('label' => ' Discontinued', 'hiddenField' => false));
+				echo $this->Formadd->inputAdd('bkTitle', array(
+					'label' => 'Title',
+					'error' => false,
+					'size' => '75%'));
+				echo $this->Formadd->inputAdd('bkAuthor', array(
+					'label' => 'Author',
+					'error' => false,
+					'size' => '75%'));
+				echo $this->Formadd->inputAdd('bkPubDate', array(
+					'label' => 'Published',
+					'error' => false,
+					'type' => 'text',
+					'id' => 'datepicker1'));
+				echo $this->Formadd->inputAdd('bkQnty', array(
+					'label' => 'Quantity',
+					'error' => false,
+					'size' => '1%',
+					'type' => 'text',
+					'maxlength' => '3',
+					'onkeypress' => 'return isNumKey(event)'));
+				echo $this->Formadd->inputAdd('bkPrice', array(
+					'label' => 'Price',
+					'error' => false,
+					'size' => '5%',
+					'type' => 'text',
+					'maxlength' => '7',
+					'onkeypress' => 'return isDecKey(event)',
+					'onblur' => 'convDecimal(id)'));
+				echo $this->Formadd->inputAdd('bkDiscPrice', array(
+					'label' => 'Discounted Price',
+					'error' => false,
+					'size' => '5%',
+					'type' => 'text',
+					'maxlength' => '7',
+					'onkeypress' => 'return isDecKey(event)',
+					'onblur' => 'convDecimal(id)'));
+				echo $this->Formadd->inputAdd('bkSnippet', array(
+					'label' => 'Description',
+					'error' => false,
+					'cols' => '57',
+					'rows' => '10',
+					'maxlength' => '1500'));
 			?>
 			<tr>
 				<td>Book Cover</td>
@@ -40,12 +75,11 @@
 				<td colspan=3 align=center>
 					<div class="submit">
 						<hr><br>
-						<?php echo $this->Form->submit(__('Reset'), array('type' => 'reset', 'div' => false)); ?>
-						&emsp;&emsp;&emsp;&emsp;&emsp;
 						<?php echo $this->Form->submit(__('Edit book'), array('div' => false)); ?>
-						&nbsp;
-						<?php echo $this->Form->submit(__('Cancel'), array('type' => 'button', 'id' => 'edit', 'div' => false, 'onclick' => 'submitForm(id)')); ?>
+						<?php echo $this->Form->submit(__('Cancel'), array('type' => 'button', 'id' => 'add', 'div' => false, 'onclick' => 'submitForm(id)')); ?>
 						<input type="hidden" name="hiddenCancel" id="hiddenCancel">
+						&emsp;&emsp;&emsp;
+						<?php echo $this->Form->submit(__('Reset'), array('type' => 'button', 'div' => false, 'onclick' => 'clearForm(this.form)')); ?>
 					</div>
 					<?php echo $this->Form->end();?>
 				</td>

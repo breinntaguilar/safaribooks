@@ -75,16 +75,30 @@ class BooksController extends AppController {
 			throw new NotFoundException(__('Invalid book'));
 		}
 		
-		$this->request->onlyAllow('post', 'delete');
-		if ($this->Book->delete()) {
-			$this->Session->setFlash(__('The book has been deleted.', 'flasherGood'));
+		if ($this->Book->saveField('bkStat', 1)) {
+			$this->Session->setFlash('The book has been deleted.', 'flasherGood');
 		}
 		else {
-			$this->Session->setFlash(__('The book could not be deleted. Please, try again.', 'flasherBad'));
+			$this->Session->setFlash('The book could not be deleted. Please, try again.', 'flasherBad');
 		}
-		return $this->redirect(array('action' => 'index'));
+		return $this->redirect(array('action' => 'view', $id));
 	}
-	
+
+	public function readd($id = null) {
+		$this->Book->id = $id;
+		if (!$this->Book->exists()) {
+			throw new NotFoundException(__('Invalid book'));
+		}
+		
+		if ($this->Book->saveField('bkStat', 0)) {
+			$this->Session->setFlash('The book has been re-added.', 'flasherGood');
+		}
+		else {
+			$this->Session->setFlash('The book could not be added back to the inventory. Please, try again.', 'flasherBad');
+		}
+		return $this->redirect(array('action' => 'view', $id));
+	}
+
 	public function search($field = null, $order = null){
 		if ($this->request->is('post')) {
 			$search_key = $this->request->data('Book')['search_key'];
@@ -118,11 +132,6 @@ class BooksController extends AppController {
 	}
 	
 	public function isAuthorized($user) {
-		if (in_array($this->action, array('add', 'edit', 'delete'))) {
-	        if ($this->Session->read('Auth')['User']['usrRole'] === '3') {
-	            return true;
-			}
-		}
 		return parent::isAuthorized($user);
 	}
 }

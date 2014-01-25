@@ -1,12 +1,12 @@
 <div id="templatemo_content_left">
 	<div class="templatemo_content_left_section">
-		<h1><?php echo __('Actions'); ?></h1>
+		<h1><?php echo __('Admin'); ?></h1>
 		<ul>
-			<li><?php echo $this->Html->link(__('List Books'), array('action' => 'index')); ?></li>
-			<li><?php echo $this->Html->link(__('List Reviews'), array('controller' => 'reviews', 'action' => 'index')); ?> </li>
-			<li><?php echo $this->Html->link(__('List Carts'), array('controller' => 'carts', 'action' => 'index')); ?> </li>
-			<li><?php echo $this->Html->link(__('List Procures'), array('controller' => 'procures', 'action' => 'index')); ?> </li>
-			<li><?php echo $this->Html->link(__('List Wishlists'), array('controller' => 'wishlists', 'action' => 'index')); ?> </li>	
+			<li><?php echo $this->Html->link(__('View books'), array('action' => 'index')); ?></li>
+			<li><?php echo $this->Html->link(__('View reviews'), array('controller' => 'reviews', 'action' => 'index')); ?> </li>
+			<li><?php echo $this->Html->link(__('View book procurements'), array('controller' => 'procures', 'action' => 'index')); ?> </li>
+			<li><?php echo $this->Html->link(__('View coupons'), array('controller' => 'coupons', 'action' => 'index')); ?> </li>
+			<li><?php echo $this->Html->link(__('View wishlist'), array('controller' => 'wishlists', 'action' => 'index')); ?> </li>
 		</ul>
 	</div>
 </div>
@@ -20,7 +20,8 @@
 				echo $this->Formadd->inputAdd('bkTitle', array(
 					'label' => 'Title',
 					'error' => false,
-					'size' => '75%'));
+					'size' => '75%',
+					'id' => 'focusme'));
 				echo $this->Formadd->inputAdd('bkAuthor', array(
 					'label' => 'Author',
 					'error' => false,
