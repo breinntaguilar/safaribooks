@@ -7,6 +7,7 @@
 			<li><?php echo $this->Html->link(__('View book procurements'), array('controller' => 'procures', 'action' => 'index')); ?> </li>
 			<li><?php echo $this->Html->link(__('View coupons'), array('controller' => 'coupons', 'action' => 'index')); ?> </li>
 			<li><?php echo $this->Html->link(__('View wishlist'), array('controller' => 'wishlists', 'action' => 'index')); ?> </li>
+			<li><?php echo $this->Html->link(__('View users'), array('controller' => 'users', 'action' => 'index')); ?> </li>
 		</ul>
 	</div>
 </div>
