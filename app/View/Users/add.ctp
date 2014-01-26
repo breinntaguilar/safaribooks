@@ -1,35 +1,27 @@
 <div id="templatemo_content_left">
-	<div class="templatemo_content_left_section">
-		<h1><?php echo __('Actions'); ?></h1>
-		<ul>
-			<?php
-				if (isset($this->Session->read('Auth')['User']) && $this->Session->read('Auth')['User']['usrRole'] === '1') {
-					echo '<li>' . $this->Html->link(__('List Books'), array('controller' => 'books', 'action' => 'index')) . '</li>';
-					echo '<li>' . $this->Html->link(__('List Active Coupons'), array('controller' => 'coupons', 'action' => 'index')) . '</li>';
-				}
-				elseif (isset($this->Session->read('Auth')['User']) && $this->Session->read('Auth')['User']['usrRole'] === '2') {
-					echo '<li>' . $this->Html->link(__('List Customers'), array('controller' => 'users', 'action' => 'index')) . '</li>';
-					echo '<li>' . $this->Html->link(__('Register Customer'), array('controller' => 'users', 'action' => 'add')) . '</li>';
-				}
-				elseif (isset($this->Session->read('Auth')['User']) && $this->Session->read('Auth')['User']['usrRole'] === '3') {
-					echo '<li>' . $this->Html->link(__('Register User'), array('controller' => 'users', 'action' => 'add')) . '</li>';
-					echo '<li>' . $this->Html->link(__('List Users'), array('action' => 'index')) . '</li>';
-				}
-			?>
-			
-			<li><?php echo $this->Html->link(__('List Books'), array('action' => 'index')); ?> </li>
-			<li><?php echo $this->Html->link(__('List Reviews'), array('controller' => 'reviews', 'action' => 'index')); ?> </li>
-			<li><?php echo $this->Html->link(__('List Carts'), array('controller' => 'carts', 'action' => 'index')); ?> </li>
-			<li><?php echo $this->Html->link(__('List Procures'), array('controller' => 'procures', 'action' => 'index')); ?> </li>
-			<li><?php echo $this->Html->link(__('List Wishlists'), array('controller' => 'wishlists', 'action' => 'index')); ?> </li>
-		</ul>
-	</div>
 	<?php
-		if (isset($this->Session->read('Auth')['User']) && $this->Session->read('Auth')['User']['usrRole'] === '3') {
+		if ((!isset($this->Session->read('Auth')['User'])) OR (isset($this->Session->read('Auth')['User']) && $this->Session->read('Auth')['User']['usrRole'] === '1')) {
+			echo '<div class="templatemo_content_left_section">';
+			echo '<h1>' . __('Actions') . '</h1>';
+			echo '<ul>';
+			echo '<li>' . $this->Html->link(__('View active coupons'), array('controller' => 'coupons', 'action' => 'index_active')) . '</li>';
+			echo '</ul>';
+			echo '</div>';
+		}
+		elseif (isset($this->Session->read('Auth')['User']) && $this->Session->read('Auth')['User']['usrRole'] !== '1') {
 			echo '<div class="templatemo_content_left_section">';
 			echo '<h1>' . __('Admin') . '</h1>';
 			echo '<ul>';
-			echo '<li>' . $this->Html->link(__('List Users'), array('action' => 'index')) . '</li>';
+			if ($this->Session->read('Auth')['User']['usrRole'] === '2') {
+				echo '<li>' . $this->Html->link(__('View reviews'), array('controller' => 'reviews', 'action' => 'index')) . '</li>';
+			}
+			elseif ($this->Session->read('Auth')['User']['usrRole'] === '3') {
+				echo '<li>' . $this->Html->link(__('Add new book'), array('action' => 'add')) . '</li>';
+				echo '<li>' . $this->Html->link(__('View book procurements'), array('controller' => 'procures', 'action' => 'index')) . '</li>';
+				echo '<li>' . $this->Html->link(__('View coupons'), array('controller' => 'coupons', 'action' => 'index')) . '</li>';
+				echo '<li>' . $this->Html->link(__('View wishlist'), array('controller' => 'wishlists', 'action' => 'index')) . '</li>';
+				echo '<li>' . $this->Html->link(__('View users'), array('controller' => 'users', 'action' => 'index')) . '</li>';
+			}
 			echo '</ul>';
 			echo '</div>';
 		}

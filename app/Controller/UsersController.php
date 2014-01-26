@@ -6,7 +6,15 @@ class UsersController extends AppController {
 	
 	public function index() {
 		$this->User->recursive = 0;
-		$this->set('users', $this->Paginator->paginate());
+		if ($this->Session->read('Auth')['User']['usrRole'] === '2') {
+			$conditions = array('User.usrRole' => '1');
+			$this->paginate = array('conditions' => $conditions, 'order' => array('Book.bkTitle' => 'ASC'));
+			$this->set('users', $this->Paginator->paginate());
+		}
+		else {
+			$this->paginate = array('order' => array('User.usrRole' => 'ASC', 'User.usrLname' => 'ASC'));
+			$this->set('users', $this->Paginator->paginate());
+		}
 	}
 	
 	public function view($id = null) {
@@ -62,10 +70,25 @@ class UsersController extends AppController {
 		}
 		
 		if ($this->User->saveField('usrStat', 1)) {
-			$this->Session->setFlash('The user has been deleted.', 'flasherGood');
+			$this->Session->setFlash('The user has been deactivated.', 'flasherGood');
 		}
 		else {
-			$this->Session->setFlash('The user could not be deleted. Please, try again.', 'flasherBad');
+			$this->Session->setFlash('The user could not be deactivated. Please, try again.', 'flasherBad');
+		}
+		return $this->redirect(array('action' => 'index'));
+	}
+
+	public function readd($id = null) {
+		$this->User->id = $id;
+		if (!$this->User->exists()) {
+			throw new NotFoundException(__('Invalid user'));
+		}
+		
+		if ($this->User->saveField('usrStat', 0)) {
+			$this->Session->setFlash('The user has been reactivated.', 'flasherGood');
+		}
+		else {
+			$this->Session->setFlash('The user could not be reactivated. Please, try again.', 'flasherBad');
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
@@ -100,14 +123,15 @@ class UsersController extends AppController {
 	}
 
 	public function isAuthorized($user) {
-		if ($this->action === 'view') {
+		if (in_array($this->action, array('view', 'edit'))) {
+			$profileID = $this->request->params['pass'][0];
+			if ($this->User->isOwner($profileID, $user)) {
+				return true;
+			}
+		}
+		if (in_array($this->action, array('index', 'view', 'edit')) && (isset($user['usrRole']) && $user['usrRole'] !== '1')) {
 			return true;
 		}
-		if (in_array($this->action, array('edit', 'delete'))) {
-	        if ($this->Session->read('Auth')['User']['usrRole'] === '2') {
-	            return true;
-	        }
-    	}
 		return parent::isAuthorized($user);
 	}
 }

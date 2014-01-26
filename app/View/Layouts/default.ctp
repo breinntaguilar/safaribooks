@@ -58,7 +58,9 @@
 						}
 						else {
 							echo $this->Html->link(__('Register'), array('controller' => 'users', 'action' => 'add'), array('style' => 'float: right'));
-							echo $this->Html->link(__('Login'), array('controller' => 'users', 'action' => 'login'), array('style' => 'float: right'));
+							if ($this->request->params['controller'] != 'users' && $this->request->params['action'] != 'add') {
+								echo $this->Html->link(__('Login'), array('controller' => 'users', 'action' => 'login'), array('style' => 'float: right'));
+							}
 						}
 					?>
 				</li>

@@ -223,6 +223,11 @@ class User extends AppModel {
 		}
 		return $this->data[$this->name][$field] === $this->data[$this->name][$fname];
 	}
+
+	// Check if current user is the owner.
+	public function isOwner($profile, $user) {
+		return $this->field('usrID', array('usrID' => $profile, 'usrID' => $user)) === $profile;
+	}
 	
 	// Hash password before saving.
 	public function beforeSave($options = array()) {
@@ -242,10 +247,5 @@ class User extends AppModel {
 			$this->data['User']['usrID'] = $newID;
 		}
 		return true;
-	}
-	
-	// Check if current user is the owner.
-	public function isOwner($curUser, $user) {
-		return $this->field('usrID', array('usrID' => $curUser, 'usrID' => $user)) === $curUser;
 	}
 }
