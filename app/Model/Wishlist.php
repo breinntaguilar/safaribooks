@@ -16,9 +16,9 @@ class Wishlist extends AppModel {
 				//'message' => 'Your custom message here',
 			),
 		),
-		'cusID' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
+		'usrID' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
 				//'message' => 'Your custom message here',
 			),
 		),
@@ -36,9 +36,9 @@ class Wishlist extends AppModel {
 	
 	// belongsTo associations
 	public $belongsTo = array(
-		'WishlistCustomer' => array(
-			'className' => 'Customer',
-			'foreignKey' => 'cusID',
+		'WishlistUser' => array(
+			'className' => 'User',
+			'foreignKey' => 'usrID',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''

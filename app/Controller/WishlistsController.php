@@ -56,9 +56,9 @@ class WishlistsController extends AppController {
 				$this->Session->setFlash(__('The wishlist could not be saved. Please, try again.'));
 			}
 		}
-		$wishlistCustomers = $this->Wishlist->WishlistCustomer->find('list');
+		$wishlistUsers = $this->Wishlist->WishlistUser->find('list');
 		$wishlistBooks = $this->Wishlist->WishlistBook->find('list');
-		$this->set(compact('wishlistCustomers', 'wishlistBooks'));
+		$this->set(compact('wishlistUsers', 'wishlistBooks'));
 		$this->set('bookId', $id);
 	}
 
@@ -84,9 +84,9 @@ class WishlistsController extends AppController {
 			$options = array('conditions' => array('Wishlist.' . $this->Wishlist->primaryKey => $id));
 			$this->request->data = $this->Wishlist->find('first', $options);
 		}
-		$wishlistCustomers = $this->Wishlist->WishlistCustomer->find('list');
+		$wishlistUsers = $this->Wishlist->WishlistUser->find('list');
 		$wishlistBooks = $this->Wishlist->WishlistBook->find('list');
-		$this->set(compact('wishlistCustomers', 'wishlistBooks'));
+		$this->set(compact('wishlistUsers', 'wishlistBooks'));
 	}
 
 /**

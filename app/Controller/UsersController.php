@@ -123,13 +123,13 @@ class UsersController extends AppController {
 	}
 
 	public function isAuthorized($user) {
-		if (in_array($this->action, array('view', 'edit'))) {
+		if (in_array($this->action, array('view', 'edit', 'delete'))) {
 			$profileID = $this->request->params['pass'][0];
 			if ($this->User->isOwner($profileID, $user)) {
 				return true;
 			}
 		}
-		if (in_array($this->action, array('index', 'view', 'edit')) && (isset($user['usrRole']) && $user['usrRole'] !== '1')) {
+		if (in_array($this->action, array('index', 'view', 'edit', 'delete')) && (isset($user['usrRole']) && $user['usrRole'] !== '1')) {
 			return true;
 		}
 		return parent::isAuthorized($user);

@@ -1,17 +1,15 @@
 <div id="templatemo_content_left">
 	<div class="templatemo_content_left_section">
-		<div class="actions">
-			<h1><?php echo __('Admin'); ?></h1>
-			<ul>
-				<li><?php echo $this->Html->link(__('Add new book'), array('action' => 'add')); ?> </li>
-				<li><?php echo $this->Html->link(__('View books'), array('action' => 'index')); ?></li>
-				<li><?php echo $this->Html->link(__('View reviews'), array('controller' => 'reviews', 'action' => 'index')); ?> </li>
-				<li><?php echo $this->Html->link(__('View book procurements'), array('controller' => 'procures', 'action' => 'index')); ?> </li>
-				<li><?php echo $this->Html->link(__('View coupons'), array('controller' => 'coupons', 'action' => 'index')); ?> </li>
-				<li><?php echo $this->Html->link(__('View wishlist'), array('controller' => 'wishlists', 'action' => 'index')); ?> </li>
-				<li><?php echo $this->Html->link(__('View users'), array('controller' => 'users', 'action' => 'index')); ?> </li>
-			</ul>
-		</div>
+		<h1><?php echo __('Admin'); ?></h1>
+		<ul>
+			<li><?php echo $this->Html->link(__('Add new book'), array('action' => 'add')); ?></li>
+			<li><?php echo $this->Html->link(__('View books'), array('action' => 'index')); ?></li>
+			<li><?php echo $this->Html->link(__('View book reviews'), array('controller' => 'reviews', 'action' => 'index')); ?></li>
+			<li><?php echo $this->Html->link(__('View book procurements'), array('controller' => 'procures', 'action' => 'index')); ?></li>
+			<li><?php echo $this->Html->link(__('View coupons'), array('controller' => 'coupons', 'action' => 'index')); ?></li>
+			<li><?php echo $this->Html->link(__('View wishlist'), array('controller' => 'wishlists', 'action' => 'index')); ?></li>
+			<li><?php echo $this->Html->link(__('View users'), array('controller' => 'users', 'action' => 'index')); ?></li>
+		</ul>
 	</div>
 </div>
 

@@ -4,6 +4,8 @@
 			echo '<div class="templatemo_content_left_section">';
 			echo '<h1>' . __('Actions') . '</h1>';
 			echo '<ul>';
+			echo '<li>' . $this->Html->link(__('Login'), array('controller' => 'users', 'action' => 'login')) . '</li>';
+			echo '<li>' . $this->Html->link(__('View books'), array('controller' => 'books', 'action' => 'index')) . '</li>';
 			echo '<li>' . $this->Html->link(__('View active coupons'), array('controller' => 'coupons', 'action' => 'index_active')) . '</li>';
 			echo '</ul>';
 			echo '</div>';
@@ -14,9 +16,11 @@
 			echo '<ul>';
 			if ($this->Session->read('Auth')['User']['usrRole'] === '2') {
 				echo '<li>' . $this->Html->link(__('View reviews'), array('controller' => 'reviews', 'action' => 'index')) . '</li>';
+				echo '<li>' . $this->Html->link(__('View users'), array('controller' => 'users', 'action' => 'index')) . '</li>';
 			}
 			elseif ($this->Session->read('Auth')['User']['usrRole'] === '3') {
 				echo '<li>' . $this->Html->link(__('Add new book'), array('action' => 'add')) . '</li>';
+				echo '<li>' . $this->Html->link(__('View reviews'), array('controller' => 'reviews', 'action' => 'index')) . '</li>';
 				echo '<li>' . $this->Html->link(__('View book procurements'), array('controller' => 'procures', 'action' => 'index')) . '</li>';
 				echo '<li>' . $this->Html->link(__('View coupons'), array('controller' => 'coupons', 'action' => 'index')) . '</li>';
 				echo '<li>' . $this->Html->link(__('View wishlist'), array('controller' => 'wishlists', 'action' => 'index')) . '</li>';
@@ -43,11 +47,11 @@
 					'error' => false,
 					'size' => '25%'));
 				echo $this->Formadd->inputAdd('usrAddress1', array(
-					'label' => 'Street',
+					'label' => 'Barangay',
 					'error' => false,
 					'size' => '50%'));
 				echo $this->Formadd->inputAdd('usrAddress2', array(
-					'label' => 'Barangay',
+					'label' => '',
 					'error' => false,
 					'size' => '50%'));
 				echo $this->Formadd->inputAdd('usrCity', array(

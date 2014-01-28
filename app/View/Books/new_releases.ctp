@@ -2,11 +2,11 @@
 	<div class="templatemo_content_left_section">
 		<h1><?php echo __('Actions'); ?></h1>
 		<ul>
-			<li><?php echo $this->Form->postLink(__('Sort by title'), array('action' => 'new_releases', 'Book.bkTitle', 'ASC')); ?> </li>
-			<li><?php echo $this->Form->postLink(__('Sort by author'), array('action' => 'new_releases', 'Book.bkAuthor', 'ASC')); ?> </li>
-			<li><?php echo $this->Form->postLink(__('Sort by newest first'), array('action' => 'new_releases', 'Book.bkPubDate', 'DESC')); ?> </li>
-			<li><?php echo $this->Form->postLink(__('Sort by oldest first'), array('action' => 'new_releases', 'Book.bkPubDate', 'ASC')); ?> </li>
-			<li><?php echo $this->Form->postLink(__('Sort by highest rated'), array('action' => 'new_releases', 'Book.bkRating', 'DESC')); ?> </li>
+			<li><?php echo $this->Form->postLink(__('Sort by title'), array('action' => 'new_releases', 'Book.bkTitle', 'ASC')); ?></li>
+			<li><?php echo $this->Form->postLink(__('Sort by author'), array('action' => 'new_releases', 'Book.bkAuthor', 'ASC')); ?></li>
+			<li><?php echo $this->Form->postLink(__('Sort by newest first'), array('action' => 'new_releases', 'Book.bkPubDate', 'DESC')); ?></li>
+			<li><?php echo $this->Form->postLink(__('Sort by oldest first'), array('action' => 'new_releases', 'Book.bkPubDate', 'ASC')); ?></li>
+			<li><?php echo $this->Form->postLink(__('Sort by highest rated'), array('action' => 'new_releases', 'Book.bkRating', 'DESC')); ?></li>
 		</ul>
 	</div>
 	<?php
@@ -15,10 +15,12 @@
 			echo '<h1>' . __('Admin') . '</h1>';
 			echo '<ul>';
 			if ($this->Session->read('Auth')['User']['usrRole'] === '2') {
-				echo '<li>' . $this->Html->link(__('View reviews'), array('controller' => 'reviews', 'action' => 'index')) . '</li>';
+				echo '<li>' . $this->Html->link(__('View book reviews'), array('controller' => 'reviews', 'action' => 'index')) . '</li>';
+				echo '<li>' . $this->Html->link(__('View users'), array('controller' => 'users', 'action' => 'index')) . '</li>';
 			}
 			elseif ($this->Session->read('Auth')['User']['usrRole'] === '3') {
 				echo '<li>' . $this->Html->link(__('Add new book'), array('action' => 'add')) . '</li>';
+				echo '<li>' . $this->Html->link(__('View book reviews'), array('controller' => 'reviews', 'action' => 'index')) . '</li>';
 				echo '<li>' . $this->Html->link(__('View book procurements'), array('controller' => 'procures', 'action' => 'index')) . '</li>';
 				echo '<li>' . $this->Html->link(__('View coupons'), array('controller' => 'coupons', 'action' => 'index')) . '</li>';
 				echo '<li>' . $this->Html->link(__('View wishlist'), array('controller' => 'wishlists', 'action' => 'index')) . '</li>';
