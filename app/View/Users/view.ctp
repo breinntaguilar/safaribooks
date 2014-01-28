@@ -4,10 +4,19 @@
 		<ul>
 			<li><?php echo $this->Html->link(__('Edit profile'), array('action' => 'edit', $user['User']['usrID'])); ?></li>
 			<?php
-				if ($user['User']['usrStat'] == 0) {
+				if ($user['User']['usrStat'] == 0 && $this->Session->read('Auth')['User']['usrRole'] === '1') {
+					echo '<li>' . $this->Html->link(__('Deactivate account'), array('action' => 'delete', $user['User']['usrID']), null, __('Are you sure you want to deactivate the account? You will be logged out after.')) . '</li>';
+				}
+				elseif ($user['User']['usrStat'] == 0 && $user['User']['usrRole'] == 1 && $this->Session->read('Auth')['User']['usrRole'] === '2') {
 					echo '<li>' . $this->Html->link(__('Deactivate account'), array('action' => 'delete', $user['User']['usrID']), null, __('Are you sure you want to deactivate the account?')) . '</li>';
 				}
-				elseif (isset($this->Session->read('Auth')['User']) && $this->Session->read('Auth')['User']['usrRole'] !== '1') {
+				elseif ($user['User']['usrStat'] == 0 && $this->Session->read('Auth')['User']['usrRole'] === '3') {
+					echo '<li>' . $this->Html->link(__('Deactivate account'), array('action' => 'delete', $user['User']['usrID']), null, __('Are you sure you want to deactivate the account?')) . '</li>';
+				}
+				elseif ($user['User']['usrRole'] == 1 && $this->Session->read('Auth')['User']['usrRole'] === '2') {
+					echo '<li>' . $this->Html->link(__('Re-activate account'), array('action' => 'readd', $user['User']['usrID']), null, __('Are you sure you want to re-activate the account?')) . '</li>';
+				}
+				elseif ($this->Session->read('Auth')['User']['usrRole'] === '3') {
 					echo '<li>' . $this->Html->link(__('Re-activate account'), array('action' => 'readd', $user['User']['usrID']), null, __('Are you sure you want to re-activate the account?')) . '</li>';
 				}
 			?>
@@ -41,30 +50,38 @@
 		<h1><?php echo h($user['User']['usrFname'] . ' ' . $user['User']['usrLname']); ?></h1>
 		<ul>
 			<?php
-				if (isset($this->Session->read('Auth')['User']) && $this->Session->read('Auth')['User']['usrRole'] !== '1') {
+				if ($user['User']['usrRole'] != '1') {
 					echo '<li>' . __('User ID: ') . h($user['User']['usrID']) . '</li>';
 				}
 			?>
-			<li><?php echo __('Email address: ') . h($user['User']['usrEmail']); ?></li>
+			<li><?php echo __('Email Address: ') . h($user['User']['usrEmail']); ?></li>
 			<li></li>
-			<li><?php echo __('First name: ') . h($user['User']['usrFname']); ?></li>
-			<li><?php echo __('Last name: ') . h($user['User']['usrLname']); ?></li>
+			<li></li>
+			<li><?php echo __('First Name: ') . h($user['User']['usrFname']); ?></li>
+			<li><?php echo __('Last Name: ') . h($user['User']['usrLname']); ?></li>
+			<li></li>
 			<li></li>
 			<li><?php echo __('Barangay: ') . h($user['User']['usrAddress1']); ?></li>
-			<li><?php echo __('qwe') . h($user['User']['usrAddress2']); ?></li>
+			<?php
+				if (!empty($user['User']['usrAddress2'])) {
+					echo '<li><font color="#1c1c1b">' . __('Barangay: ') . '</font>' . h($user['User']['usrAddress2']) . '</li>';
+				}
+			?>
 			<li><?php echo __('City: ') . h($user['User']['usrCity']); ?></li>
 			<li><?php echo __('Province: ') . h($user['User']['usrProvince']); ?></li>
-			<li><?php echo __('ZIP code: ') . h($user['User']['usrZIP']); ?></li>
+			<li><?php echo __('ZIP Code: ') . h($user['User']['usrZIP']); ?></li>
 			<li></li>
-			<li><?php echo __('Phone number: ') . h($user['User']['usrPhone']); ?></li>
-			<li><?php echo __('SS number: ') . h($user['User']['usrSSN']); ?></li>
+			<li></li>
+			<li><?php echo __('Phone Number: ') . h($user['User']['usrPhone']); ?></li>
+			<li><?php echo __('SS Number: ') . h($user['User']['usrSSN']); ?></li>
+			<li></li>
 			<li></li>
 			<?php
 				if (isset($this->Session->read('Auth')['User']) && $this->Session->read('Auth')['User']['usrRole'] !== '1') {
 					if ($this->Session->read('Auth')['User']['usrRole'] === '3') {
-						echo '<li>' . __('Role: ') . h($user['User']['usrRole']) . '</li>';
+						echo '<li>' . __('Role: ') . ($user['User']['usrRole'] == '1' ? 'Customer' : ($user['User']['usrRole'] == '2' ? 'Employee' : 'Manager')) . '</li>';
 					}
-					echo '<li>' . __('User status: ') . h($user['User']['usrStat']) . '</li>';
+					echo '<li>' . __('User Status: ') . ($user['User']['usrStat'] == '1' ? 'Deactivated' : 'Active') . '</li>';
 				}
 			?>
 		</ul>

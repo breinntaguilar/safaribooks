@@ -29,7 +29,7 @@ class BooksController extends AppController {
 				$this->Session->setFlash('Changes were not saved. Operation was cancelled.', 'flasherNeutral');
 				return $this->redirect(array('action' => 'index'));
 			}
-			else if ($this->Book->save($this->request->data)) {
+			if ($this->Book->save($this->request->data)) {
 				$this->Session->setFlash('The book has been saved.', 'flasherGood');
 				return $this->redirect(array('action' => 'index'));
 			}
@@ -47,6 +47,7 @@ class BooksController extends AppController {
 			throw new NotFoundException(__('Invalid book'));
 		}
 		
+		$this->Book->id = $id;
 		if ($this->request->is(array('post', 'put'))) {
 			if (!$this->request->data['Book']['bkCover']['name']) {
 				unset($this->request->data['Book']['bkCover']);
@@ -55,7 +56,7 @@ class BooksController extends AppController {
 				$this->Session->setFlash('Changes were not saved. Operation was cancelled.', 'flasherNeutral');
 				return $this->redirect(array('action' => 'view', $id));
 			}
-			else if ($this->Book->save($this->request->data)) {
+			if ($this->Book->save($this->request->data)) {
 				$this->Session->setFlash('The book has been saved.', 'flasherGood');
 				return $this->redirect(array('action' => 'index'));
 			}

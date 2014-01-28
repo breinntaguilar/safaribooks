@@ -28,6 +28,7 @@ class UsersController extends AppController {
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->User->create();
+
 			if ($this->params['data']['hiddenCancel'] == 'cancelled') {
 				$this->Session->setFlash('Changes were not saved. Operation was cancelled.', 'flasherNeutral');
 				return $this->redirect(array('controller' => 'books', 'action' => 'index'));
@@ -40,7 +41,8 @@ class UsersController extends AppController {
 				else {
 					return $this->redirect(array('action' => 'view', $this->User->id));
 				}
-			} else {
+			}
+			else {
 				$this->Session->setFlash('The user could not be saved. Please, try again.', 'flasherBad');
 			}
 		}
@@ -50,14 +52,22 @@ class UsersController extends AppController {
 		if (!$this->User->exists($id)) {
 			throw new NotFoundException(__('Invalid user'));
 		}
+
+		$this->User->id = $id;
 		if ($this->request->is(array('post', 'put'))) {
+			if ($this->params['data']['hiddenCancel'] == 'cancelled') {
+				$this->Session->setFlash('Changes were not saved. Operation was cancelled.', 'flasherNeutral');
+				return $this->redirect(array('action' => 'view', $id));
+			}
 			if ($this->User->save($this->request->data)) {
 				$this->Session->setFlash('The user has been saved.', 'flasherGood');
 				return $this->redirect(array('action' => 'index'));
-			} else {
+			}
+			else {
 				$this->Session->setFlash('The user could not be saved. Please, try again.', 'flasherBad');
 			}
-		} else {
+		}
+		else {
 			$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
 			$this->request->data = $this->User->find('first', $options);
 		}
@@ -65,17 +75,22 @@ class UsersController extends AppController {
 	
 	public function delete($id = null) {
 		$this->User->id = $id;
+		$profileID = $this->request->params['pass'][0];
 		if (!$this->User->exists()) {
 			throw new NotFoundException(__('Invalid user'));
 		}
 		
-		if ($this->User->saveField('usrStat', 1)) {
+		if ($this->User->isOwner($profileID, $this->Session->read('Auth')['User']['usrID']) && $this->User->saveField('usrStat', 1)) {
+			$this->Session->setFlash('The user has been deactivated.', 'flasherGood');
+			return $this->redirect($this->Auth->logout());
+		}
+		elseif ($this->User->saveField('usrStat', 1)) {
 			$this->Session->setFlash('The user has been deactivated.', 'flasherGood');
 		}
 		else {
 			$this->Session->setFlash('The user could not be deactivated. Please, try again.', 'flasherBad');
 		}
-		return $this->redirect(array('action' => 'index'));
+		return $this->redirect(array('action' => 'view', $id));
 	}
 
 	public function readd($id = null) {
@@ -90,7 +105,7 @@ class UsersController extends AppController {
 		else {
 			$this->Session->setFlash('The user could not be reactivated. Please, try again.', 'flasherBad');
 		}
-		return $this->redirect(array('action' => 'index'));
+		return $this->redirect(array('action' => 'view', $id));
 	}
 	
 	public function login() {
@@ -136,7 +151,7 @@ class UsersController extends AppController {
 				return true;
 			}
 		}
-		if (in_array($this->action, array('index', 'view', 'edit', 'delete')) && (isset($user['usrRole']) && $user['usrRole'] !== '1')) {
+		if (in_array($this->action, array('index', 'view', 'edit', 'delete', 'readd')) && (isset($user['usrRole']) && $user['usrRole'] !== '1')) {
 			return true;
 		}
 		return parent::isAuthorized($user);
