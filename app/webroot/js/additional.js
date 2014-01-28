@@ -119,7 +119,7 @@ function couponFunction(value)
 $(document).ready(function() {
 	setTimeout(function() {
 		$('.flasher').parent().slideUp('slow');
-	}, 2500);
+	}, 3000);
 });
 
 $(function() {

@@ -106,7 +106,14 @@ class UsersController extends AppController {
 			// 	$this->Auth->authenticate['Form'] = array('fields' => array('username' => 'usrEmail'));
 			// }
 			if ($this->Auth->login()) {
-				return $this->redirect($this->Auth->redirect());
+				if ($this->Session->read('Auth')['User']['usrStat'] == true) {
+					$this->Session->setFlash('Your account is disabled. Please contact the site administrator for help.', 'flasherBad');
+					return $this->redirect($this->Auth->logout());
+				}
+				else {
+					$this->Session->setFlash('Welcome ' . $this->Session->read('Auth')['User']['usrFname'] . ' ' . $this->Session->read('Auth')['User']['usrLname'] . '!', 'flasherNeutral');
+					return $this->redirect($this->Auth->redirect());
+				}
 			}
 			else {
 				$this->Session->setFlash('Invalid email address or password, please try again.', 'flasherBad');
