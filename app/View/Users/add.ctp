@@ -1,6 +1,6 @@
 <div id="templatemo_content_left">
 	<?php
-		if ((!isset($this->Session->read('Auth')['User'])) OR (isset($this->Session->read('Auth')['User']) && $this->Session->read('Auth')['User']['usrRole'] === '1')) {
+		if (!isset($this->Session->read('Auth')['User']) OR $this->Session->read('Auth')['User']['usrRole'] === '1') {
 			echo '<div class="templatemo_content_left_section">';
 			echo '<h1>' . __('Actions') . '</h1>';
 			echo '<ul>';
@@ -76,7 +76,7 @@
 					'type' => 'text',
 					'maxlength' => '11',
 					'onkeypress' => 'return isNumKey(event)'));
-				if ((!isset($this->Session->read('Auth')['User'])) OR (isset($this->Session->read('Auth')['User']) && $this->Session->read('Auth')['User']['usrRole'] !== '3')) {
+				if (!isset($this->Session->read('Auth')['User']) OR $this->Session->read('Auth')['User']['usrRole'] !== '3') {
 					echo $this->Form->hidden('usrSSN', array('value' => 0));
 					echo $this->Form->hidden('usrRole', array('value' => 1));
 				}

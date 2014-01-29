@@ -223,7 +223,7 @@ class User extends AppModel {
 		}
 		return $this->data[$this->name][$field] === $this->data[$this->name][$fname];
 	}
-
+	
 	// Check if current user is the owner.
 	public function isOwner($profile, $user) {
 		return $this->field('usrID', array('usrID' => $profile, 'usrID' => $user)) === $profile;

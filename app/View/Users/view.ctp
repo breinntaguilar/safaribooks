@@ -50,7 +50,7 @@
 		<h1><?php echo h($user['User']['usrFname'] . ' ' . $user['User']['usrLname']); ?></h1>
 		<ul>
 			<?php
-				if ($user['User']['usrRole'] != '1') {
+				if ($user['User']['usrRole'] != '1' && ($this->Session->read('Auth')['User']['usrRole'] === '2' OR $this->Session->read('Auth')['User']['usrRole'] === '3')) {
 					echo '<li>' . __('User ID: ') . h($user['User']['usrID']) . '</li>';
 				}
 			?>
@@ -73,11 +73,15 @@
 			<li></li>
 			<li></li>
 			<li><?php echo __('Phone Number: ') . h($user['User']['usrPhone']); ?></li>
-			<li><?php echo __('SS Number: ') . h($user['User']['usrSSN']); ?></li>
+			<?php
+				if ($user['User']['usrRole'] != '1' && ($this->Session->read('Auth')['User']['usrRole'] === '2' OR $this->Session->read('Auth')['User']['usrRole'] === '3')) {
+					echo '<li>' . __('SS Number: ') . h($user['User']['usrSSN']) . '</li>';
+				}
+			?>
 			<li></li>
 			<li></li>
 			<?php
-				if (isset($this->Session->read('Auth')['User']) && $this->Session->read('Auth')['User']['usrRole'] !== '1') {
+				if ($this->Session->read('Auth')['User']['usrRole'] !== '1') {
 					if ($this->Session->read('Auth')['User']['usrRole'] === '3') {
 						echo '<li>' . __('Role: ') . ($user['User']['usrRole'] == '1' ? 'Customer' : ($user['User']['usrRole'] == '2' ? 'Employee' : 'Manager')) . '</li>';
 					}

@@ -72,6 +72,31 @@ class UsersController extends AppController {
 			$this->request->data = $this->User->find('first', $options);
 		}
 	}
+
+	public function editPass($id = null) {
+		if (!$this->User->exists($id)) {
+			throw new NotFoundException(__('Invalid user'));
+		}
+
+		$this->User->id = $id;
+		if ($this->request->is(array('post', 'put'))) {
+			if ($this->params['data']['hiddenCancel'] == 'cancelled') {
+				$this->Session->setFlash('Changes were not saved. Operation was cancelled.', 'flasherNeutral');
+				return $this->redirect(array('action' => 'view', $id));
+			}
+			if ($this->User->save($this->request->data)) {
+				$this->Session->setFlash('The user has been saved.', 'flasherGood');
+				return $this->redirect(array('action' => 'index'));
+			}
+			else {
+				$this->Session->setFlash('The user could not be saved. Please, try again.', 'flasherBad');
+			}
+		}
+		else {
+			$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
+			$this->request->data = $this->User->find('first', $options);
+		}
+	}
 	
 	public function delete($id = null) {
 		$this->User->id = $id;
@@ -115,11 +140,6 @@ class UsersController extends AppController {
 				return $this->redirect(array('controller' => 'books', 'action' => 'index'));
 			}
 
-			// App::Import('Utility', 'Validation');
-			// if (isset($this->data['User']['usrID']) && Validation::email($this->data['User']['usrID'])) {
-			// 	$this->request->data['User']['usrEmail'] = $this->data['User']['usrID'];
-			// 	$this->Auth->authenticate['Form'] = array('fields' => array('username' => 'usrEmail'));
-			// }
 			if ($this->Auth->login()) {
 				if ($this->Session->read('Auth')['User']['usrStat'] == true) {
 					$this->Session->setFlash('Your account is disabled. Please contact the site administrator for help.', 'flasherBad');

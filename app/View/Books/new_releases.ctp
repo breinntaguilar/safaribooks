@@ -10,7 +10,7 @@
 		</ul>
 	</div>
 	<?php
-		if (isset($this->Session->read('Auth')['User']) && $this->Session->read('Auth')['User']['usrRole'] !== '1') {
+		if ($this->Session->read('Auth')['User']['usrRole'] !== '1') {
 			echo '<div class="templatemo_content_left_section">';
 			echo '<h1>' . __('Admin') . '</h1>';
 			echo '<ul>';
@@ -34,7 +34,7 @@
 
 <div id="templatemo_content_right">
 	<div class="books form">
-		<h1>New releases for the past year!!!</h1>
+		<h1><?php echo __('New releases for the past year!!!'); ?></h1>
 		<table class="table table-condensed table-bordered table-hover" cellpadding="0" cellspacing="0" align="center">
 			<tr>
 				<th>Title</th>
