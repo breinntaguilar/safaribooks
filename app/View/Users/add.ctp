@@ -6,7 +6,7 @@
 			echo '<ul>';
 			echo '<li>' . $this->Html->link(__('Login'), array('controller' => 'users', 'action' => 'login')) . '</li>';
 			echo '<li>' . $this->Html->link(__('View books'), array('controller' => 'books', 'action' => 'index')) . '</li>';
-			echo '<li>' . $this->Html->link(__('View active coupons'), array('controller' => 'coupons', 'action' => 'index_active')) . '</li>';
+			echo '<li>' . $this->Html->link(__('View active coupons'), array('controller' => 'coupons', 'action' => 'index')) . '</li>';
 			echo '</ul>';
 			echo '</div>';
 		}
@@ -34,7 +34,7 @@
 
 <div id="templatemo_content_right">
 	<div class="users form">
-		<h1>Register Account</h1>
+		<h1><?php echo __('Register Account'); ?></h1>
 		<?php echo $this->Form->create('User'); ?>
 		<table align='center'>
 			<?php
@@ -90,6 +90,7 @@
 						'onkeypress' => 'return isNumKey(event)'));
 					echo $this->Formadd->inputAdd('usrRole', array(
 						'label' => 'Role',
+						'error' => false,
 						'options' => array(
 							'2' => 'Employee',
 							'3' => 'Manager')));
@@ -103,7 +104,7 @@
 					'error' => false,
 					'size' => '25%',
 					'type' => 'password'));
-				echo $this->Formadd->inputAdd('usrPassOld', array(
+				echo $this->Formadd->inputAdd('usrPassConfirm', array(
 					'label' => 'Verify Password',
 					'error' => false,
 					'size' => '25%',

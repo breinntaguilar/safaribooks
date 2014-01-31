@@ -4,8 +4,15 @@
 		<ul>
 			<li><?php echo $this->Html->link(__('Edit profile'), array('action' => 'edit', $user['User']['usrID'])); ?></li>
 			<?php
+				if ($this->Session->read('Auth')['User']['usrID'] == $this->request->params['pass'][0]) {
+					echo '<li>' . $this->Html->link(__('Edit password'), array('action' => 'edit_pass', $user['User']['usrID'])) . '</li>';
+				}
 				if ($user['User']['usrStat'] == 0 && $this->Session->read('Auth')['User']['usrRole'] === '1') {
 					echo '<li>' . $this->Html->link(__('Deactivate account'), array('action' => 'delete', $user['User']['usrID']), null, __('Are you sure you want to deactivate the account? You will be logged out after.')) . '</li>';
+					echo '<li>' . $this->Html->link(__('Add credit card'), array('controller' => 'credits', 'action' => 'add')) . '</li>';
+					echo '<li>' . $this->Html->link(__('View credit cards'), array('controller' => 'credits', 'action' => 'index')) . '</li>';
+					echo '<li>' . $this->Html->link(__('View books'), array('controller' => 'books', 'action' => 'index')) . '</li>';
+					echo '<li>' . $this->Html->link(__('View active coupons'), array('controller' => 'coupons', 'action' => 'index')) . '</li>';
 				}
 				elseif ($user['User']['usrStat'] == 0 && $user['User']['usrRole'] == 1 && $this->Session->read('Auth')['User']['usrRole'] === '2') {
 					echo '<li>' . $this->Html->link(__('Deactivate account'), array('action' => 'delete', $user['User']['usrID']), null, __('Are you sure you want to deactivate the account?')) . '</li>';

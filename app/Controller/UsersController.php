@@ -28,7 +28,6 @@ class UsersController extends AppController {
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->User->create();
-
 			if ($this->params['data']['hiddenCancel'] == 'cancelled') {
 				$this->Session->setFlash('Changes were not saved. Operation was cancelled.', 'flasherNeutral');
 				return $this->redirect(array('controller' => 'books', 'action' => 'index'));
@@ -53,7 +52,6 @@ class UsersController extends AppController {
 			throw new NotFoundException(__('Invalid user'));
 		}
 
-		$this->User->id = $id;
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->params['data']['hiddenCancel'] == 'cancelled') {
 				$this->Session->setFlash('Changes were not saved. Operation was cancelled.', 'flasherNeutral');
@@ -61,7 +59,7 @@ class UsersController extends AppController {
 			}
 			if ($this->User->save($this->request->data)) {
 				$this->Session->setFlash('The user has been saved.', 'flasherGood');
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(array('action' => 'view', $id));
 			}
 			else {
 				$this->Session->setFlash('The user could not be saved. Please, try again.', 'flasherBad');
@@ -73,27 +71,26 @@ class UsersController extends AppController {
 		}
 	}
 
-	public function editPass($id = null) {
+	public function edit_pass($id = null) {
 		if (!$this->User->exists($id)) {
 			throw new NotFoundException(__('Invalid user'));
 		}
 
-		$this->User->id = $id;
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->params['data']['hiddenCancel'] == 'cancelled') {
 				$this->Session->setFlash('Changes were not saved. Operation was cancelled.', 'flasherNeutral');
 				return $this->redirect(array('action' => 'view', $id));
 			}
 			if ($this->User->save($this->request->data)) {
-				$this->Session->setFlash('The user has been saved.', 'flasherGood');
-				return $this->redirect(array('action' => 'index'));
+				$this->Session->setFlash('The password has been saved.', 'flasherGood');
+				return $this->redirect(array('action' => 'view', $id));
 			}
 			else {
-				$this->Session->setFlash('The user could not be saved. Please, try again.', 'flasherBad');
+				$this->Session->setFlash('The password could not be saved. Please, try again.', 'flasherBad');
 			}
 		}
 		else {
-			$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
+			$options = array('conditions' => array('User.' . $this->User->primaryKey => $id), 'fields' => 'User.usrPass');
 			$this->request->data = $this->User->find('first', $options);
 		}
 	}
@@ -165,7 +162,7 @@ class UsersController extends AppController {
 	}
 
 	public function isAuthorized($user) {
-		if (in_array($this->action, array('view', 'edit', 'delete'))) {
+		if (in_array($this->action, array('view', 'edit', 'edit_pass', 'delete'))) {
 			$profileID = $this->request->params['pass'][0];
 			if ($this->User->isOwner($profileID, $user)) {
 				return true;

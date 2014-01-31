@@ -26,16 +26,14 @@
 		<h1><?php echo __('Users'); ?></h1>
 		<table class="table table-condensed table-bordered table-hover" cellpadding="0" cellspacing="0">
 			<tr>
-				<!-- <?php echo ($this->Session->read('Auth')['User']['usrRole'] === '3' ? '<th>' . $this->Paginator->sort('usrID', 'User ID') . '</th>' : false); ?> -->
 				<th><?php echo $this->Paginator->sort('usrFname', 'First Name'); ?></th>
 				<th><?php echo $this->Paginator->sort('usrLname', 'Last Name'); ?></th>
-				<th><?php echo $this->Paginator->sort('usrEmail', 'Email'); ?></th>
+				<th><?php echo $this->Paginator->sort('usrEmail', 'Email Address'); ?></th>
 				<?php echo ($this->Session->read('Auth')['User']['usrRole'] === '3' ? '<th>' . $this->Paginator->sort('usrRole', 'Role') . '</th>' : false); ?>
 				<th class="actions"><?php echo __('Actions'); ?></th>
 			</tr>
 			<?php foreach ($users as $user): ?>
 				<tr>
-					<!-- <?php echo ($this->Session->read('Auth')['User']['usrRole'] === '3' ? '<td>' . h($user['User']['usrID']) . '&nbsp;</td>' : false); ?> -->
 					<td><?php echo h($user['User']['usrFname']); ?>&nbsp;</td>
 					<td><?php echo h($user['User']['usrLname']); ?>&nbsp;</td>
 					<td><?php echo h($user['User']['usrEmail']); ?>&nbsp;</td>

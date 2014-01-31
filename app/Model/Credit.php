@@ -13,15 +13,15 @@ class Credit extends AppModel {
 		'ccNum' => array(
 			'cc' => array(
 				'rule' => array('cc', array('visa', 'amex', 'disc', 'mc'), true, null),
-				//'message' => 'Your custom message here',
+				'message' => 'Card number should be correct.',
 			),
 			'notempty' => array(
 				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
+				'message' => 'Card number should not be empty.',
 			),
 			'isUnique' => array(
 				'rule' => 'isUnique',
-				//'message' => 'Your custom message here',
+				'message' => 'Card number should be unique.',
 			),
 		),
 		'usrID' => array(
@@ -31,13 +31,9 @@ class Credit extends AppModel {
 			),
 		),
 		'ccType' => array(
-			'custom' => array(
-				'rule' => array('custom'),
-				//'message' => 'Your custom message here',
-			),
 			'notempty' => array(
 				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
+				'message' => 'Card type should not be empty.',
 			),
 		),
 	);
@@ -52,4 +48,9 @@ class Credit extends AppModel {
 			'order' => ''
 		)
 	);
+
+	// Check if current user is the owner.
+	public function isOwner($credit, $user) {
+		return $this->field('ccNum', array('ccNum' => $credit, 'usrID' => $user)) === $credit;
+	}
 }

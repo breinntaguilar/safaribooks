@@ -21,7 +21,6 @@ class BooksController extends AppController {
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->Book->create();
-			
 			if (!$this->request->data['Book']['bkCover']['name']) {
 				unset($this->request->data['Book']['bkCover']);
 			}
@@ -47,7 +46,6 @@ class BooksController extends AppController {
 			throw new NotFoundException(__('Invalid book'));
 		}
 		
-		$this->Book->id = $id;
 		if ($this->request->is(array('post', 'put'))) {
 			if (!$this->request->data['Book']['bkCover']['name']) {
 				unset($this->request->data['Book']['bkCover']);

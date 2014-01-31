@@ -40,14 +40,34 @@ class User extends AppModel {
 				'message' => 'Password should not be empty.',
 			),
 		),
-		'usrPassOld' => array(
+		'usrPassConfirm' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
 				'message' => 'Password should be confirmed.',
 			),
 			'confirmPassword' => array(
-				'rule' => array('confirmPassword', 'usrPass'),
+				'rule' => array('confirmPassword'),
 				'message' => 'Both passwords should match.',
+			),
+		),
+		'usrPassCurrent' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
+				'message' => 'Current password should be supplied first.',
+			),
+			'verifyCurrentPassword' => array(
+				'rule' => 'verifyCurrentPassword',
+				'message' => 'Current password is incorrect.',
+			),
+		),
+		'usrPassUpdate' => array(
+			'custom' => array(
+				'rule' => '/[a-zA-Z0-9_\.]{6,12}/',
+				'message' => 'Password should be 6 to 12 characters. Allowed characters are alphanumeric, underscore (_), and period (.) only.',
+			),
+			'notempty' => array(
+				'rule' => array('notempty'),
+				'message' => 'Password should not be empty.',
 			),
 		),
 		'usrFname' => array(
@@ -215,13 +235,18 @@ class User extends AppModel {
 	);
 	
 	// Check both passwords.
-	public function confirmPassword($check, $field) {
-		$fname = '';
-		foreach ($check as $key => $value) {
-			$fname = $key;
-			break;
+	public function confirmPassword() {
+		if (isset($this->data[$this->name]['usrPassUpdate']) && $this->data[$this->name]['usrPassUpdate'] == 0) {
+			return $this->data[$this->name]['usrPassUpdate'] === $this->data[$this->name]['usrPassConfirm'];
 		}
-		return $this->data[$this->name][$field] === $this->data[$this->name][$fname];
+		else {
+			return $this->data[$this->name]['usrPass'] === $this->data[$this->name]['usrPassConfirm'];
+		}
+	}
+
+	// Verify current password.
+	public function verifyCurrentPassword() {
+		return AuthComponent::password($this->data[$this->alias]['usrPassCurrent']) === $this->data[$this->alias]['usrPass'];
 	}
 	
 	// Check if current user is the owner.
@@ -235,12 +260,20 @@ class User extends AppModel {
 			$passHasher1 = new SimplePasswordHasher();
 			$this->data[$this->alias]['usrPass'] = $passHasher1->hash($this->data[$this->alias]['usrPass']);
 		}
+		if (isset($this->data[$this->alias]['usrPassUpdate'])) {
+			$passHasher2 = new SimplePasswordHasher();
+			$this->data[$this->alias]['usrPass'] = $passHasher2->hash($this->data[$this->alias]['usrPassUpdate']);
+		}
+		$this->data[$this->alias]['usrPassConfirm'] = 0;
+		$this->data[$this->alias]['usrPassCurrent'] = 0;
+		$this->data[$this->alias]['usrPassUpdate'] = 0;
+
 		return true;
 	}
 	
 	// Generate usrID value before saving.
 	public function beforeValidate($options = array()) {
-		if (empty($this->data['User']['usrID'])) {
+		if (!isset($this->data['User']['usrID'])) {
 			$lname = substr(strtolower($this->data['User']['usrLname']), 0, (strlen($this->data['User']['usrLname']) > 3 ? 4 : strlen($this->data['User']['usrLname'])));
 			$fname = substr(strtolower($this->data['User']['usrFname']), 0, (strlen($this->data['User']['usrLname']) > 3 ? 4 : strlen($this->data['User']['usrLname'])));
 			$newID = $lname . $fname;

@@ -1,25 +1,44 @@
 <div id="templatemo_content_left">
-	<div class="templatemo_content_left_section">
-		<div class="actions">
-			<h1><?php echo __('Actions'); ?></h1>
-			<ul>
-				<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('User.usrID')), null, __('Are you sure you want to delete # %s?', $this->Form->value('User.usrID'))); ?></li>
-				<li><?php echo $this->Html->link(__('List Users'), array('action' => 'index')); ?></li>
-				<li><?php echo $this->Html->link(__('List Credits'), array('controller' => 'credits', 'action' => 'index')); ?> </li>
-				<li><?php echo $this->Html->link(__('List Carts'), array('controller' => 'carts', 'action' => 'index')); ?> </li>
-				<li><?php echo $this->Html->link(__('List Reviews'), array('controller' => 'reviews', 'action' => 'index')); ?> </li>
-				<li><?php echo $this->Html->link(__('List Procures'), array('controller' => 'procures', 'action' => 'index')); ?> </li>
-			</ul>
-		</div>
-	</div>
+	<?php
+		if (!isset($this->Session->read('Auth')['User']) OR $this->Session->read('Auth')['User']['usrRole'] === '1') {
+			echo '<div class="templatemo_content_left_section">';
+			echo '<h1>' . __('Actions') . '</h1>';
+			echo '<ul>';
+			echo '<li>' . $this->Html->link(__('View credit cards'), array('controller' => 'credits', 'action' => 'index')) . '</li>';
+			echo '<li>' . $this->Html->link(__('View books'), array('controller' => 'books', 'action' => 'index')) . '</li>';
+			echo '<li>' . $this->Html->link(__('View active coupons'), array('controller' => 'coupons', 'action' => 'index')) . '</li>';
+			echo '</ul>';
+			echo '</div>';
+		}
+		elseif (isset($this->Session->read('Auth')['User']) && $this->Session->read('Auth')['User']['usrRole'] !== '1') {
+			echo '<div class="templatemo_content_left_section">';
+			echo '<h1>' . __('Admin') . '</h1>';
+			echo '<ul>';
+			if ($this->Session->read('Auth')['User']['usrRole'] === '2') {
+				echo '<li>' . $this->Html->link(__('View reviews'), array('controller' => 'reviews', 'action' => 'index')) . '</li>';
+				echo '<li>' . $this->Html->link(__('View users'), array('controller' => 'users', 'action' => 'index')) . '</li>';
+			}
+			elseif ($this->Session->read('Auth')['User']['usrRole'] === '3') {
+				echo '<li>' . $this->Html->link(__('Add new book'), array('action' => 'add')) . '</li>';
+				echo '<li>' . $this->Html->link(__('View reviews'), array('controller' => 'reviews', 'action' => 'index')) . '</li>';
+				echo '<li>' . $this->Html->link(__('View book procurements'), array('controller' => 'procures', 'action' => 'index')) . '</li>';
+				echo '<li>' . $this->Html->link(__('View coupons'), array('controller' => 'coupons', 'action' => 'index')) . '</li>';
+				echo '<li>' . $this->Html->link(__('View wishlist'), array('controller' => 'wishlists', 'action' => 'index')) . '</li>';
+				echo '<li>' . $this->Html->link(__('View users'), array('controller' => 'users', 'action' => 'index')) . '</li>';
+			}
+			echo '</ul>';
+			echo '</div>';
+		}
+	?>
 </div>
 
 <div id="templatemo_content_right">
 	<div class="users form">
-		<h1>Edit Profile</h1>
-		<?php echo $this->Form->create('User', array('type' => 'file')); ?>
+		<h1><?php echo __('Edit Profile'); ?></h1>
+		<?php echo $this->Form->create('User'); ?>
 		<table align='center'>
 			<?php
+				echo $this->Form->input('usrID');
 				if ($this->data['User']['usrRole'] != '2' OR $this->Session->read('Auth')['User']['usrRole'] !== '2') {
 					echo $this->Formadd->inputAdd('usrFname', array(
 						'label' => 'First Name',
@@ -73,7 +92,7 @@
 					<div class="submit">
 						<hr><br>
 						<?php echo $this->Form->submit(__('Edit profile'), array('div' => false)); ?>
-						<?php echo $this->Form->submit(__('Cancel'), array('type' => 'button', 'id' => 'edit', 'div' => false, 'onclick' => 'submitForm(id)')); ?>
+						<?php echo $this->Form->submit(__('Cancel'), array('type' => 'button', 'id' => 'add', 'div' => false, 'onclick' => 'submitForm(id)')); ?>
 						<input type="hidden" name="hiddenCancel" id="hiddenCancel">
 						&emsp;&emsp;&emsp;
 						<?php echo $this->Form->submit(__('Reset'), array('type' => 'button', 'div' => false, 'onclick' => 'clearForm(this.form)')); ?>
