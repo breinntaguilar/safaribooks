@@ -1,0 +1,16 @@
+Database dump: safaribooks_db.sql
+
+Sample books:
+- Harry Potter and the Sorcerer's Stone
+- Learning PHP, MySQL, JavaScript, & CSS
+- Microsoft Access 2013: Comprehensive (Shelly Cashman)
+- Programming Android Java Programming for the New Generation of Mobile Devices
+- The Lord of the Rings - The Fellowship of the Ring
+- Turned
+
+Sample users:
+- Manager: manager@safaribooks.com | abc123
+- Employee: employee@safaribooks.com | abc123
+- Customer: customer@safaribooks.com | abc123
+
+Note: When adding credit cards, make sure it put an actual card number because it won't accept just random numbers.
