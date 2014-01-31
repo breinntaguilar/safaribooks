@@ -10,7 +10,7 @@
 		</ul>
 	</div>
 	<?php
-		if ($this->Session->read('Auth')['User']['usrRole'] !== '1') {
+		if (isset($this->Session->read('Auth')['User']) && $this->Session->read('Auth')['User']['usrRole'] !== '1') {
 			echo '<div class="templatemo_content_left_section">';
 			echo '<h1>' . __('Admin') . '</h1>';
 			echo '<ul>';
