@@ -15,14 +15,6 @@ class CreditsController extends AppController {
 		}
 	}
 
-	// public function view($id = null) {
-	// 	if (!$this->Credit->exists($id)) {
-	// 		throw new NotFoundException(__('Invalid credit'));
-	// 	}
-	// 	$options = array('conditions' => array('Credit.' . $this->Credit->primaryKey => $id));
-	// 	$this->set('credit', $this->Credit->find('first', $options));
-	// }
-
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->Credit->create();
@@ -56,7 +48,8 @@ class CreditsController extends AppController {
 			if ($this->Credit->save($this->request->data)) {
 				$this->Session->setFlash('The credit has been saved.', 'flasherGood');
 				return $this->redirect(array('action' => 'index'));
-			} else {
+			}
+			else {
 				$this->Session->setFlash('The credit could not be saved. Please, try again.', 'flasherBad');
 			}
 		}
@@ -64,8 +57,6 @@ class CreditsController extends AppController {
 			$options = array('conditions' => array('Credit.' . $this->Credit->primaryKey => $id));
 			$this->request->data = $this->Credit->find('first', $options);
 		}
-		// $creditUsers = $this->Credit->CreditUser->find('list');
-		// $this->set(compact('creditUsers'));
 	}
 
 	public function delete($id = null) {
@@ -75,9 +66,10 @@ class CreditsController extends AppController {
 		}
 		$this->request->onlyAllow('post', 'delete');
 		if ($this->Credit->delete()) {
-			$this->Session->setFlash(__('The credit has been deleted.'));
-		} else {
-			$this->Session->setFlash(__('The credit could not be deleted. Please, try again.'));
+			$this->Session->setFlash('The credit has been deleted.', 'flasherGood');
+		}
+		else {
+			$this->Session->setFlash('The credit could not be deleted. Please, try again.', 'flasherBad');
 		}
 		return $this->redirect(array('action' => 'index'));
 	}

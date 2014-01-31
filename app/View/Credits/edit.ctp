@@ -16,11 +16,12 @@
 			echo '<h1>' . __('Admin') . '</h1>';
 			echo '<ul>';
 			if ($this->Session->read('Auth')['User']['usrRole'] === '2') {
+				echo '<li>' . $this->Html->link(__('Add new customer'), array('controller' => 'users', 'action' => 'add')) . '</li>';
 				echo '<li>' . $this->Html->link(__('View reviews'), array('controller' => 'reviews', 'action' => 'index')) . '</li>';
 				echo '<li>' . $this->Html->link(__('View users'), array('controller' => 'users', 'action' => 'index')) . '</li>';
 			}
 			elseif ($this->Session->read('Auth')['User']['usrRole'] === '3') {
-				echo '<li>' . $this->Html->link(__('Add new book'), array('action' => 'add')) . '</li>';
+				echo '<li>' . $this->Html->link(__('Add new book'), array('controller' => 'books', 'action' => 'add')) . '</li>';
 				echo '<li>' . $this->Html->link(__('View reviews'), array('controller' => 'reviews', 'action' => 'index')) . '</li>';
 				echo '<li>' . $this->Html->link(__('View book procurements'), array('controller' => 'procures', 'action' => 'index')) . '</li>';
 				echo '<li>' . $this->Html->link(__('View coupons'), array('controller' => 'coupons', 'action' => 'index')) . '</li>';
@@ -33,25 +34,47 @@
 	?>
 </div>
 
-<div class="credits form">
-<?php echo $this->Form->create('Credit'); ?>
-	<fieldset>
-		<legend><?php echo __('Edit Credit'); ?></legend>
-	<?php
-		echo $this->Form->input('ccNum');
-		echo $this->Form->input('cusID');
-		echo $this->Form->input('ccType');
-	?>
-	</fieldset>
-<?php echo $this->Form->end(__('Submit')); ?>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-
-		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('Credit.ccID')), null, __('Are you sure you want to delete # %s?', $this->Form->value('Credit.ccID'))); ?></li>
-		<li><?php echo $this->Html->link(__('List Credits'), array('action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link(__('List Customers'), array('controller' => 'users', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Credit Customer'), array('controller' => 'users', 'action' => 'add')); ?> </li>
-	</ul>
+<div id="templatemo_content_right">
+	<div class="credits form">
+		<h1><?php echo __('Edit Credit Card'); ?></h1>
+		<?php echo $this->Form->create('Credit'); ?>
+		<table align='center'>
+			<?php
+				echo $this->Form->input('ccID');
+				echo $this->Formadd->inputAdd('ccBank', array(
+					'label' => 'Bank Name',
+					'error' => false,
+					'size' => '50%'));
+				echo $this->Formadd->inputAdd('ccNum', array(
+					'label' => 'Card Number',
+					'error' => false,
+					'size' => '17%',
+					'type' => 'text',
+					'maxlength' => '16',
+					'onkeypress' => 'return isDecKey(event)'));
+				echo $this->Formadd->inputAdd('ccType', array(
+						'label' => 'Card Type',
+						'error' => false,
+						'options' => array(
+							'Visa' => 'Visa',
+							'American Express' => 'American Express',
+							'Discover' => 'Discover',
+							'Master Card' => 'Master Card')));
+			?>
+			<tr><td colspan=3><div class="cleaner_with_image" /></td></tr>
+			<tr>
+				<td colspan=3 align=center>
+					<div class="submit">
+						<hr><br>
+						<?php echo $this->Form->submit(__('Edit card'), array('div' => false)); ?>
+						<?php echo $this->Form->submit(__('Cancel'), array('type' => 'button', 'id' => 'add', 'div' => false, 'onclick' => 'submitForm(id)')); ?>
+						<input type="hidden" name="hiddenCancel" id="hiddenCancel">
+						&emsp;&emsp;&emsp;
+						<?php echo $this->Form->submit(__('Reset'), array('type' => 'button', 'div' => false, 'onclick' => 'clearForm(this.form)')); ?>
+					</div>
+					<?php echo $this->Form->end();?>
+				</td>
+			</tr>
+		</table>
+	</div>
 </div>

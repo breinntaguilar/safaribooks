@@ -16,11 +16,12 @@
 			echo '<h1>' . __('Admin') . '</h1>';
 			echo '<ul>';
 			if ($this->Session->read('Auth')['User']['usrRole'] === '2') {
+				echo '<li>' . $this->Html->link(__('Add new customer'), array('controller' => 'users', 'action' => 'add')) . '</li>';
 				echo '<li>' . $this->Html->link(__('View reviews'), array('controller' => 'reviews', 'action' => 'index')) . '</li>';
 				echo '<li>' . $this->Html->link(__('View users'), array('controller' => 'users', 'action' => 'index')) . '</li>';
 			}
 			elseif ($this->Session->read('Auth')['User']['usrRole'] === '3') {
-				echo '<li>' . $this->Html->link(__('Add new book'), array('action' => 'add')) . '</li>';
+				echo '<li>' . $this->Html->link(__('Add new book'), array('controller' => 'books', 'action' => 'add')) . '</li>';
 				echo '<li>' . $this->Html->link(__('View reviews'), array('controller' => 'reviews', 'action' => 'index')) . '</li>';
 				echo '<li>' . $this->Html->link(__('View book procurements'), array('controller' => 'procures', 'action' => 'index')) . '</li>';
 				echo '<li>' . $this->Html->link(__('View coupons'), array('controller' => 'coupons', 'action' => 'index')) . '</li>';
@@ -40,6 +41,11 @@
 		<table align='center'>
 			<?php
 				echo $this->Form->hidden('usrID', array('value' => $this->Session->read('Auth')['User']['usrID']));
+				echo $this->Formadd->inputAdd('ccBank', array(
+					'label' => 'Bank Name',
+					'error' => false,
+					'size' => '50%',
+					'id' => 'focusme'));
 				echo $this->Formadd->inputAdd('ccNum', array(
 					'label' => 'Card Number',
 					'error' => false,

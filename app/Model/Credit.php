@@ -6,10 +6,22 @@ class Credit extends AppModel {
 	
 	public $primaryKey = 'ccID';
 	
-	public $displayField = 'ccNum';
+	public $displayField = 'ccBank';
 	
 	// Validation rules
 	public $validate = array(
+		'ccID' => array(
+			'numeric' => array(
+				'rule' => array('numeric'),
+				//'message' => 'Your custom message here',
+			),
+		),
+		'ccBank' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
+				//'message' => 'Your custom message here',
+			),
+		),
 		'ccNum' => array(
 			'cc' => array(
 				'rule' => array('cc', array('visa', 'amex', 'disc', 'mc'), true, null),
@@ -51,6 +63,6 @@ class Credit extends AppModel {
 
 	// Check if current user is the owner.
 	public function isOwner($credit, $user) {
-		return $this->field('ccNum', array('ccNum' => $credit, 'usrID' => $user)) === $credit;
+		return $this->field('ccID', array('ccID' => $credit, 'usrID' => $user)) === $credit;
 	}
 }

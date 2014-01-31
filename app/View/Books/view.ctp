@@ -15,6 +15,7 @@
 			echo '<h1>' . __('Admin') . '</h1>';
 			echo '<ul>';
 			if ($this->Session->read('Auth')['User']['usrRole'] === '2') {
+				echo '<li>' . $this->Html->link(__('Add new customer'), array('controller' => 'users', 'action' => 'add')) . '</li>';
 				echo '<li>' . $this->Html->link(__('View book reviews'), array('controller' => 'reviews', 'action' => 'index')) . '</li>';
 				echo '<li>' . $this->Html->link(__('View users'), array('controller' => 'users', 'action' => 'index')) . '</li>';
 			}
@@ -26,7 +27,7 @@
 				else {
 					echo '<li>' . $this->Html->link(__('Re-add book'), array('action' => 'readd', $book['Book']['bkID']), null, __('Are you sure you want to add this book again to the inventory?')) . '</li>';
 				}
-				echo '<li>' . $this->Html->link(__('Add new book'), array('action' => 'add')) . '</li>';
+				echo '<li>' . $this->Html->link(__('Add new book'), array('controller' => 'books', 'action' => 'add')) . '</li>';
 				echo '<li>' . $this->Html->link(__('View book reviews'), array('controller' => 'reviews', 'action' => 'index')) . '</li>';
 				echo '<li>' . $this->Html->link(__('View book procurements'), array('controller' => 'procures', 'action' => 'index')) . '</li>';
 				echo '<li>' . $this->Html->link(__('View coupons'), array('controller' => 'coupons', 'action' => 'index')) . '</li>';

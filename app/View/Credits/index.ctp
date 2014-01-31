@@ -16,11 +16,12 @@
 			echo '<h1>' . __('Admin') . '</h1>';
 			echo '<ul>';
 			if ($this->Session->read('Auth')['User']['usrRole'] === '2') {
+				echo '<li>' . $this->Html->link(__('Add new customer'), array('controller' => 'users', 'action' => 'add')) . '</li>';
 				echo '<li>' . $this->Html->link(__('View reviews'), array('controller' => 'reviews', 'action' => 'index')) . '</li>';
 				echo '<li>' . $this->Html->link(__('View users'), array('controller' => 'users', 'action' => 'index')) . '</li>';
 			}
 			elseif ($this->Session->read('Auth')['User']['usrRole'] === '3') {
-				echo '<li>' . $this->Html->link(__('Add new book'), array('action' => 'add')) . '</li>';
+				echo '<li>' . $this->Html->link(__('Add new book'), array('controller' => 'books', 'action' => 'add')) . '</li>';
 				echo '<li>' . $this->Html->link(__('View reviews'), array('controller' => 'reviews', 'action' => 'index')) . '</li>';
 				echo '<li>' . $this->Html->link(__('View book procurements'), array('controller' => 'procures', 'action' => 'index')) . '</li>';
 				echo '<li>' . $this->Html->link(__('View coupons'), array('controller' => 'coupons', 'action' => 'index')) . '</li>';
@@ -38,17 +39,19 @@
 		<h1><?php echo __('Credit Cards'); ?></h1>
 		<table class="table table-condensed table-bordered table-hover" cellpadding="0" cellspacing="0">
 			<tr>
+				<th><?php echo $this->Paginator->sort('ccBank', 'Bank Name'); ?></th>
 				<th><?php echo $this->Paginator->sort('ccNum', 'Credit Card Number'); ?></th>
 				<th><?php echo $this->Paginator->sort('ccType', 'Card Type'); ?></th>
 				<th class="actions"><?php echo __('Actions'); ?></th>
 			</tr>
 			<?php foreach ($credits as $credit): ?>
 				<tr align="center">
+					<td><?php echo h($credit['Credit']['ccBank']); ?>&nbsp;</td>
 					<td><?php echo h($credit['Credit']['ccNum']); ?>&nbsp;</td>
 					<td><?php echo h($credit['Credit']['ccType']); ?>&nbsp;</td>
 					<td class="actions">
-						<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $credit['Credit']['ccNum'])); ?>
-						<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $credit['Credit']['ccNum']), null, __('Are you sure you want to delete this card?', $credit['Credit']['ccNum'])); ?>
+						<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $credit['Credit']['ccID'])); ?>
+						<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $credit['Credit']['ccID']), null, __('Are you sure you want to delete this card?', $credit['Credit']['ccID'])); ?>
 					</td>
 				</tr>
 			<?php endforeach; ?>
