@@ -9,6 +9,8 @@
 /dist
 /tags
 /app/Test
+.htaccess
+index.php
 
 # OS generated files #
 ######################
