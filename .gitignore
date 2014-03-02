@@ -9,8 +9,8 @@
 /dist
 /tags
 /app/Test
-.htaccess
-index.php
+/app/webroot/.htaccess
+/app/webroot/index.php
 
 # OS generated files #
 ######################
